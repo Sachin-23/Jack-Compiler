@@ -5,6 +5,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include "JackTokenizer.hh"
+
 // Process each file
 void processFile(std::string file) {
   std::string fileName = file;
@@ -28,12 +30,11 @@ int main(int argc, char *argv[]) {
   stat(argv[1], &pathStat);
   std::string path = argv[1];
    
-  // Regular file
+  // Check if regular file
   if (S_ISREG(pathStat.st_mode)) {
     // std::cout << "Processing a single file: " << argv[1] << std::endl;
     processFile(argv[1]);
   }
-  // Directory of Jack files
   else if (S_ISDIR(pathStat.st_mode)) {
     DIR *dir;
     dir = opendir(argv[1]);
@@ -44,11 +45,9 @@ int main(int argc, char *argv[]) {
     }
 
     struct dirent *entry; 
-    // for every file
-    while ((entry=readdir(dir))) {
-      // Extra '/' won't make any difference
-      processFile(path + "/" + entry -> d_name);
-    }
+    // Process each file
+    while ((entry=readdir(dir)))
+      processFile(path + "/" + entry -> d_name); 
      
     closedir(dir); 
   }
