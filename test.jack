@@ -1,0 +1,14 @@
+// Single comment
+/* multiline comment
+multiline comment
+multiline comment
+multiline comment */
+
+return getx / gety;// single test comment
+return/* test multiline comment*/x/y;
+
+let x = y / x;
+
+let x = y * x;
+
+let s = "Hello";

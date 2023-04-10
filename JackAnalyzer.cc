@@ -10,9 +10,14 @@
 // Process each file
 void processFile(std::string file) {
   std::string fileName = file;
+
   // Only files ending .jack extension
   if (fileName.substr(fileName.find_last_of(".")) == ".jack") {
-    std::cout << fileName << std::endl;
+    JackTokenizer tokenizer(fileName);
+    while(tokenizer.hasMoreTokens()) {
+      std::cout << tokenizer.getToken() << std::endl;
+      tokenizer.advance(); 
+    }
   }
 }
 

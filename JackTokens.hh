@@ -1,18 +1,35 @@
 #include <iostream>
 #include <map>
 
-enum lexElements {
+enum tokenTypes {
   KEYWORD 
   , SYMBOL
+  , IDENTIFIER
   , INT_CONST
   , STR_CONST
 };
 
-std::map<std::string, enum lexElements> TOKENS = {
-  // All the keywords
-  {"class", lexElements::KEYWORD} 
-  , {"constructor", lexElements::KEYWORD} 
-  // All the symbols
-  , {"{", lexElements::SYMBOL}
-  , {"}", lexElements::SYMBOL}
+enum keywords {
+  CLASS
+  , METHOD
+  , FUNCTION
+  , CONSTRUCTOR
+  , INT
+  , BOOLEAN
+  , CHAR
+  , VOID
+  , VAR
+  , STATIC
+  , FIELD
+  , LET
+  , DO
+  , IF
+  , ELSE
+  , WHILE
+  , RETURN
+  , TRUE
+  , FALSE
+  , NONE // same NULL
+  , THIS
 };
+
