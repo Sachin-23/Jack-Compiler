@@ -5,7 +5,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "JackTokenizer.hh"
+#include "CompilationEngine.hh"
 
 // Process each file
 void processFile(std::string file) {
@@ -13,11 +13,29 @@ void processFile(std::string file) {
 
   // Only files ending .jack extension
   if (fileName.substr(fileName.find_last_of(".")) == ".jack") {
-    JackTokenizer tokenizer(fileName);
-    while(tokenizer.hasMoreTokens()) {
-      std::cout << tokenizer.getToken() << std::endl;
-      tokenizer.advance(); 
+    CompilationEngine compiler(fileName);
+    // Every Jack program is a collection of class
+    compiler.compileClass();
+    /*
+    // Tokens
+    switch(tokenizer.tokenType()) {
+      case tokenTypes::KEYWORD:  
+        std::cout << "<keyword>\t" << tokenizer.getToken() << "\t</keyword>" << std::endl;
+        break; 
+      case tokenTypes::SYMBOL: 
+        std::cout << "<symbol>\t" << tokenizer.symbol() << "\t</symbol>" << std::endl;
+        break; 
+      case tokenTypes::IDENTIFIER: 
+        std::cout << "<identifier>\t" << tokenizer.identifier() << "\t</identifire>" << std::endl;
+        break; 
+      case tokenTypes::INT_CONST: 
+        std::cout << "<intCONST>\t" << tokenizer.intVal() << "\t</intCONST>" << std::endl;
+        break; 
+      case tokenTypes::STR_CONST: 
+        std::cout << "<stringCONST>\t" << tokenizer.stringVal() << "\t</stringCONST>" << std::endl;
+        break; 
     }
+    */
   }
 }
 

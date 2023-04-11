@@ -7,9 +7,10 @@ class JackTokenizer {
   private:
     std::ifstream inFile;
     std::string token;
+    // Track current line - For error reporting
+    uint64_t lineCount = 0;
     bool sComment = false, mComment = false;
     char cur;
-    enum::keywords keyword;
     enum::tokenTypes tType;
 
     bool isKeyword(std::string token) {
@@ -36,15 +37,19 @@ class JackTokenizer {
 
     bool isINT_CONST(std::string token) {
       for (char c: token) {
-        if (c < 48 || c > 58)
+        if (c < 48 || c > 57)
           return false;
       }
       return true;
     }
-    
+
     bool isSTRING_CONST(std::string token) {
-      for (char c: token) {
-        if (c < 33 || c > 126) {
+      // STRING_CONST token will have "str" 
+      std::string::size_type n = token.size()-1; 
+      if (token[0] != '"' || token[n] != '"') return false;
+      for(std::string::size_type i = 1; i < n; ++i) {
+        // from ascii table
+        if (token[i] < 31 || token[i] > 126) {
           return false; 
         }
       }
@@ -52,12 +57,26 @@ class JackTokenizer {
     }
 
     bool isIDENTIFIER(std::string token) {
-      return false;
+      if ((token[0] >= '0' && token[0] <= '9')) return false;
+      for(std::string::size_type i = 1; i < token.size(); ++i) {
+        if (!((token[i] >= '0' && token[i] <= '9') 
+              || (token[i] >= 'a' && token[i] <= 'z') 
+              || (token[i] >= 'A' && token[i] <= 'Z') 
+              || token[i] == '_'))
+         return false; 
+      }
+      return true;
     }
 
   public:
+    JackTokenizer() {};
+
     // path to the jack file
-    JackTokenizer(std::string path) {
+    void init(std::string path) {
+      if (inFile.is_open()) {
+        std::cerr << "There is already a file processing: " << path << std::endl;
+        exit(1);
+      }
       inFile.open(path, std::ios::in);
 
       if (!inFile) 
@@ -111,6 +130,7 @@ class JackTokenizer {
         }
         // skip new lines 
         if (cur == '\n') {
+          ++lineCount;
           continue;
         }
         if (cur == ' ') {
@@ -143,12 +163,43 @@ class JackTokenizer {
       else if (isIDENTIFIER(token)) {
         tType = tokenTypes::IDENTIFIER; 
       }
+      else {
+        std::cerr << "Error at " << lineCount << " with token: " << token << std::endl;
+        exit(1);
+      }
     }
      
-    std::string tokenType() {
-      return "NOT YET IMPLEMENTED";
+    // return token type   
+    enum::tokenTypes tokenType() {
+      return tType;
     }
 
+    enum::keyWords keyWord() {
+      return keyWordTypes[token];
+    }
+
+    // return symbol if tokentype is symbol
+    char symbol() {
+      return token[0];
+    }
+
+    // return symbol if tokentype is symbol
+    std::string identifier() {
+      return token;
+    }
+
+    // return identifier if tokentype is identifier
+    int16_t intVal() {
+      /* check the int range */
+      return std::stoi(token);
+    }
+
+    // return symbol if tokentype is symbol
+    std::string stringVal() {
+      return token.substr(1, token.size()-2);
+    }
+
+    // For debug purposes
     std::string getToken() {
       return token;
     }
