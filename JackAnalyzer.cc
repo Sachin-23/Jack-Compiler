@@ -55,6 +55,11 @@ int main(int argc, char *argv[]) {
    
   // Check if regular file
   if (S_ISREG(pathStat.st_mode)) {
+    if (path[0] < 65 || path[0] > 90) {
+      std::cerr << "File name should be captialized." << std::endl;
+      exit(1);
+    }
+
     // std::cout << "Processing a single file: " << argv[1] << std::endl;
     processFile(argv[1]);
   }

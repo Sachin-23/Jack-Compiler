@@ -8,7 +8,7 @@ class JackTokenizer {
     std::ifstream inFile;
     std::string token;
     // Track current line - For error reporting
-    uint64_t lineCount = 0;
+    uint64_t lineCount = 1;
     bool sComment = false, mComment = false;
     char cur;
     enum::tokenTypes tType;
@@ -99,8 +99,10 @@ class JackTokenizer {
         // Skip if single line comment
         if (sComment) {
           // End of single line comment 
-          if (cur == '\n') 
+          if (cur == '\n') {
+            ++lineCount;
             sComment = false;
+          }
           continue;
         }
         // Check for single comment
@@ -115,8 +117,10 @@ class JackTokenizer {
         // Skip if multi-line comment
         if (mComment) {
           // End of multi-line comment 
-          if (cur == '*' && inFile.get() == '/') 
+          if (cur == '*' && inFile.get() == '/') {
+            ++lineCount;
             mComment = false;
+          }
           continue;
         }
         // Start of multi-line comment
@@ -147,7 +151,7 @@ class JackTokenizer {
       return false;
     }
 
-    void advance() {
+    std::string advance() {
       if (isKeyword(token)) {
         tType = tokenTypes::KEYWORD;
       }
@@ -164,9 +168,10 @@ class JackTokenizer {
         tType = tokenTypes::IDENTIFIER; 
       }
       else {
-        std::cerr << "Error at " << lineCount << " with token: " << token << std::endl;
+        std::cerr << "Lexical error at " << lineCount << " with token: " << token << std::endl;
         exit(1);
       }
+      return token;
     }
      
     // return token type   
@@ -199,9 +204,9 @@ class JackTokenizer {
       return token.substr(1, token.size()-2);
     }
 
-    // For debug purposes
-    std::string getToken() {
-      return token;
+    // For debugging purposes
+    int64_t curLine() {
+      return lineCount;
     }
 
     ~JackTokenizer() {
