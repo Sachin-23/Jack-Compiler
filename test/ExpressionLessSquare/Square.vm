@@ -1,6 +1,147 @@
 <class>
-	<keyword>	class	</keyword>
-	<identifier>	Square	</identifire>
-	<symbol>	{	</symbol>
-	<classVarDec>
-		<keyword>	field	</keyword>
+  <keyword>	class	</keyword>
+  <identifier>	Square	</identifier>
+  <symbol>	{	</symbol>
+  <classVarDec>
+    <keyword>	field	</keyword>
+    <keyword>	int	</keyword>
+    <identifier>	x	</identifier>
+    <symbol>	,	</symbol>
+    <identifier>	y	</identifier>
+    <symbol>	;	</symbol>
+  </classVarDec>
+  <classVarDec>
+    <keyword>	field	</keyword>
+    <keyword>	int	</keyword>
+    <identifier>	size	</identifier>
+    <symbol>	;	</symbol>
+  </classVarDec>
+  <subroutinDec>
+    <keyword>	constructor	</keyword>
+    <identifier>	Square	</identifier>
+    <identifier>	new	</identifier>
+    <symbol>	(	</symbol>
+    <parameterList>
+      <keyword>	int	</keyword>
+      <identifier>	Ax	</identifier>
+      <symbol>	,	</symbol>
+      <keyword>	int	</keyword>
+      <identifier>	Ay	</identifier>
+      <symbol>	,	</symbol>
+      <keyword>	int	</keyword>
+      <identifier>	Asize	</identifier>
+    </parameterList>
+    <symbol>	)	</symbol>
+    <subroutineBody>
+      <symbol>	{	</symbol>
+      <statements>
+        <letStatements>
+          <keyword>	let	</keyword>
+          <identifier>	x	</identifier>
+          <symbol>	=	</symbol>
+          <identifier>	Ax	</identifier>
+          <symbol>	;	</symbol>
+        </letStatements>
+      </statements>
+      <statements>
+        <letStatements>
+          <keyword>	let	</keyword>
+          <identifier>	y	</identifier>
+          <symbol>	=	</symbol>
+          <identifier>	Ay	</identifier>
+          <symbol>	;	</symbol>
+        </letStatements>
+      </statements>
+      <statements>
+        <letStatements>
+          <keyword>	let	</keyword>
+          <identifier>	size	</identifier>
+          <symbol>	=	</symbol>
+          <identifier>	Asize	</identifier>
+          <symbol>	;	</symbol>
+        </letStatements>
+        <doStatements>
+          <keyword>	do	</keyword>
+          <identifier>	draw	</identifier>
+          <symbol>	(	</symbol>
+          <symbol>	)	</symbol>
+          <symbol>	;	</symbol>
+        </doStatements>
+        <returnStatements>
+          <keyword>	return	</keyword>
+          <identifier>	x	</identifier>
+          <symbol>	;	</symbol>
+        </returnStatements>
+      </statements>
+      <symbol>	}	</symbol>
+    </subroutineBody>
+  </subroutinDec>
+  <subroutinDec>
+    <keyword>	method	</keyword>
+    <keyword>	void	</keyword>
+    <identifier>	dispose	</identifier>
+    <symbol>	(	</symbol>
+    <parameterList>
+    </parameterList>
+    <symbol>	)	</symbol>
+    <subroutineBody>
+      <symbol>	{	</symbol>
+      <statements>
+        <doStatements>
+          <keyword>	do	</keyword>
+          <identifier>	Memory	</identifier>
+          <symbol>	.	</symbol>
+          <identifier>	deAlloc	</identifier>
+          <symbol>	(	</symbol>
+          <expressionList>
+            <expression>
+              <keyword>	this	</keyword>
+            </expression>
+          </expressionList>
+          <symbol>	)	</symbol>
+          <symbol>	;	</symbol>
+        </doStatements>
+        <returnStatements>
+          <keyword>	return	</keyword>
+          <symbol>	;	</symbol>
+        </returnStatements>
+      </statements>
+      <symbol>	}	</symbol>
+    </subroutineBody>
+  </subroutinDec>
+  <subroutinDec>
+    <keyword>	method	</keyword>
+    <keyword>	void	</keyword>
+    <identifier>	draw	</identifier>
+    <symbol>	(	</symbol>
+    <parameterList>
+    </parameterList>
+    <symbol>	)	</symbol>
+    <subroutineBody>
+      <symbol>	{	</symbol>
+      <statements>
+        <doStatements>
+          <keyword>	do	</keyword>
+          <identifier>	Screen	</identifier>
+          <symbol>	.	</symbol>
+          <identifier>	setColor	</identifier>
+          <symbol>	(	</symbol>
+          <expressionList>
+            <expression>
+              <identifier>	x	</identifier>
+            </expression>
+          </expressionList>
+          <symbol>	)	</symbol>
+          <symbol>	;	</symbol>
+        </doStatements>
+      </statements>
+      <statements>
+        <doStatements>
+          <keyword>	do	</keyword>
+          <identifier>	Screen	</identifier>
+          <symbol>	.	</symbol>
+          <identifier>	drawRectangle	</identifier>
+          <symbol>	(	</symbol>
+          <expressionList>
+            <expression>
+              <identifier>	x	</identifier>

@@ -89,13 +89,15 @@ class JackTokenizer {
       token.clear();
       // if cur has symbol 
       if (isSymbol(cur) && !sComment && !mComment) {
-        token += cur;
+        token = cur;
         cur = '\0';
         return true;
       }
       while (!inFile.eof()) {
         // Get a char from input file
         cur = inFile.get();
+        // skip return carriage;
+        if (cur == '\r') continue;
         // Skip if single line comment
         if (sComment) {
           // End of single line comment 

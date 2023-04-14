@@ -14,9 +14,9 @@ class CompilationEngine {
     uint64_t depth = 0;
 
     void printTab() {
-      std::string tab = "\t";
-      for (uint64_t i = 0; i < depth-1; i++) {
-        tab += tab; 
+      std::string tab;
+      for (uint64_t i = 0; i < depth; ++i) {
+        tab += "  "; 
       }
       outFile << tab;
     }
@@ -31,7 +31,7 @@ class CompilationEngine {
           outFile << "<symbol>\t" << token << "\t</symbol>" << std::endl;
           break; 
         case tokenTypes::IDENTIFIER: 
-          outFile << "<identifier>\t" << token << "\t</identifire>" << std::endl;
+          outFile << "<identifier>\t" << token << "\t</identifier>" << std::endl;
           break; 
         case tokenTypes::INT_CONST: 
           outFile << "<intCONST>\t" << token << "\t</intCONST>" << std::endl;
@@ -70,6 +70,9 @@ class CompilationEngine {
       // Get the current token
       currentToken = tokenizer.advance(); 
 
+      std::cout << "starting token: " << currentToken << std::endl;
+
+
       // Remove file extension
       fileName = path.substr(0, path.find_last_of("."));
 
@@ -93,7 +96,12 @@ class CompilationEngine {
       eat("class");
       eat(fileName);
       eat("{");
-      compileClassVarDec();   
+      while (currentToken == "static" || currentToken == "field")
+        compileClassVarDec();   
+      while (currentToken == "constructor" || currentToken == "function" 
+              || currentToken == "method")
+        compileSubroutine();   
+      eat(";");
       eat("}");
       --depth;
       outFile << "</class>\n";
@@ -109,37 +117,272 @@ class CompilationEngine {
         eat("field");
       else
         eat("static|field");
+      if (currentToken == "void") 
+        compileType("void");
+      else
+        compileType();
+      eat(currentToken);
+      while (currentToken == ",") {
+        eat(",");
+        eat(currentToken);
+      }
+      eat(";");
       --depth;
+      printTab();
       outFile << "</classVarDec>\n";
     }
 
-    void compileTerm() {
+    /* Why should I implement this is in the particular*/
+    /* check this */
+    void compileType() {
+      // fileName should be the className
       if (currentToken == "int")
         eat("int");
       else if (currentToken == "char")
         eat("char");
       else if (currentToken == "boolean")
         eat("boolean");
-      // fileName should be the className
-      else if (currentToken == fileName)
-        eat(fileName);
+      else if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        eat(currentToken);
       else
-        eat("int|char|boolean|" + fileName);
+        eat("int|char|boolean|className");
+    }
+
+    /* Why should I implement this is in the particular*/
+    /* check this */
+    void compileType(std::string eType) {
+      // fileName should be the className
+      if (currentToken == "int")
+        eat("int");
+      else if (currentToken == "char")
+        eat("char");
+      else if (currentToken == "boolean")
+        eat("boolean");
+      else if (currentToken == eType)
+        eat(currentToken);
+      else
+        eat("int|char|boolean|className" + eType);
+    }
+
+    void compileSubroutine() {
+      printTab();
+      outFile << "<subroutinDec>\n";
+      ++depth;
+      if (currentToken == "constructor") {
+        eat("constructor");
+        compileType(fileName);
+      }
+      else if (currentToken == "function") {
+        eat("function");
+        compileType("void");
+        // and other class name too will come here.
+      }
+      else if (currentToken == "method") {
+        eat("method");
+        compileType("void");
+        // and other class name too will come here.
+      }
+      eat(currentToken);
+      eat("(");
+      compileParameterList();
+      eat(")");
+      compileSubroutineBody(); 
+      --depth;
+      printTab();
+      outFile << "</subroutinDec>\n";
+    }
+
+    void compileParameterList() {
+      printTab();
+      outFile << "<parameterList>\n";
+      ++depth;
+      if (currentToken != ")") {
+        compileType();
+        eat(currentToken);
+        while (currentToken == ",") {
+          eat(",");
+          compileType();
+          eat(currentToken);
+        }
+      }
+      --depth;
+      printTab();
+      outFile << "</parameterList>\n";
+    }
+
+    void compileSubroutineBody() {
+      printTab();
+      outFile << "<subroutineBody>\n";
+      ++depth;
+      eat("{");
+      while (currentToken == "var")
+        compileVarDec();
+      while (currentToken == "let" || currentToken == "do"
+              || currentToken == "while" || currentToken == "return")
+        compileStatements();
+      eat("}");
+      --depth;
+      printTab();
+      outFile << "</subroutineBody>\n";
+    }
+
+    void compileVarDec() {
+      printTab();
+      outFile << "<varDec>\n" ;
+      ++depth;
+      eat("var");
+      compileType();
+      eat(currentToken);
+      while (currentToken == ",") {
+        eat(",");
+        eat(currentToken);
+      }
+      eat(";");
+      --depth;
+      printTab();
+      outFile << "</varDec>\n" ;
+    } 
+
+    void compileStatements() {
+      printTab();
+      outFile << "<statements>\n" ;
+      ++depth;
+      if (currentToken == "let") {
+        compileLet(); 
+      }
+      if (currentToken == "if") {
+        compileIf();
+      }
+      if (currentToken == "while") {
+        compileWhile();
+      }
+      if (currentToken == "do") {
+        compileDo();
+      }
+      if (currentToken == "return") {
+        compileReturn();
+      }
+      --depth;
+      printTab();
+      outFile << "</statements>\n";
+    }
+
+    void compileLet() {
+      printTab();  
+      outFile << "<letStatements>\n";
+      ++depth;
+      eat("let");
+      eat(currentToken);
+      if (currentToken == "[") {
+        eat("[");
+      // compileExpression();
+      eat(currentToken); // Remove this
+        eat("]");
+      } 
+      eat("=");
+      // compileExpression();
+      eat(currentToken); // Remove this
+      eat(";");
+      --depth;
+      printTab();
+      outFile << "</letStatements>\n";
+    }
+
+    void compileIf() {
+      printTab();  
+      outFile << "<ifStatements>\n";
+      ++depth;
+      eat("if");
+      eat("(");
+      // compileExpression();
+      eat(currentToken); // Remove this
+      eat(")");
+      eat("{");
+      compileStatements();
+      eat("}");
+      if (currentToken == "else") {
+        eat("else");
+        eat("{");
+          compileStatements();
+        eat("}");
+      }
+      --depth;
+      printTab();
+      outFile << "</ifStatements>\n";
+    }
+
+    void compileWhile() {
+      printTab();  
+      outFile << "<whileStatements>\n";
+      ++depth;
+      // compileExpression();
+      eat(currentToken); // Remove this
+      eat("{");
+      compileStatements();
+      eat("}");
+      --depth;
+      printTab();
+      outFile << "</whileStatements>\n";
+    }
+
+    void compileDo() {
+      printTab();  
+      outFile << "<doStatements>\n";
+      ++depth;
+      eat("do");
+      compileSubroutineCall();
+      eat(";");
+      --depth;
+      printTab();
+      outFile << "</doStatements>\n";
+    }
+
+    // remove this
+    void compileSubroutineCall() {
+      eat(currentToken);
+      if (currentToken == ".") {
+        eat(".");
+        eat(currentToken);
+      }
+      eat("(");
+      if (currentToken != ")")
+        compileExpressionList();
+      eat(")");
     }
 
 
-    /*
-      compileSubroutine
-      compileParameterList
-      compileSubroutineBody
-      compileVarDec
-      compileStatements
-      compileLet
-      compileIf
-      compileWhile
-      compileDo
-      compileReturn
-      compileExpression
-      compileExpressionList
-    */
+    void compileReturn() {
+      printTab();  
+      outFile << "<returnStatements>\n";
+      ++depth;
+      eat("return");
+      if (currentToken != ";") 
+        // compileExpression();
+        eat(currentToken);
+      eat(";");
+      --depth;
+      printTab();
+      outFile << "</returnStatements>\n";
+
+    }
+
+    void compileExpressionList() {
+      printTab();  
+      outFile << "<expressionList>\n";
+      ++depth;
+      compileExpression(); 
+      --depth;
+      printTab();
+      outFile << "</expressionList>\n";
+    }
+
+    void compileExpression() {
+      printTab();  
+      outFile << "<expression>\n";
+      ++depth;
+      eat(currentToken);
+      --depth;
+      printTab();
+      outFile << "</expression>\n";
+    }
 };

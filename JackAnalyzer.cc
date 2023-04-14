@@ -16,26 +16,6 @@ void processFile(std::string file) {
     CompilationEngine compiler(fileName);
     // Every Jack program is a collection of class
     compiler.compileClass();
-    /*
-    // Tokens
-    switch(tokenizer.tokenType()) {
-      case tokenTypes::KEYWORD:  
-        std::cout << "<keyword>\t" << tokenizer.getToken() << "\t</keyword>" << std::endl;
-        break; 
-      case tokenTypes::SYMBOL: 
-        std::cout << "<symbol>\t" << tokenizer.symbol() << "\t</symbol>" << std::endl;
-        break; 
-      case tokenTypes::IDENTIFIER: 
-        std::cout << "<identifier>\t" << tokenizer.identifier() << "\t</identifire>" << std::endl;
-        break; 
-      case tokenTypes::INT_CONST: 
-        std::cout << "<intCONST>\t" << tokenizer.intVal() << "\t</intCONST>" << std::endl;
-        break; 
-      case tokenTypes::STR_CONST: 
-        std::cout << "<stringCONST>\t" << tokenizer.stringVal() << "\t</stringCONST>" << std::endl;
-        break; 
-    }
-    */
   }
 }
 
@@ -55,7 +35,8 @@ int main(int argc, char *argv[]) {
    
   // Check if regular file
   if (S_ISREG(pathStat.st_mode)) {
-    if (path[0] < 65 || path[0] > 90) {
+    int i = path.find_last_of("/") + 1;
+    if (path[i] < 65 || path[i] > 90) {
       std::cerr << "File name should be captialized." << std::endl;
       exit(1);
     }
