@@ -21,6 +21,13 @@ class CompilationEngine {
       outFile << tab;
     }
 
+    void printError(std::string token) {
+      std::cerr << "Syntax Error at " << tokenizer.curLine() 
+                << ", found token: '" << currentToken 
+                << "', looking for: '" << token << "'" << std::endl;
+      exit(1);
+    }
+
     void printXMLToken(std::string token) {
       printTab();
       switch(tokenizer.tokenType()) {
@@ -47,10 +54,7 @@ class CompilationEngine {
         printXMLToken(token);
       }
       else {
-        std::cerr << "Syntax Error at " << tokenizer.curLine() 
-                  << ", found token: '" << currentToken 
-                  << "', looking for: '" << token << "'" << std::endl;
-        exit(1);
+        printError(token);
       }
       if (tokenizer.hasMoreTokens()) {
         currentToken = tokenizer.advance();
@@ -101,7 +105,6 @@ class CompilationEngine {
       while (currentToken == "constructor" || currentToken == "function" 
               || currentToken == "method")
         compileSubroutine();   
-      eat(";");
       eat("}");
       --depth;
       outFile << "</class>\n";
@@ -116,15 +119,18 @@ class CompilationEngine {
       else if (currentToken == "field") 
         eat("field");
       else
-        eat("static|field");
-      if (currentToken == "void") 
-        compileType("void");
+        printError("static|field");
+      compileType();
+      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        eat(currentToken);
       else
-        compileType();
-      eat(currentToken);
+        printError("varName");
       while (currentToken == ",") {
         eat(",");
-        eat(currentToken);
+        if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+          eat(currentToken);
+        else
+          printError("varName");
       }
       eat(";");
       --depth;
@@ -160,8 +166,10 @@ class CompilationEngine {
         eat("boolean");
       else if (currentToken == eType)
         eat(currentToken);
+      else if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        eat(currentToken);
       else
-        eat("int|char|boolean|className" + eType);
+        printError("int|char|boolean|className" + eType);
     }
 
     void compileSubroutine() {
@@ -170,19 +178,25 @@ class CompilationEngine {
       ++depth;
       if (currentToken == "constructor") {
         eat("constructor");
-        compileType(fileName);
+        if (currentToken == fileName)
+          eat(currentToken);
+        else
+          printError(fileName);
       }
       else if (currentToken == "function") {
         eat("function");
+        // And other class name too will come here.
         compileType("void");
-        // and other class name too will come here.
       }
       else if (currentToken == "method") {
         eat("method");
+        // And other class name too will come here.
         compileType("void");
-        // and other class name too will come here.
       }
-      eat(currentToken);
+      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        eat(currentToken);
+      else
+        printError("subroutineName");
       eat("(");
       compileParameterList();
       eat(")");
@@ -198,11 +212,17 @@ class CompilationEngine {
       ++depth;
       if (currentToken != ")") {
         compileType();
-        eat(currentToken);
+        if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+          eat(currentToken);
+        else
+          printError("varName");
         while (currentToken == ",") {
           eat(",");
           compileType();
-          eat(currentToken);
+          if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+            eat(currentToken);
+          else
+            printError("varName");
         }
       }
       --depth;
@@ -217,9 +237,7 @@ class CompilationEngine {
       eat("{");
       while (currentToken == "var")
         compileVarDec();
-      while (currentToken == "let" || currentToken == "do"
-              || currentToken == "while" || currentToken == "return")
-        compileStatements();
+      compileStatements();
       eat("}");
       --depth;
       printTab();
@@ -232,10 +250,16 @@ class CompilationEngine {
       ++depth;
       eat("var");
       compileType();
-      eat(currentToken);
+      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        eat(currentToken);
+      else
+        printError("varName");
       while (currentToken == ",") {
         eat(",");
-        eat(currentToken);
+        if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+          eat(currentToken);
+        else
+          printError("varName");
       }
       eat(";");
       --depth;
@@ -247,20 +271,27 @@ class CompilationEngine {
       printTab();
       outFile << "<statements>\n" ;
       ++depth;
-      if (currentToken == "let") {
-        compileLet(); 
-      }
-      if (currentToken == "if") {
-        compileIf();
-      }
-      if (currentToken == "while") {
-        compileWhile();
-      }
-      if (currentToken == "do") {
-        compileDo();
-      }
-      if (currentToken == "return") {
-        compileReturn();
+      while (currentToken == "let" || currentToken == "do"
+              || currentToken == "while" || currentToken == "return" 
+              || currentToken == "if") {
+        if (currentToken == "let") {
+          compileLet(); 
+        }
+        else if (currentToken == "if") {
+          compileIf();
+        }
+        else if (currentToken == "while") {
+          compileWhile();
+        }
+        else if (currentToken == "do") {
+          compileDo();
+        }
+        else if (currentToken == "return") {
+          compileReturn();
+        }
+        else {
+          eat("let|if|while|do|return");
+        }
       }
       --depth;
       printTab();
@@ -272,16 +303,17 @@ class CompilationEngine {
       outFile << "<letStatements>\n";
       ++depth;
       eat("let");
-      eat(currentToken);
+      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        eat(currentToken);
+      else
+        printError("varName");
       if (currentToken == "[") {
         eat("[");
-      // compileExpression();
-      eat(currentToken); // Remove this
+        compileExpression();
         eat("]");
       } 
       eat("=");
-      // compileExpression();
-      eat(currentToken); // Remove this
+      compileExpression();
       eat(";");
       --depth;
       printTab();
@@ -294,8 +326,7 @@ class CompilationEngine {
       ++depth;
       eat("if");
       eat("(");
-      // compileExpression();
-      eat(currentToken); // Remove this
+      compileExpression();
       eat(")");
       eat("{");
       compileStatements();
@@ -303,7 +334,7 @@ class CompilationEngine {
       if (currentToken == "else") {
         eat("else");
         eat("{");
-          compileStatements();
+        compileStatements();
         eat("}");
       }
       --depth;
@@ -315,8 +346,7 @@ class CompilationEngine {
       printTab();  
       outFile << "<whileStatements>\n";
       ++depth;
-      // compileExpression();
-      eat(currentToken); // Remove this
+      compileExpression();
       eat("{");
       compileStatements();
       eat("}");
@@ -339,14 +369,21 @@ class CompilationEngine {
 
     // remove this
     void compileSubroutineCall() {
-      eat(currentToken);
+      /* How to know if subroutineName is used ? */
+      /* subroutine doesn't have . operator */
+      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        eat(currentToken);
+      else
+        printError("subroutineName|className|varName");
       if (currentToken == ".") {
         eat(".");
-        eat(currentToken);
+        if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+          eat(currentToken);
+        else
+          printError("subroutineName");
       }
       eat("(");
-      if (currentToken != ")")
-        compileExpressionList();
+      compileExpressionList();
       eat(")");
     }
 
@@ -356,21 +393,25 @@ class CompilationEngine {
       outFile << "<returnStatements>\n";
       ++depth;
       eat("return");
-      if (currentToken != ";") 
-        // compileExpression();
-        eat(currentToken);
+      if (currentToken != ";")
+        compileExpression();
       eat(";");
       --depth;
       printTab();
       outFile << "</returnStatements>\n";
-
     }
 
     void compileExpressionList() {
       printTab();  
       outFile << "<expressionList>\n";
       ++depth;
-      compileExpression(); 
+      if (currentToken != ")") {
+        compileExpression(); 
+        while (currentToken == ",")  {
+          eat(",");
+          compileExpression(); 
+        }
+      }
       --depth;
       printTab();
       outFile << "</expressionList>\n";
@@ -380,9 +421,19 @@ class CompilationEngine {
       printTab();  
       outFile << "<expression>\n";
       ++depth;
-      eat(currentToken);
+      compileTerm();
       --depth;
       printTab();
       outFile << "</expression>\n";
+    }
+
+    void compileTerm() {
+      printTab();  
+      outFile << "<term>\n";
+      ++depth;
+      eat(currentToken);
+      --depth;
+      printTab();
+      outFile << "</term>\n";
     }
 };

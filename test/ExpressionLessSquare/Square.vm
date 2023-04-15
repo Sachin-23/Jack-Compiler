@@ -39,37 +39,51 @@
           <keyword>	let	</keyword>
           <identifier>	x	</identifier>
           <symbol>	=	</symbol>
-          <identifier>	Ax	</identifier>
+          <expression>
+            <term>
+              <identifier>	Ax	</identifier>
+            </term>
+          </expression>
           <symbol>	;	</symbol>
         </letStatements>
-      </statements>
-      <statements>
         <letStatements>
           <keyword>	let	</keyword>
           <identifier>	y	</identifier>
           <symbol>	=	</symbol>
-          <identifier>	Ay	</identifier>
+          <expression>
+            <term>
+              <identifier>	Ay	</identifier>
+            </term>
+          </expression>
           <symbol>	;	</symbol>
         </letStatements>
-      </statements>
-      <statements>
         <letStatements>
           <keyword>	let	</keyword>
           <identifier>	size	</identifier>
           <symbol>	=	</symbol>
-          <identifier>	Asize	</identifier>
+          <expression>
+            <term>
+              <identifier>	Asize	</identifier>
+            </term>
+          </expression>
           <symbol>	;	</symbol>
         </letStatements>
         <doStatements>
           <keyword>	do	</keyword>
           <identifier>	draw	</identifier>
           <symbol>	(	</symbol>
+          <expressionList>
+          </expressionList>
           <symbol>	)	</symbol>
           <symbol>	;	</symbol>
         </doStatements>
         <returnStatements>
           <keyword>	return	</keyword>
-          <identifier>	x	</identifier>
+          <expression>
+            <term>
+              <identifier>	x	</identifier>
+            </term>
+          </expression>
           <symbol>	;	</symbol>
         </returnStatements>
       </statements>
@@ -95,7 +109,9 @@
           <symbol>	(	</symbol>
           <expressionList>
             <expression>
-              <keyword>	this	</keyword>
+              <term>
+                <keyword>	this	</keyword>
+              </term>
             </expression>
           </expressionList>
           <symbol>	)	</symbol>
@@ -128,14 +144,14 @@
           <symbol>	(	</symbol>
           <expressionList>
             <expression>
-              <identifier>	x	</identifier>
+              <term>
+                <identifier>	x	</identifier>
+              </term>
             </expression>
           </expressionList>
           <symbol>	)	</symbol>
           <symbol>	;	</symbol>
         </doStatements>
-      </statements>
-      <statements>
         <doStatements>
           <keyword>	do	</keyword>
           <identifier>	Screen	</identifier>
@@ -144,4 +160,119 @@
           <symbol>	(	</symbol>
           <expressionList>
             <expression>
-              <identifier>	x	</identifier>
+              <term>
+                <identifier>	x	</identifier>
+              </term>
+            </expression>
+            <symbol>	,	</symbol>
+            <expression>
+              <term>
+                <identifier>	y	</identifier>
+              </term>
+            </expression>
+            <symbol>	,	</symbol>
+            <expression>
+              <term>
+                <identifier>	x	</identifier>
+              </term>
+            </expression>
+            <symbol>	,	</symbol>
+            <expression>
+              <term>
+                <identifier>	y	</identifier>
+              </term>
+            </expression>
+          </expressionList>
+          <symbol>	)	</symbol>
+          <symbol>	;	</symbol>
+        </doStatements>
+        <returnStatements>
+          <keyword>	return	</keyword>
+          <symbol>	;	</symbol>
+        </returnStatements>
+      </statements>
+      <symbol>	}	</symbol>
+    </subroutineBody>
+  </subroutinDec>
+  <subroutinDec>
+    <keyword>	method	</keyword>
+    <keyword>	void	</keyword>
+    <identifier>	erase	</identifier>
+    <symbol>	(	</symbol>
+    <parameterList>
+    </parameterList>
+    <symbol>	)	</symbol>
+    <subroutineBody>
+      <symbol>	{	</symbol>
+      <statements>
+        <doStatements>
+          <keyword>	do	</keyword>
+          <identifier>	Screen	</identifier>
+          <symbol>	.	</symbol>
+          <identifier>	setColor	</identifier>
+          <symbol>	(	</symbol>
+          <expressionList>
+            <expression>
+              <term>
+                <identifier>	x	</identifier>
+              </term>
+            </expression>
+          </expressionList>
+          <symbol>	)	</symbol>
+          <symbol>	;	</symbol>
+        </doStatements>
+        <doStatements>
+          <keyword>	do	</keyword>
+          <identifier>	Screen	</identifier>
+          <symbol>	.	</symbol>
+          <identifier>	drawRectangle	</identifier>
+          <symbol>	(	</symbol>
+          <expressionList>
+            <expression>
+              <term>
+                <identifier>	x	</identifier>
+              </term>
+            </expression>
+            <symbol>	,	</symbol>
+            <expression>
+              <term>
+                <identifier>	y	</identifier>
+              </term>
+            </expression>
+            <symbol>	,	</symbol>
+            <expression>
+              <term>
+                <identifier>	x	</identifier>
+              </term>
+            </expression>
+            <symbol>	,	</symbol>
+            <expression>
+              <term>
+                <identifier>	y	</identifier>
+              </term>
+            </expression>
+          </expressionList>
+          <symbol>	)	</symbol>
+          <symbol>	;	</symbol>
+        </doStatements>
+        <returnStatements>
+          <keyword>	return	</keyword>
+          <symbol>	;	</symbol>
+        </returnStatements>
+      </statements>
+      <symbol>	}	</symbol>
+    </subroutineBody>
+  </subroutinDec>
+  <subroutinDec>
+    <keyword>	method	</keyword>
+    <keyword>	void	</keyword>
+    <identifier>	incSize	</identifier>
+    <symbol>	(	</symbol>
+    <parameterList>
+    </parameterList>
+    <symbol>	)	</symbol>
+    <subroutineBody>
+      <symbol>	{	</symbol>
+      <statements>
+        <ifStatements>
+          <keyword>	if	</keyword>

@@ -88,6 +88,7 @@ class JackTokenizer {
       // Clear the contents
       token.clear();
       // if cur has symbol 
+      std::cout << "Cur: " << cur;
       if (isSymbol(cur) && !sComment && !mComment) {
         token = cur;
         cur = '\0';
