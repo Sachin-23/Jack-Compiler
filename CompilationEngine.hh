@@ -32,19 +32,19 @@ class CompilationEngine {
       printTab();
       switch(tokenizer.tokenType()) {
         case tokenType::KEYWORD:  
-          outFile << "<keyword>\t" << token << "\t</keyword>" << std::endl;
+          outFile << "<keyword> " << token << " </keyword>" << std::endl;
           break; 
         case tokenType::SYMBOL: 
-          outFile << "<symbol>\t" << token << "\t</symbol>" << std::endl;
+          outFile << "<symbol> " << token << " </symbol>" << std::endl;
           break; 
         case tokenType::IDENTIFIER: 
-          outFile << "<identifier>\t" << token << "\t</identifier>" << std::endl;
+          outFile << "<identifier> " << token << " </identifier>" << std::endl;
           break; 
         case tokenType::INT_CONST: 
-          outFile << "<intCONST>\t" << token << "\t</intCONST>" << std::endl;
+          outFile << "<intCONST> " << token << " </intCONST>" << std::endl;
           break; 
         case tokenType::STR_CONST: 
-          outFile << "<stringCONST>\t" << token << "\t</stringCONST>" << std::endl;
+          outFile << "<stringCONST> " << token << " </stringCONST>" << std::endl;
           break; 
       }
     }
@@ -73,9 +73,6 @@ class CompilationEngine {
        
       // Get the current token
       currentToken = tokenizer.advance(); 
-
-      std::cout << "starting token: " << currentToken << std::endl;
-
 
       // Remove file extension
       fileName = path.substr(0, path.find_last_of("."));
@@ -174,7 +171,7 @@ class CompilationEngine {
 
     void compileSubroutine() {
       printTab();
-      outFile << "<subroutinDec>\n";
+      outFile << "<subroutineDec>\n";
       ++depth;
       if (currentToken == "constructor") {
         eat("constructor");
@@ -203,7 +200,7 @@ class CompilationEngine {
       compileSubroutineBody(); 
       --depth;
       printTab();
-      outFile << "</subroutinDec>\n";
+      outFile << "</subroutineDec>\n";
     }
 
     void compileParameterList() {
@@ -300,7 +297,7 @@ class CompilationEngine {
 
     void compileLet() {
       printTab();  
-      outFile << "<letStatements>\n";
+      outFile << "<letStatement>\n";
       ++depth;
       eat("let");
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
@@ -317,12 +314,12 @@ class CompilationEngine {
       eat(";");
       --depth;
       printTab();
-      outFile << "</letStatements>\n";
+      outFile << "</letStatement>\n";
     }
 
     void compileIf() {
       printTab();  
-      outFile << "<ifStatements>\n";
+      outFile << "<ifStatement>\n";
       ++depth;
       eat("if");
       eat("(");
@@ -339,12 +336,12 @@ class CompilationEngine {
       }
       --depth;
       printTab();
-      outFile << "</ifStatements>\n";
+      outFile << "</ifStatement>\n";
     }
 
     void compileWhile() {
       printTab();  
-      outFile << "<whileStatements>\n";
+      outFile << "<whileStatement>\n";
       ++depth;
       compileExpression();
       eat("{");
@@ -352,19 +349,19 @@ class CompilationEngine {
       eat("}");
       --depth;
       printTab();
-      outFile << "</whileStatements>\n";
+      outFile << "</whileStatement>\n";
     }
 
     void compileDo() {
       printTab();  
-      outFile << "<doStatements>\n";
+      outFile << "<doStatement>\n";
       ++depth;
       eat("do");
       compileSubroutineCall();
       eat(";");
       --depth;
       printTab();
-      outFile << "</doStatements>\n";
+      outFile << "</doStatement>\n";
     }
 
     // remove this
@@ -390,7 +387,7 @@ class CompilationEngine {
 
     void compileReturn() {
       printTab();  
-      outFile << "<returnStatements>\n";
+      outFile << "<returnStatement>\n";
       ++depth;
       eat("return");
       if (currentToken != ";")
@@ -398,7 +395,7 @@ class CompilationEngine {
       eat(";");
       --depth;
       printTab();
-      outFile << "</returnStatements>\n";
+      outFile << "</returnStatement>\n";
     }
 
     void compileExpressionList() {

@@ -99,8 +99,9 @@ class JackTokenizer {
         while (isAlphaNumeric(inFile.peek()) && (c=inFile.get()))
           token += c;
         // NULL pointer is returned when key doesn't exists
-        if (keyWords[token]) 
+        if (keyWords.find(token) != keyWords.end()) {
           tType = tokenType::KEYWORD;
+        }
         else
           tType = tokenType::IDENTIFIER;
       }

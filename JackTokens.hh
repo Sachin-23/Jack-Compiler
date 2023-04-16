@@ -1,7 +1,7 @@
 #include <iostream>
 #include <map>
 
-enum tokenType {
+enum class tokenType {
   KEYWORD 
   , SYMBOL
   , IDENTIFIER
@@ -9,7 +9,7 @@ enum tokenType {
   , STR_CONST
 };
 
-enum keyWord {
+enum class keyWord {
   CLASS
   , METHOD
   , FUNCTION
