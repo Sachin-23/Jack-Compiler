@@ -1,7 +1,7 @@
 #include <iostream>
 #include <map>
 
-enum tokenTypes {
+enum tokenType {
   KEYWORD 
   , SYMBOL
   , IDENTIFIER
@@ -9,7 +9,7 @@ enum tokenTypes {
   , STR_CONST
 };
 
-enum keyWords {
+enum keyWord {
   CLASS
   , METHOD
   , FUNCTION
@@ -33,27 +33,27 @@ enum keyWords {
   , THIS
 };
 
-std::map<std::string, enum::keyWords> keyWordTypes = {
- {"class",        keyWords::CLASS} 
- , {"method"      , keyWords::METHOD}
- , {"function"    , keyWords::FUNCTION}
- , {"constructor" , keyWords::CONSTRUCTOR}
- , {"int"         , keyWords::INT}
- , {"boolean"     , keyWords::BOOLEAN}
- , {"char"        , keyWords::CHAR}
- , {"void"        , keyWords::VOID}
- , {"var"         , keyWords::VAR}
- , {"static"      , keyWords::STATIC}
- , {"field"       , keyWords::FIELD}
- , {"let"         , keyWords::LET}
- , {"do"          , keyWords::DO}
- , {"if"          , keyWords::IF}
- , {"else"        , keyWords::ELSE}
- , {"while"       , keyWords::WHILE}
- , {"return"      , keyWords::RETURN}
- , {"true"        , keyWords::TRUE}
- , {"false"       , keyWords::FALSE}
- , {"null"        , keyWords::NONE} 
- , {"this"        , keyWords::THIS}
+std::map<std::string, enum::keyWord> keyWords = {
+ {"class",        keyWord::CLASS} 
+ , {"method"      , keyWord::METHOD}
+ , {"function"    , keyWord::FUNCTION}
+ , {"constructor" , keyWord::CONSTRUCTOR}
+ , {"int"         , keyWord::INT}
+ , {"boolean"     , keyWord::BOOLEAN}
+ , {"char"        , keyWord::CHAR}
+ , {"void"        , keyWord::VOID}
+ , {"var"         , keyWord::VAR}
+ , {"static"      , keyWord::STATIC}
+ , {"field"       , keyWord::FIELD}
+ , {"let"         , keyWord::LET}
+ , {"do"          , keyWord::DO}
+ , {"if"          , keyWord::IF}
+ , {"else"        , keyWord::ELSE}
+ , {"while"       , keyWord::WHILE}
+ , {"return"      , keyWord::RETURN}
+ , {"true"        , keyWord::TRUE}
+ , {"false"       , keyWord::FALSE}
+ , {"null"        , keyWord::NONE} 
+ , {"this"        , keyWord::THIS}
 };
 

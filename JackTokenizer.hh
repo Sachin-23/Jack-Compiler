@@ -6,184 +6,121 @@
 class JackTokenizer {
   private:
     std::ifstream inFile;
+    char c;
     std::string token;
-    // Track current line - For error reporting
-    uint64_t lineCount = 1;
-    bool sComment = false, mComment = false;
-    char cur;
-    enum::tokenTypes tType;
+    enum::tokenType tType;
+    uint64_t line = 0;
 
-    bool isKeyword(std::string token) {
-      return token == "class" || token ==  "method" || token == "function"
-             || token == "constructor" || token == "int" || token == "boolean"
-             || token == "char" || token == "void" || token == "var" 
-             || token == "static" || token == "field" || token == "let" 
-             || token == "do" || token == "if" || token == "else"
-             || token == "while" || token == "return" || token == "true"
-             || token == "false" || token == "null" || token == "this";
-    }
-
+    // There is no '/' operator
     bool isSymbol(char c) {
       return c == '(' || c == ')' 
           || c == '{' || c == '}'
           || c == '[' || c == ']'
-          || c == '.' || c == ',' || c == ';' 
-          || c == '+' || c == '-' || c == '*' || c == '/'
-          || c == '&' || c == '|' 
-          || c == '<' || c == '>' 
-          || c == '='
-          || c == '~';
+          || c == '+' || c == '-' || c == '*'
+          || c == '~' || c == '&' || c == '|' 
+          || c == '<' || c == '>' || c == '='
+          || c == '.' || c == ',' || c == ';';
     }
 
-    bool isINT_CONST(std::string token) {
-      for (char c: token) {
-        if (c < 48 || c > 57)
-          return false;
-      }
-      return true;
+    bool isAlpha(char c) {
+      return (c >= 'a' && c <= 'z') 
+              || (c >= 'A' && c <= 'Z') 
+              || c == '_';
     }
 
-    bool isSTRING_CONST(std::string token) {
-      // STRING_CONST token will have "str" 
-      std::string::size_type n = token.size()-1; 
-      if (token[0] != '"' || token[n] != '"') return false;
-      for(std::string::size_type i = 1; i < n; ++i) {
-        // from ascii table
-        if (token[i] < 31 || token[i] > 126) {
-          return false; 
-        }
-      }
-      return true;
+    bool isDigit(char c) {
+      return (c >= '0' && c <= '9');
     }
 
-    bool isIDENTIFIER(std::string token) {
-      if ((token[0] >= '0' && token[0] <= '9')) return false;
-      for(std::string::size_type i = 1; i < token.size(); ++i) {
-        if (!((token[i] >= '0' && token[i] <= '9') 
-              || (token[i] >= 'a' && token[i] <= 'z') 
-              || (token[i] >= 'A' && token[i] <= 'Z') 
-              || token[i] == '_'))
-         return false; 
-      }
-      return true;
+    bool isAlphaNumeric(char c) {
+      return isAlpha(c) || isDigit(c);
     }
 
-  public:
-    JackTokenizer() {};
-
-    // path to the jack file
+  public: 
     void init(std::string path) {
-      if (inFile.is_open()) {
-        std::cerr << "There is already a file processing: " << path << std::endl;
-        exit(1);
-      }
-      inFile.open(path, std::ios::in);
-
-      if (!inFile) 
+      inFile.open(path);
+      if (!inFile) {
         throw std::runtime_error(std::string("Failed to open file: " + path));
-    }
-
-    // Read till spaces or symbol   
-    bool hasMoreTokens() {
-      // Clear the contents
-      token.clear();
-      // if cur has symbol 
-      std::cout << "Cur: " << cur;
-      if (isSymbol(cur) && !sComment && !mComment) {
-        token = cur;
-        cur = '\0';
-        return true;
       }
-      while (!inFile.eof()) {
-        // Get a char from input file
-        cur = inFile.get();
-        // skip return carriage;
-        if (cur == '\r') continue;
-        // Skip if single line comment
-        if (sComment) {
-          // End of single line comment 
-          if (cur == '\n') {
-            ++lineCount;
-            sComment = false;
-          }
-          continue;
+
+    }
+    ~JackTokenizer() {
+      inFile.close(); 
+    }
+    
+    bool hasMoreTokens() {
+      while ((c = inFile.get()) != EOF) {
+        switch(c) {
+          case '/': 
+            // Skip comments
+            if (inFile.peek() == '/') {
+              while ((c=inFile.get()) != EOF 
+                && c != '\n')
+                ;
+            }
+            else if (inFile.peek() == '*') {
+              while ((c=inFile.get()) != EOF 
+                && !(c == '*' && inFile.peek() == '/'))
+                ;
+              inFile.get();
+            }
+            else 
+              // if it is a '/' operator
+              return true;
+            break;
+          case ' ':
+          case '\r':
+          case '\t':
+            // Skip blank spaces
+            break; 
+          case '\n':
+            ++line;
+            break;
+          default: return true;
         }
-        // Check for single comment
-        if (cur == '/' && inFile.peek() == '/') {
-          sComment = true; 
-          // Check if there was any token before the comment
-          if (!token.empty()) {
-            return true;
-          }
-          continue;
-        }
-        // Skip if multi-line comment
-        if (mComment) {
-          // End of multi-line comment 
-          if (cur == '*' && inFile.get() == '/') {
-            ++lineCount;
-            mComment = false;
-          }
-          continue;
-        }
-        // Start of multi-line comment
-        if (cur == '/' && inFile.peek() == '*') {
-          mComment = true; 
-          // Check if there was any token before the comment
-          if (!token.empty()) {
-            return true;
-          }
-          continue;
-        }
-        // skip new lines 
-        if (cur == '\n') {
-          ++lineCount;
-          continue;
-        }
-        if (cur == ' ') {
-          if (!token.empty()) 
-            return true;
-          continue;
-        }
-        if (isSymbol(cur)) {
-          if (!token.empty()) 
-            return true;
-        }
-        token += cur;
       }
       return false;
     }
 
     std::string advance() {
-      if (isKeyword(token)) {
-        tType = tokenTypes::KEYWORD;
+      token.clear();
+      if (isSymbol(c)) {
+        token = c; 
+        tType = tokenType::SYMBOL;
       }
-      else if (isSymbol(token[0])) {
-        tType = tokenTypes::SYMBOL; 
+      else if (c == '"') {
+        while ((c=inFile.get()) && isAlphaNumeric(c))
+          token += c;
+        tType = tokenType::STR_CONST;
       }
-      else if (isINT_CONST(token)) {
-        tType = tokenTypes::INT_CONST; 
+      else if (isAlpha(c)) {
+        token += c; 
+        // Longest maximal munch
+        while (isAlphaNumeric(inFile.peek()) && (c=inFile.get()))
+          token += c;
+        // NULL pointer is returned when key doesn't exists
+        if (keyWords[token]) 
+          tType = tokenType::KEYWORD;
+        else
+          tType = tokenType::IDENTIFIER;
       }
-      else if (isSTRING_CONST(token)) {
-        tType = tokenTypes::STR_CONST; 
-      }
-      else if (isIDENTIFIER(token)) {
-        tType = tokenTypes::IDENTIFIER; 
-      }
-      else {
-        std::cerr << "Lexical error at " << lineCount << " with token: " << token << std::endl;
-        exit(1);
+      else if (isDigit(c)) {
+        token += c; 
+        while (isDigit(inFile.peek()) && (c=inFile.get()))
+          token += c;
+        tType = tokenType::INT_CONST;
       }
       return token;
     }
+
      
     // return token type   
-    enum::tokenTypes tokenType() {
+    enum::tokenType tokenType() {
       return tType;
     }
 
-    enum::keyWords keyWord() {
-      return keyWordTypes[token];
+    enum::keyWord keyWord() {
+      return keyWords[token];
     }
 
     // return symbol if tokentype is symbol
@@ -204,15 +141,12 @@ class JackTokenizer {
 
     // return symbol if tokentype is symbol
     std::string stringVal() {
-      return token.substr(1, token.size()-2);
+      return token;
     }
 
     // For debugging purposes
-    int64_t curLine() {
-      return lineCount;
-    }
-
-    ~JackTokenizer() {
-      inFile.close(); 
+    uint64_t curLine() {
+      return line;
     }
 };
+

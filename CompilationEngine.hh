@@ -31,19 +31,19 @@ class CompilationEngine {
     void printXMLToken(std::string token) {
       printTab();
       switch(tokenizer.tokenType()) {
-        case tokenTypes::KEYWORD:  
+        case tokenType::KEYWORD:  
           outFile << "<keyword>\t" << token << "\t</keyword>" << std::endl;
           break; 
-        case tokenTypes::SYMBOL: 
+        case tokenType::SYMBOL: 
           outFile << "<symbol>\t" << token << "\t</symbol>" << std::endl;
           break; 
-        case tokenTypes::IDENTIFIER: 
+        case tokenType::IDENTIFIER: 
           outFile << "<identifier>\t" << token << "\t</identifier>" << std::endl;
           break; 
-        case tokenTypes::INT_CONST: 
+        case tokenType::INT_CONST: 
           outFile << "<intCONST>\t" << token << "\t</intCONST>" << std::endl;
           break; 
-        case tokenTypes::STR_CONST: 
+        case tokenType::STR_CONST: 
           outFile << "<stringCONST>\t" << token << "\t</stringCONST>" << std::endl;
           break; 
       }
@@ -121,13 +121,13 @@ class CompilationEngine {
       else
         printError("static|field");
       compileType();
-      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         eat(currentToken);
       else
         printError("varName");
       while (currentToken == ",") {
         eat(",");
-        if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
           eat(currentToken);
         else
           printError("varName");
@@ -148,7 +148,7 @@ class CompilationEngine {
         eat("char");
       else if (currentToken == "boolean")
         eat("boolean");
-      else if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+      else if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         eat(currentToken);
       else
         eat("int|char|boolean|className");
@@ -166,7 +166,7 @@ class CompilationEngine {
         eat("boolean");
       else if (currentToken == eType)
         eat(currentToken);
-      else if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+      else if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         eat(currentToken);
       else
         printError("int|char|boolean|className" + eType);
@@ -193,7 +193,7 @@ class CompilationEngine {
         // And other class name too will come here.
         compileType("void");
       }
-      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         eat(currentToken);
       else
         printError("subroutineName");
@@ -212,14 +212,14 @@ class CompilationEngine {
       ++depth;
       if (currentToken != ")") {
         compileType();
-        if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
           eat(currentToken);
         else
           printError("varName");
         while (currentToken == ",") {
           eat(",");
           compileType();
-          if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+          if (tokenizer.tokenType() == tokenType::IDENTIFIER)
             eat(currentToken);
           else
             printError("varName");
@@ -250,13 +250,13 @@ class CompilationEngine {
       ++depth;
       eat("var");
       compileType();
-      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         eat(currentToken);
       else
         printError("varName");
       while (currentToken == ",") {
         eat(",");
-        if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
           eat(currentToken);
         else
           printError("varName");
@@ -303,7 +303,7 @@ class CompilationEngine {
       outFile << "<letStatements>\n";
       ++depth;
       eat("let");
-      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         eat(currentToken);
       else
         printError("varName");
@@ -371,13 +371,13 @@ class CompilationEngine {
     void compileSubroutineCall() {
       /* How to know if subroutineName is used ? */
       /* subroutine doesn't have . operator */
-      if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         eat(currentToken);
       else
         printError("subroutineName|className|varName");
       if (currentToken == ".") {
         eat(".");
-        if (tokenizer.tokenType() == tokenTypes::IDENTIFIER)
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
           eat(currentToken);
         else
           printError("subroutineName");
