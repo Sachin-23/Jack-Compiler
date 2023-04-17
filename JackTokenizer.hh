@@ -11,7 +11,7 @@ class JackTokenizer {
     enum::tokenType tType;
     uint64_t line = 1;
 
-    // There is no '/' operator
+    // There is no '\' operator
     bool isSymbol(char c) {
       return c == '(' || c == ')' 
           || c == '{' || c == '}'
@@ -37,7 +37,7 @@ class JackTokenizer {
     }
 
 		bool isChar(char c) {
-	    return (c >= 32 && c <= 126);
+	    return c != 33 && c != '\n' && (c >= 32 && c <= 126);
 		}
 
   public: 
@@ -90,16 +90,18 @@ class JackTokenizer {
 
     std::string advance() {
       token.clear();
-      if (isSymbol(c)) {
+      if (isSymbol(c) || c == '/') {
         token = c; 
         tType = tokenType::SYMBOL;
       }
       else if (c == '"') {
-				while (c != '"') {
-					c = inFile.get();	
-					if (isChar(c=inFile.get()) && (c != '"' || token.back() == '/'))
-						token += c;
+				while ((c=inFile.get())!=EOF && ((c != '"') || token.back()=='\\')) {
+          token += c;
 				}
+        if (c != '"') {
+          std::cerr << "Lexical error at " << line << " String is not closed\n";
+          exit(1);
+        }
         tType = tokenType::STR_CONST;
       }
       else if (isAlpha(c)) {
@@ -134,8 +136,14 @@ class JackTokenizer {
     }
 
     // return symbol if tokentype is symbol
-    char symbol() {
-      return c;
+    std::string symbol() {
+      switch(c) {
+        case '<': return "&lt;";
+        case '>': return "&gt;";
+        case '&': return "&amp;";
+        case '\\': return "&quot;";
+      }
+      return token;
     }
 
     // return symbol if tokentype is symbol

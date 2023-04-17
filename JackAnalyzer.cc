@@ -36,12 +36,12 @@ int main(int argc, char *argv[]) {
   // Check if regular file
   if (S_ISREG(pathStat.st_mode)) {
     int i = path.find_last_of("/") + 1;
+
     if (path[i] < 65 || path[i] > 90) {
       std::cerr << "File name should be captialized." << std::endl;
       exit(1);
     }
-
-    // std::cout << "Processing a single file: " << argv[1] << std::endl;
+    //std::cout << "Processing a single file: " << argv[1] << std::endl;
     processFile(argv[1]);
   }
   else if (S_ISDIR(pathStat.st_mode)) {

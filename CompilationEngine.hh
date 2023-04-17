@@ -43,16 +43,16 @@ class CompilationEngine {
           outFile << "<keyword> " << currentToken << " </keyword>";
           break; 
         case tokenType::SYMBOL: 
-          outFile << "<symbol> " << currentToken << " </symbol>";
+          outFile << "<symbol> " << tokenizer.symbol() << " </symbol>";
           break; 
         case tokenType::IDENTIFIER: 
           outFile << "<identifier> " << currentToken << " </identifier>";
           break; 
         case tokenType::INT_CONST: 
-          outFile << "<intCONST> " << currentToken<< " </intCONST>";
+          outFile << "<integerConstant> " << currentToken<< " </integerConstant>";
           break; 
         case tokenType::STR_CONST: 
-          outFile << "<stringCONST> " << currentToken << " </stringCONST>";
+          outFile << "<stringConstant> " << currentToken << " </stringConstant>";
           break; 
       }
       outFile << std::endl;
@@ -93,12 +93,12 @@ class CompilationEngine {
       // Remove file extension
       fileName = path.substr(0, path.find_last_of("."));
 
-      std::cout << "Path " << path << " --> " << fileName << ".vm" << std::endl; 
+      std::cout << "Path " << path << " --> " << fileName << ".xml" << std::endl; 
       
-      outFile.open(fileName + ".vm");
+      outFile.open(fileName + ".xml");
 
       if (!outFile) 
-        throw std::runtime_error(std::string("Failed to open file: ") + fileName + ".vm");
+        throw std::runtime_error(std::string("Failed to open file: ") + fileName + ".xml");
 
       // Get the file name only
       fileName = fileName.substr(fileName.find_last_of("/")+1, fileName.length()); 
@@ -457,7 +457,7 @@ class CompilationEngine {
 					printAndAdvance();
 					if (currentToken == "[") {
 						printAndAdvance();
-						compileExpressionList();
+						compileExpression();
 						eat("]");
 					}
 					else if (currentToken == "(") {
