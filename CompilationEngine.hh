@@ -36,30 +36,38 @@ class CompilationEngine {
               || currentToken == "=";
     }
 
-    void printXMLToken(std::string token) {
+    void printXMLToken() {
       printTab();
       switch(tokenizer.tokenType()) {
         case tokenType::KEYWORD:  
-          outFile << "<keyword> " << token << " </keyword>" << std::endl;
+          outFile << "<keyword> " << currentToken << " </keyword>";
           break; 
         case tokenType::SYMBOL: 
-          outFile << "<symbol> " << token << " </symbol>" << std::endl;
+          outFile << "<symbol> " << currentToken << " </symbol>";
           break; 
         case tokenType::IDENTIFIER: 
-          outFile << "<identifier> " << token << " </identifier>" << std::endl;
+          outFile << "<identifier> " << currentToken << " </identifier>";
           break; 
         case tokenType::INT_CONST: 
-          outFile << "<intCONST> " << token << " </intCONST>" << std::endl;
+          outFile << "<intCONST> " << currentToken<< " </intCONST>";
           break; 
         case tokenType::STR_CONST: 
-          outFile << "<stringCONST> " << token << " </stringCONST>" << std::endl;
+          outFile << "<stringCONST> " << currentToken << " </stringCONST>";
           break; 
+      }
+      outFile << std::endl;
+    }
+
+    void printAndAdvance() {
+      printXMLToken();
+      if (tokenizer.hasMoreTokens()) {
+        currentToken = tokenizer.advance();
       }
     }
 
     void eat(std::string token) {
       if (token == currentToken) {
-        printXMLToken(token);
+        printXMLToken();
       }
       else {
         printError(token);
@@ -120,20 +128,20 @@ class CompilationEngine {
       outFile << "<classVarDec>\n";
       ++depth;
       if (currentToken == "static") 
-        printXMLToken("static");
+        printAndAdvance();
       else if (currentToken == "field") 
-        printXMLToken("field");
+        printAndAdvance();
       else
         printError("static|field");
       compileType();
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printXMLToken(currentToken);
+        printAndAdvance();
       else
         printError("varName");
       while (currentToken == ",") {
-        printXMLToken(",");
+        printAndAdvance();
         if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-          printXMLToken(currentToken);
+          printAndAdvance();
         else
           printError("varName");
       }
@@ -148,13 +156,13 @@ class CompilationEngine {
     void compileType() {
       // fileName should be the className
       if (currentToken == "int")
-        printXMLToken("int");
+        printAndAdvance();
       else if (currentToken == "char")
-        printXMLToken("char");
+        printAndAdvance();
       else if (currentToken == "boolean")
-        printXMLToken("boolean");
+        printAndAdvance();
       else if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printXMLToken(currentToken);
+        printAndAdvance();
       else
         printError("int|char|boolean|className");
     }
@@ -164,15 +172,15 @@ class CompilationEngine {
     void compileType(std::string eType) {
       // fileName should be the className
       if (currentToken == "int")
-        printXMLToken("int");
+        printAndAdvance();
       else if (currentToken == "char")
-        printXMLToken("char");
+        printAndAdvance();
       else if (currentToken == "boolean")
-        printXMLToken("boolean");
+        printAndAdvance();
       else if (currentToken == eType)
-        printXMLToken(currentToken);
+        printAndAdvance();
       else if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printXMLToken(currentToken);
+        printAndAdvance();
       else
         printError("int|char|boolean|className" + eType);
     }
@@ -182,24 +190,24 @@ class CompilationEngine {
       outFile << "<subroutineDec>\n";
       ++depth;
       if (currentToken == "constructor") {
-        printXMLToken("constructor");
+        printAndAdvance();
         if (currentToken == fileName)
-          printXMLToken(currentToken);
+          printAndAdvance();
         else
           printError(fileName);
       }
       else if (currentToken == "function") {
-        printXMLToken("function");
+        printAndAdvance();
         // And other class name too will come here.
         compileType("void");
       }
       else if (currentToken == "method") {
-        printXMLToken("method");
+        printAndAdvance();
         // And other class name too will come here.
         compileType("void");
       }
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printXMLToken(currentToken);
+        printAndAdvance();
       else
         printError("subroutineName");
       eat("(");
@@ -218,14 +226,14 @@ class CompilationEngine {
       if (currentToken != ")") {
         compileType();
         if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-          printXMLToken(currentToken);
+          printAndAdvance();
         else
           printError("varName");
         while (currentToken == ",") {
-          printXMLToken(",");
+          printAndAdvance();
           compileType();
           if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-            printXMLToken(currentToken);
+            printAndAdvance();
           else
             printError("varName");
         }
@@ -256,13 +264,13 @@ class CompilationEngine {
       eat("var");
       compileType();
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printXMLToken(currentToken);
+        printAndAdvance();
       else
         printError("varName");
       while (currentToken == ",") {
-        printXMLToken(",");
+        printAndAdvance();
         if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-          printXMLToken(currentToken);
+          printAndAdvance();
         else
           printError("varName");
       }
@@ -309,11 +317,11 @@ class CompilationEngine {
       ++depth;
       eat("let");
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printXMLToken(currentToken);
+        printAndAdvance();
       else
         printError("varName");
       if (currentToken == "[") {
-        printXMLToken("[");
+        printAndAdvance();
         compileExpression();
         eat("]");
       } 
@@ -337,7 +345,7 @@ class CompilationEngine {
       compileStatements();
       eat("}");
       if (currentToken == "else") {
-        printXMLToken("else");
+        printAndAdvance();
         eat("{");
         compileStatements();
         eat("}");
@@ -351,7 +359,10 @@ class CompilationEngine {
       printTab();  
       outFile << "<whileStatement>\n";
       ++depth;
-      compileExpression();
+			eat("while");
+			eat("(");
+			compileExpression();
+			eat(")");
       eat("{");
       compileStatements();
       eat("}");
@@ -365,7 +376,20 @@ class CompilationEngine {
       outFile << "<doStatement>\n";
       ++depth;
       eat("do");
-      compileExpression();
+			if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+        printAndAdvance();
+      else
+        printError("subroutineName|className|varName");
+      if (currentToken == ".") {
+        printAndAdvance();
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+					printAndAdvance();
+        else
+          printError("subroutineName");
+      }
+      eat("(");
+      compileExpressionList();
+      eat(")");
       eat(";");
       --depth;
       printTab();
@@ -385,20 +409,24 @@ class CompilationEngine {
       outFile << "</returnStatement>\n";
     }
 
-    void compileExpressionList() {
+    int compileExpressionList() {
       printTab();  
       outFile << "<expressionList>\n";
       ++depth;
+      uint64_t exprs = 0;
       if (currentToken != ")") {
+        exprs = 1;
         compileExpression(); 
         while (currentToken == ",")  {
           eat(",");
           compileExpression(); 
+          ++exprs;
         }
       }
       --depth;
       printTab();
       outFile << "</expressionList>\n";
+      return exprs;
     }
 
     void compileExpression() {
@@ -407,7 +435,7 @@ class CompilationEngine {
       ++depth;
       compileTerm();
       if (isOp()) {
-        printXMLToken(currentToken);
+        printAndAdvance();
         compileTerm();
       }
       --depth;
@@ -419,26 +447,44 @@ class CompilationEngine {
       printTab();  
       outFile << "<term>\n";
       ++depth;
-      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printXMLToken(currentToken);
-      if (currentToken == "[") {
-        printXMLToken("[");
-        compileExpression();
-        eat("]");
-      }
-      else if (currentToken == "(") {
-        printXMLToken("(");
-        compileExpression();
-        while (currentToken == ",") {
-          printXMLToken(",");
-          compileExpression();
-        }
-        eat(")");
-      }
-      else if (currentToken == "~" || currentToken == "-") {
-        printXMLToken(currentToken);
-        compileTerm();
-      }
+			switch (tokenizer.tokenType()) {
+				case tokenType::INT_CONST: 
+				case tokenType::STR_CONST: 
+				case tokenType::KEYWORD: 
+					printAndAdvance();
+					break;	
+				case tokenType::IDENTIFIER:
+					printAndAdvance();
+					if (currentToken == "[") {
+						printAndAdvance();
+						compileExpressionList();
+						eat("]");
+					}
+					else if (currentToken == "(") {
+						printAndAdvance();
+	  				compileExpressionList(); 
+						eat(")");
+					}
+					else if (currentToken == ".") {
+						printAndAdvance();
+						if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+							printAndAdvance();
+						eat("(");
+	  				compileExpressionList(); 
+						eat(")");
+					}
+					break;
+				case tokenType::SYMBOL:
+					if (currentToken == "(") {
+						printAndAdvance();
+						compileExpression();
+						eat(")");
+					}
+					else if (currentToken == "~" || currentToken == "-") {
+						printAndAdvance();
+						compileTerm();
+					}
+			}
       --depth;
       printTab();
       outFile << "</term>\n";

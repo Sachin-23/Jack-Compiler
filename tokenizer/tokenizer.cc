@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "JackTokens.hh"
+#include "../JackTokens.hh"
 
 class JackTokenizer {
   private:
@@ -159,4 +159,38 @@ class JackTokenizer {
       return line;
     }
 };
+
+
+int main(int argc, char *argv[]) {
+  JackTokenizer tokenizer;
+  tokenizer.init(argv[1]);
+
+  std::string currentToken;
+
+  while (tokenizer.hasMoreTokens()) {
+
+    currentToken = tokenizer.advance();
+
+    switch(tokenizer.tokenType()) {
+
+      case tokenType::KEYWORD:  
+        std::cout << "<keyword> " << currentToken << " </keyword>";
+        break; 
+      case tokenType::SYMBOL: 
+        std::cout << "<symbol> " << currentToken << " </symbol>";
+        break; 
+      case tokenType::IDENTIFIER: 
+        std::cout << "<identifier> " << currentToken << " </identifier>";
+        break; 
+      case tokenType::INT_CONST: 
+        std::cout << "<intCONST> " << currentToken<< " </intCONST>";
+        break; 
+      case tokenType::STR_CONST: 
+        std::cout << "<stringCONST> " << currentToken << " </stringCONST>";
+        break; 
+    }
+    std::cout << std::endl;
+  }      
+  return 0;
+}
 

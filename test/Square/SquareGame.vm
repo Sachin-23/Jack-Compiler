@@ -31,7 +31,30 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> square </identifier>
+              <identifier> Square </identifier>
+              <symbol> . </symbol>
+              <identifier> new </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <intCONST> 0 </intCONST>
+                  </term>
+                </expression>
+                <symbol> , </symbol>
+                <expression>
+                  <term>
+                    <intCONST> 0 </intCONST>
+                  </term>
+                </expression>
+                <symbol> , </symbol>
+                <expression>
+                  <term>
+                    <intCONST> 30 </intCONST>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -42,7 +65,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> direction </identifier>
+              <intCONST> 0 </intCONST>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -51,7 +74,7 @@
           <keyword> return </keyword>
           <expression>
             <term>
-              <identifier> square </identifier>
+              <keyword> this </keyword>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -91,7 +114,7 @@
           <expressionList>
             <expression>
               <term>
-                <identifier> square </identifier>
+                <keyword> this </keyword>
               </term>
             </expression>
           </expressionList>
@@ -124,6 +147,10 @@
             <term>
               <identifier> direction </identifier>
             </term>
+            <symbol> = </symbol>
+            <term>
+              <intCONST> 1 </intCONST>
+            </term>
           </expression>
           <symbol> ) </symbol>
           <symbol> { </symbol>
@@ -148,6 +175,10 @@
           <expression>
             <term>
               <identifier> direction </identifier>
+            </term>
+            <symbol> = </symbol>
+            <term>
+              <intCONST> 2 </intCONST>
             </term>
           </expression>
           <symbol> ) </symbol>
@@ -174,6 +205,10 @@
             <term>
               <identifier> direction </identifier>
             </term>
+            <symbol> = </symbol>
+            <term>
+              <intCONST> 3 </intCONST>
+            </term>
           </expression>
           <symbol> ) </symbol>
           <symbol> { </symbol>
@@ -198,6 +233,10 @@
           <expression>
             <term>
               <identifier> direction </identifier>
+            </term>
+            <symbol> = </symbol>
+            <term>
+              <intCONST> 4 </intCONST>
             </term>
           </expression>
           <symbol> ) </symbol>
@@ -226,7 +265,7 @@
           <expressionList>
             <expression>
               <term>
-                <identifier> direction </identifier>
+                <intCONST> 5 </intCONST>
               </term>
             </expression>
           </expressionList>
@@ -270,7 +309,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> key </identifier>
+              <keyword> false </keyword>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -280,7 +319,10 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> exit </identifier>
+              <symbol> ~ </symbol>
+              <term>
+                <identifier> exit </identifier>
+              </term>
             </term>
           </expression>
           <symbol> ) </symbol>
@@ -293,6 +335,10 @@
                 <term>
                   <identifier> key </identifier>
                 </term>
+                <symbol> = </symbol>
+                <term>
+                  <intCONST> 0 </intCONST>
+                </term>
               </expression>
               <symbol> ) </symbol>
               <symbol> { </symbol>
@@ -303,7 +349,13 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> key </identifier>
+                      <identifier> Keyboard </identifier>
+                      <symbol> . </symbol>
+                      <identifier> keyPressed </identifier>
+                      <symbol> ( </symbol>
+                      <expressionList>
+                      </expressionList>
+                      <symbol> ) </symbol>
                     </term>
                   </expression>
                   <symbol> ; </symbol>
@@ -327,6 +379,10 @@
                 <term>
                   <identifier> key </identifier>
                 </term>
+                <symbol> = </symbol>
+                <term>
+                  <intCONST> 81 </intCONST>
+                </term>
               </expression>
               <symbol> ) </symbol>
               <symbol> { </symbol>
@@ -337,7 +393,7 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> exit </identifier>
+                      <keyword> true </keyword>
                     </term>
                   </expression>
                   <symbol> ; </symbol>
@@ -351,6 +407,10 @@
               <expression>
                 <term>
                   <identifier> key </identifier>
+                </term>
+                <symbol> = </symbol>
+                <term>
+                  <intCONST> 90 </intCONST>
                 </term>
               </expression>
               <symbol> ) </symbol>
@@ -377,6 +437,10 @@
                 <term>
                   <identifier> key </identifier>
                 </term>
+                <symbol> = </symbol>
+                <term>
+                  <intCONST> 88 </intCONST>
+                </term>
               </expression>
               <symbol> ) </symbol>
               <symbol> { </symbol>
@@ -402,6 +466,10 @@
                 <term>
                   <identifier> key </identifier>
                 </term>
+                <symbol> = </symbol>
+                <term>
+                  <intCONST> 131 </intCONST>
+                </term>
               </expression>
               <symbol> ) </symbol>
               <symbol> { </symbol>
@@ -412,7 +480,7 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> exit </identifier>
+                      <intCONST> 1 </intCONST>
                     </term>
                   </expression>
                   <symbol> ; </symbol>
@@ -427,6 +495,10 @@
                 <term>
                   <identifier> key </identifier>
                 </term>
+                <symbol> = </symbol>
+                <term>
+                  <intCONST> 133 </intCONST>
+                </term>
               </expression>
               <symbol> ) </symbol>
               <symbol> { </symbol>
@@ -437,7 +509,7 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> key </identifier>
+                      <intCONST> 2 </intCONST>
                     </term>
                   </expression>
                   <symbol> ; </symbol>
@@ -452,6 +524,10 @@
                 <term>
                   <identifier> key </identifier>
                 </term>
+                <symbol> = </symbol>
+                <term>
+                  <intCONST> 130 </intCONST>
+                </term>
               </expression>
               <symbol> ) </symbol>
               <symbol> { </symbol>
@@ -462,7 +538,7 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> square </identifier>
+                      <intCONST> 3 </intCONST>
                     </term>
                   </expression>
                   <symbol> ; </symbol>
@@ -477,6 +553,10 @@
                 <term>
                   <identifier> key </identifier>
                 </term>
+                <symbol> = </symbol>
+                <term>
+                  <intCONST> 132 </intCONST>
+                </term>
               </expression>
               <symbol> ) </symbol>
               <symbol> { </symbol>
@@ -487,7 +567,7 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> direction </identifier>
+                      <intCONST> 4 </intCONST>
                     </term>
                   </expression>
                   <symbol> ; </symbol>
@@ -500,7 +580,20 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
+                  <symbol> ~ </symbol>
+                  <term>
+                    <symbol> ( </symbol>
+                    <expression>
+                      <term>
+                        <identifier> key </identifier>
+                      </term>
+                      <symbol> = </symbol>
+                      <term>
+                        <intCONST> 0 </intCONST>
+                      </term>
+                    </expression>
+                    <symbol> ) </symbol>
+                  </term>
                 </term>
               </expression>
               <symbol> ) </symbol>
@@ -512,7 +605,13 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> key </identifier>
+                      <identifier> Keyboard </identifier>
+                      <symbol> . </symbol>
+                      <identifier> keyPressed </identifier>
+                      <symbol> ( </symbol>
+                      <expressionList>
+                      </expressionList>
+                      <symbol> ) </symbol>
                     </term>
                   </expression>
                   <symbol> ; </symbol>

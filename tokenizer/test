@@ -1,0 +1,749 @@
+<symbol> < </symbol>
+<keyword> class </keyword>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> class </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> Main </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> { </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> classVarDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> static </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> boolean </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> test </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> classVarDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> subroutineDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> function </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> void </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> main </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ( </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> parameterList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> parameterList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ) </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> subroutineBody </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> { </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> varDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> var </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> SquareGame </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> game </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> varDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> statements </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> letStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> let </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> game </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> = </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> expression </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> term </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> SquareGame </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> . </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> new </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ( </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> expressionList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> expressionList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ) </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> term </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> expression </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> letStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> doStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> do </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> game </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> . </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> run </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ( </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> expressionList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> expressionList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ) </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> doStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> doStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> do </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> game </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> . </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> dispose </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ( </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> expressionList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> expressionList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ) </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> doStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> returnStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> return </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> returnStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> statements </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> } </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> subroutineBody </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> subroutineDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> subroutineDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> function </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> void </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> test </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ( </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> parameterList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> parameterList </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ) </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> subroutineBody </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> { </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> varDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> var </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> int </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> i </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> , </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> j </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> varDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> varDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> var </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> String </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> s </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> varDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> varDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> var </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> Array </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> a </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ; </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> varDec </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> statements </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> ifStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> if </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ( </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> expression </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> term </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> false </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> term </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> expression </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> ) </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> { </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> statements </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> letStatement </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<keyword> let </keyword>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> keyword </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<identifier> s </identifier>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> identifier </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> = </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> symbol </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> expression </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> term </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<identifier> stringCONST </identifier>
+<symbol> > </symbol>
+<symbol> < </symbol>
+<symbol>  </symbol>
+<identifier> stringCONST </identifier>
+<symbol> > </symbol>
