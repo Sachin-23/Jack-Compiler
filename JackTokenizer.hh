@@ -37,12 +37,16 @@ class JackTokenizer {
     }
 
   public: 
+    JackTokenizer() { }
+    JackTokenizer(std::string path) {
+      init(path);
+    }
+
     void init(std::string path) {
       inFile.open(path);
       if (!inFile) {
         throw std::runtime_error(std::string("Failed to open file: " + path));
       }
-
     }
     ~JackTokenizer() {
       inFile.close(); 
@@ -54,19 +58,17 @@ class JackTokenizer {
           case '/': 
             // Skip comments
             if (inFile.peek() == '/') {
-              while ((c=inFile.get()) != EOF 
-                && c != '\n')
+              while ((c=inFile.get()) != EOF && c != '\n') 
                 ;
+              ++line;
             }
             else if (inFile.peek() == '*') {
-              while ((c=inFile.get()) != EOF 
-                && !(c == '*' && inFile.peek() == '/'))
-                ;
+              while ((c=inFile.get()) != EOF && !(c == '*' && inFile.peek() == '/'))
+                if (c == '\n') ++line;
               inFile.get();
             }
             else 
-              // if it is a '/' operator
-              return true;
+              return true; // If '/' is an operator
             break;
           case ' ':
           case '\r':
@@ -126,7 +128,7 @@ class JackTokenizer {
 
     // return symbol if tokentype is symbol
     char symbol() {
-      return token[0];
+      return c;
     }
 
     // return symbol if tokentype is symbol
