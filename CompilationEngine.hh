@@ -474,24 +474,27 @@ class CompilationEngine {
 					break;	
 				case tokenType::IDENTIFIER:
 					printAndAdvance();
-					if (currentToken == "[") {
-						printAndAdvance();
-						compileExpression();
-						eat("]");
-					}
-					else if (currentToken == "(") {
-						printAndAdvance();
-	  				compileExpressionList(); 
-						eat(")");
-					}
-					else if (currentToken == ".") {
-						printAndAdvance();
-						if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-							printAndAdvance();
-						eat("(");
-	  				compileExpressionList(); 
-						eat(")");
-					}
+          switch (tokenizer.symbol()) {
+            case '[':  
+              printAndAdvance();
+              compileExpression();
+              eat("]");
+              break;
+            // Code reability vs performance ?
+            case '.':
+              printAndAdvance();
+              if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+                printAndAdvance();
+              // eat("(");
+              // compileExpressionList(); 
+              // eat(")");
+            case '(': 
+              printAndAdvance();
+              compileExpressionList(); 
+              eat(")");
+              break;
+            default: break; 
+          }
 					break;
 				case tokenType::SYMBOL:
 					if (currentToken == "(") {
