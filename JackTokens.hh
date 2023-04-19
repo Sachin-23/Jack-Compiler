@@ -1,7 +1,7 @@
 #include <iostream>
 #include <map>
 
-enum class tokenType {
+enum tokenType {
   KEYWORD 
   , SYMBOL
   , IDENTIFIER
@@ -9,7 +9,7 @@ enum class tokenType {
   , STR_CONST
 };
 
-enum class keyWord {
+enum keyWord {
   CLASS
   , METHOD
   , FUNCTION
@@ -33,7 +33,7 @@ enum class keyWord {
   , THIS
 };
 
-std::map<std::string, enum::keyWord> keyWords = {
+const std::map<std::string, enum::keyWord> keyWords = {
  {"class",        keyWord::CLASS} 
  , {"method"      , keyWord::METHOD}
  , {"function"    , keyWord::FUNCTION}

@@ -43,7 +43,7 @@ class CompilationEngine {
           outFile << "<keyword> " << currentToken << " </keyword>";
           break; 
         case tokenType::SYMBOL: 
-          outFile << "<symbol> " << tokenizer.symbol() << " </symbol>";
+          outFile << "<symbol> " << tokenizer.stringVal() << " </symbol>";
           break; 
         case tokenType::IDENTIFIER: 
           outFile << "<identifier> " << currentToken << " </identifier>";
@@ -127,13 +127,25 @@ class CompilationEngine {
       printTab();
       outFile << "<classVarDec>\n";
       ++depth;
-      if (currentToken == "static") 
-        printAndAdvance();
-      else if (currentToken == "field") 
-        printAndAdvance();
+      switch(tokenizer.keyWord()) {
+        case keyWord::STATIC:
+        case keyWord::FIELD:
+          printAndAdvance();
+          break;
+        default: 
+          printError("static|field");
+      }
+
+      // Weird Syntax ?
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER
+          || (tokenizer.tokenType() == tokenType::KEYWORD
+          && (tokenizer.keyWord() == keyWord::INT
+              || tokenizer.keyWord() == keyWord::CHAR
+              || tokenizer.keyWord() == keyWord::BOOLEAN)))
+        printAndAdvance(); 
       else
-        printError("static|field");
-      compileType();
+        printError("int|char|boolean|className");
+
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         printAndAdvance();
       else
@@ -151,60 +163,32 @@ class CompilationEngine {
       outFile << "</classVarDec>\n";
     }
 
-    /* Why should I implement this is in the particular*/
-    /* check this */
-    void compileType() {
-      // fileName should be the className
-      if (currentToken == "int")
-        printAndAdvance();
-      else if (currentToken == "char")
-        printAndAdvance();
-      else if (currentToken == "boolean")
-        printAndAdvance();
-      else if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printAndAdvance();
-      else
-        printError("int|char|boolean|className");
-    }
-
-    /* Why should I implement this is in the particular*/
-    /* check this */
-    void compileType(std::string eType) {
-      // fileName should be the className
-      if (currentToken == "int")
-        printAndAdvance();
-      else if (currentToken == "char")
-        printAndAdvance();
-      else if (currentToken == "boolean")
-        printAndAdvance();
-      else if (currentToken == eType)
-        printAndAdvance();
-      else if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printAndAdvance();
-      else
-        printError("int|char|boolean|className" + eType);
-    }
-
     void compileSubroutine() {
       printTab();
       outFile << "<subroutineDec>\n";
       ++depth;
-      if (currentToken == "constructor") {
-        printAndAdvance();
-        if (currentToken == fileName)
+      switch (tokenizer.keyWord()) {
+        case keyWord::CONSTRUCTOR:
           printAndAdvance();
-        else
-          printError(fileName);
-      }
-      else if (currentToken == "function") {
-        printAndAdvance();
-        // And other class name too will come here.
-        compileType("void");
-      }
-      else if (currentToken == "method") {
-        printAndAdvance();
-        // And other class name too will come here.
-        compileType("void");
+          if (currentToken == fileName)
+            printAndAdvance();
+          else
+            printError(fileName);
+          break;
+        case keyWord::FUNCTION:
+        case keyWord::METHOD:
+          printAndAdvance();
+          // Weird Syntax ?
+          if (tokenizer.tokenType() == tokenType::IDENTIFIER
+              || (tokenizer.tokenType() == tokenType::KEYWORD
+              && (tokenizer.keyWord() == keyWord::INT
+                  || tokenizer.keyWord() == keyWord::CHAR
+                  || tokenizer.keyWord() == keyWord::VOID
+                  || tokenizer.keyWord() == keyWord::BOOLEAN)))
+            printAndAdvance(); 
+          else
+            printError("int|char|boolean|className");
+        default: break;
       }
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         printAndAdvance();
@@ -224,14 +208,32 @@ class CompilationEngine {
       outFile << "<parameterList>\n";
       ++depth;
       if (currentToken != ")") {
-        compileType();
+
+        // Weird Syntax ?
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER
+            || (tokenizer.tokenType() == tokenType::KEYWORD
+            && (tokenizer.keyWord() == keyWord::INT
+                || tokenizer.keyWord() == keyWord::CHAR
+                || tokenizer.keyWord() == keyWord::BOOLEAN)))
+          printAndAdvance(); 
+        else
+          printError("int|char|boolean|className");
+
         if (tokenizer.tokenType() == tokenType::IDENTIFIER)
           printAndAdvance();
         else
           printError("varName");
         while (currentToken == ",") {
           printAndAdvance();
-          compileType();
+          // Weird Syntax ?
+          if (tokenizer.tokenType() == tokenType::IDENTIFIER
+              || (tokenizer.tokenType() == tokenType::KEYWORD
+              && (tokenizer.keyWord() == keyWord::INT
+                  || tokenizer.keyWord() == keyWord::CHAR
+                  || tokenizer.keyWord() == keyWord::BOOLEAN)))
+            printAndAdvance(); 
+          else
+            printError("int|char|boolean|className");
           if (tokenizer.tokenType() == tokenType::IDENTIFIER)
             printAndAdvance();
           else
@@ -248,7 +250,7 @@ class CompilationEngine {
       outFile << "<subroutineBody>\n";
       ++depth;
       eat("{");
-      while (currentToken == "var")
+      while (tokenizer.keyWord() == keyWord::VAR)
         compileVarDec();
       compileStatements();
       eat("}");
@@ -262,7 +264,16 @@ class CompilationEngine {
       outFile << "<varDec>\n" ;
       ++depth;
       eat("var");
-      compileType();
+      // Weird Syntax ?
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER
+          || (tokenizer.tokenType() == tokenType::KEYWORD
+          && (tokenizer.keyWord() == keyWord::INT
+              || tokenizer.keyWord() == keyWord::CHAR
+              || tokenizer.keyWord() == keyWord::BOOLEAN)))
+        printAndAdvance(); 
+      else
+        printError("int|char|boolean|className");
+
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
         printAndAdvance();
       else
@@ -284,26 +295,24 @@ class CompilationEngine {
       printTab();
       outFile << "<statements>\n" ;
       ++depth;
-      while (currentToken == "let" || currentToken == "do"
-              || currentToken == "while" || currentToken == "return" 
-              || currentToken == "if") {
-        if (currentToken == "let") {
-          compileLet(); 
-        }
-        else if (currentToken == "if") {
-          compileIf();
-        }
-        else if (currentToken == "while") {
-          compileWhile();
-        }
-        else if (currentToken == "do") {
-          compileDo();
-        }
-        else if (currentToken == "return") {
-          compileReturn();
-        }
-        else {
-          printError("let|if|while|do|return");
+      while (tokenizer.tokenType() == tokenType::KEYWORD) {
+        switch (tokenizer.keyWord()) {
+          case keyWord::LET:
+            compileLet(); 
+            break;   
+          case keyWord::IF:
+            compileIf();
+            break;   
+          case keyWord::WHILE:
+            compileWhile();
+            break;   
+          case keyWord::DO:
+            compileDo();
+            break;   
+          case keyWord::RETURN:
+            compileReturn();
+            break;   
+          default:  printError("let|if|while|do|return"); 
         }
       }
       --depth;
@@ -448,9 +457,19 @@ class CompilationEngine {
       outFile << "<term>\n";
       ++depth;
 			switch (tokenizer.tokenType()) {
+        // Notice there is no break
+        case tokenType::KEYWORD:
+          switch(tokenizer.keyWord()) {
+            case keyWord::TRUE:
+            case keyWord::FALSE:
+            case keyWord::NONE:
+            case keyWord::THIS:
+              break;
+            default: 
+              printError("true|false|null|this");
+          }
 				case tokenType::INT_CONST: 
 				case tokenType::STR_CONST: 
-				case tokenType::KEYWORD: 
 					printAndAdvance();
 					break;	
 				case tokenType::IDENTIFIER:
@@ -484,6 +503,8 @@ class CompilationEngine {
 						printAndAdvance();
 						compileTerm();
 					}
+          break;
+        default: printError("Error in term");
 			}
       --depth;
       printTab();

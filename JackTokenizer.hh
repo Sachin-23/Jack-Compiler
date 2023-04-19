@@ -109,12 +109,12 @@ class JackTokenizer {
         // Longest maximal munch
         while (isAlphaNumeric(inFile.peek()) && (c=inFile.get()))
           token += c;
-        // NULL pointer is returned when key doesn't exists
-        if (keyWords.find(token) != keyWords.end()) {
+        if (keyWords.count(token)) {
           tType = tokenType::KEYWORD;
         }
-        else
+        else {
           tType = tokenType::IDENTIFIER;
+        }
       }
       else if (isDigit(c)) {
         token += c; 
@@ -132,18 +132,12 @@ class JackTokenizer {
     }
 
     enum::keyWord keyWord() {
-      return keyWords[token];
+      return keyWords.at(token);
     }
 
     // return symbol if tokentype is symbol
-    std::string symbol() {
-      switch(c) {
-        case '<': return "&lt;";
-        case '>': return "&gt;";
-        case '&': return "&amp;";
-        case '\\': return "&quot;";
-      }
-      return token;
+    char symbol() {
+      return c;
     }
 
     // return symbol if tokentype is symbol
@@ -159,6 +153,12 @@ class JackTokenizer {
 
     // return symbol if tokentype is symbol
     std::string stringVal() {
+      switch(c) {
+        case '<': return "&lt;";
+        case '>': return "&gt;";
+        case '&': return "&amp;";
+        case '\\': return "&quot;";
+      }
       return token;
     }
 
