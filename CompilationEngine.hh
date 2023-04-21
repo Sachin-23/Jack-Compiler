@@ -4,14 +4,23 @@
 #include <stdint.h>
 
 #include "JackTokenizer.hh"
+#include "SymbolTable.hh"
 
 class CompilationEngine {
   private: 
     std::string fileName;
     std::ofstream outFile;
+
     JackTokenizer tokenizer;
+
     std::string currentToken;
+
+    // false if in class, else in subroutine
+    bool subLevel=false;
     uint64_t depth = 0;
+
+    SymbolTable classTable;
+    SymbolTable subTable;
 
     void printTab() {
       std::string tab;
@@ -38,6 +47,7 @@ class CompilationEngine {
 
     void printXMLToken() {
       printTab();
+      SymbolTable curTable;
       switch(tokenizer.tokenType()) {
         case tokenType::KEYWORD:  
           outFile << "<keyword> " << currentToken << " </keyword>";
@@ -46,7 +56,26 @@ class CompilationEngine {
           outFile << "<symbol> " << tokenizer.stringVal() << " </symbol>";
           break; 
         case tokenType::IDENTIFIER: 
-          outFile << "<identifier> " << currentToken << " </identifier>";
+          if (subLevel) {
+            curTable = subTable;
+          }
+          else {
+            curTable = classTable;
+          } 
+          outFile << "<identifier type='" << curTable.typeOf(currentToken);
+          outFile << "' kind='"; 
+          switch(curTable.kindOf(currentToken)) {
+            case kind::STATIC: outFile << "static";
+              break;
+            case kind::FIELD: outFile << "field";
+              break;
+            case kind::VAR: outFile << "var";
+              break;
+            case kind::ARG: outFile << "arg";
+              break;
+          }
+          outFile << "' index='" << curTable.indexOf(currentToken) << "'>"
+                  << currentToken << "</identifier>";
           break; 
         case tokenType::INT_CONST: 
           outFile << "<integerConstant> " << currentToken<< " </integerConstant>";
@@ -116,9 +145,18 @@ class CompilationEngine {
       while (currentToken == "static" || currentToken == "field")
         compileClassVarDec();   
       while (currentToken == "constructor" || currentToken == "function" 
-              || currentToken == "method")
+              || currentToken == "method") {
+        // Compiling in subroutine level
+        subLevel = true;
         compileSubroutine();   
+        subTable.reset();
+        // subtable is cleared
+      }
+      // Now at class level
+      subLevel = false;
       eat("}");
+      // class table is cleared 
+      classTable.reset();
       --depth;
       outFile << "</class>\n";
     }
@@ -127,9 +165,17 @@ class CompilationEngine {
       printTab();
       outFile << "<classVarDec>\n";
       ++depth;
+
+      std::string type;
+      enum::kind kindOf;  
+
       switch(tokenizer.keyWord()) {
         case keyWord::STATIC:
+          kindOf = kind::STATIC;
+          printAndAdvance();
+          break;
         case keyWord::FIELD:
+          kindOf = kind::FIELD;
           printAndAdvance();
           break;
         default: 
@@ -141,19 +187,25 @@ class CompilationEngine {
           || (tokenizer.tokenType() == tokenType::KEYWORD
           && (tokenizer.keyWord() == keyWord::INT
               || tokenizer.keyWord() == keyWord::CHAR
-              || tokenizer.keyWord() == keyWord::BOOLEAN)))
+              || tokenizer.keyWord() == keyWord::BOOLEAN))) {
+        type = currentToken; 
         printAndAdvance(); 
+      }
       else
         printError("int|char|boolean|className");
 
-      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+        classTable.define(currentToken, type, kindOf);
         printAndAdvance();
+      }
       else
         printError("varName");
       while (currentToken == ",") {
         printAndAdvance();
-        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+          classTable.define(currentToken, type, kindOf);
           printAndAdvance();
+        }
         else
           printError("varName");
       }
@@ -207,6 +259,7 @@ class CompilationEngine {
       printTab();
       outFile << "<parameterList>\n";
       ++depth;
+      std::string type;
       if (currentToken != ")") {
 
         // Weird Syntax ?
@@ -214,13 +267,17 @@ class CompilationEngine {
             || (tokenizer.tokenType() == tokenType::KEYWORD
             && (tokenizer.keyWord() == keyWord::INT
                 || tokenizer.keyWord() == keyWord::CHAR
-                || tokenizer.keyWord() == keyWord::BOOLEAN)))
+                || tokenizer.keyWord() == keyWord::BOOLEAN))) {
+          type = currentToken;
           printAndAdvance(); 
+        }
         else
           printError("int|char|boolean|className");
 
-        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+          subTable.define(currentToken, type, kind::ARG);
           printAndAdvance();
+        }
         else
           printError("varName");
         while (currentToken == ",") {
@@ -230,12 +287,16 @@ class CompilationEngine {
               || (tokenizer.tokenType() == tokenType::KEYWORD
               && (tokenizer.keyWord() == keyWord::INT
                   || tokenizer.keyWord() == keyWord::CHAR
-                  || tokenizer.keyWord() == keyWord::BOOLEAN)))
+                  || tokenizer.keyWord() == keyWord::BOOLEAN))) {
+            type = currentToken;
             printAndAdvance(); 
+          }
           else
             printError("int|char|boolean|className");
-          if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+          if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+            subTable.define(currentToken, type, kind::ARG);
             printAndAdvance();
+          }
           else
             printError("varName");
         }
@@ -264,24 +325,31 @@ class CompilationEngine {
       outFile << "<varDec>\n" ;
       ++depth;
       eat("var");
+      std::string type;
       // Weird Syntax ?
       if (tokenizer.tokenType() == tokenType::IDENTIFIER
           || (tokenizer.tokenType() == tokenType::KEYWORD
           && (tokenizer.keyWord() == keyWord::INT
               || tokenizer.keyWord() == keyWord::CHAR
-              || tokenizer.keyWord() == keyWord::BOOLEAN)))
+              || tokenizer.keyWord() == keyWord::BOOLEAN))) {
+        type = currentToken; 
         printAndAdvance(); 
+      }
       else
         printError("int|char|boolean|className");
 
-      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+        subTable.define(currentToken, type, kind::VAR); 
         printAndAdvance();
+      }
       else
         printError("varName");
       while (currentToken == ",") {
         printAndAdvance();
-        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+          subTable.define(currentToken, type, kind::VAR); 
           printAndAdvance();
+        }
         else
           printError("varName");
       }

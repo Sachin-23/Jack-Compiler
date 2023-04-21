@@ -2,15 +2,6 @@
 #include <map>
 #include <vector>
 
-enum kind {
-  STATIC
-  , FIELD
-  , VAR
-  , ARG
-};
-
-
-
 class SymbolTable {
   private:
      uint64_t staticCount = 0;

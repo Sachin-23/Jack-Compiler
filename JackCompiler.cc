@@ -13,7 +13,9 @@ void processFile(std::string file) {
 
   // Only files ending .jack extension
   if (fileName.substr(fileName.find_last_of(".")) == ".jack") {
+    // Initialize the compiler
     CompilationEngine compiler(fileName);
+
     // Every Jack program is a collection of class
     compiler.compileClass();
   }
