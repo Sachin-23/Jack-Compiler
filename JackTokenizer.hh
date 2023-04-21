@@ -51,14 +51,19 @@ class JackTokenizer {
       if (!inFile) {
         throw std::runtime_error(std::string("Failed to open file: " + path));
       }
+
+      if (inFile.eof()) {
+        throw std::runtime_error(std::string("Empty file: " + path));
+      }
     }
+
     ~JackTokenizer() {
       inFile.close(); 
     }
     
     bool hasMoreTokens() {
       while ((c = inFile.get()) != EOF) {
-        switch(c) {
+        switch (c) {
           case '/': 
             // Skip comments
             if (inFile.peek() == '/') {
@@ -153,7 +158,7 @@ class JackTokenizer {
 
     // return symbol if tokentype is symbol
     std::string stringVal() {
-      switch(c) {
+      switch (c) {
         case '<': return "&lt;";
         case '>': return "&gt;";
         case '&': return "&amp;";

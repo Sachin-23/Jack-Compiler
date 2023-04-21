@@ -5,30 +5,22 @@
 
 #include "JackTokenizer.hh"
 #include "SymbolTable.hh"
+#include "VMWriter.hh"
 
 class CompilationEngine {
   private: 
     std::string fileName;
-    std::ofstream outFile;
-
-    JackTokenizer tokenizer;
-
     std::string currentToken;
-
+    // Tokenizer object
+    JackTokenizer tokenizer;
+    // VMWriter object
+    VMWriter vmwriter;
     // false if in class, else in subroutine
     bool subLevel=false;
     uint64_t depth = 0;
 
     SymbolTable classTable;
     SymbolTable subTable;
-
-    void printTab() {
-      std::string tab;
-      for (uint64_t i = 0; i < depth; ++i) {
-        tab += "  "; 
-      }
-      outFile << tab;
-    }
 
     void printError(std::string token) {
       std::cerr << "Syntax Error at " << tokenizer.curLine() 
@@ -45,50 +37,8 @@ class CompilationEngine {
               || currentToken == "=";
     }
 
-    void printXMLToken() {
-      printTab();
-      SymbolTable curTable;
-      switch(tokenizer.tokenType()) {
-        case tokenType::KEYWORD:  
-          outFile << "<keyword> " << currentToken << " </keyword>";
-          break; 
-        case tokenType::SYMBOL: 
-          outFile << "<symbol> " << tokenizer.stringVal() << " </symbol>";
-          break; 
-        case tokenType::IDENTIFIER: 
-          if (subLevel) {
-            curTable = subTable;
-          }
-          else {
-            curTable = classTable;
-          } 
-          outFile << "<identifier type='" << curTable.typeOf(currentToken);
-          outFile << "' kind='"; 
-          switch(curTable.kindOf(currentToken)) {
-            case kind::STATIC: outFile << "static";
-              break;
-            case kind::FIELD: outFile << "field";
-              break;
-            case kind::VAR: outFile << "var";
-              break;
-            case kind::ARG: outFile << "arg";
-              break;
-          }
-          outFile << "' index='" << curTable.indexOf(currentToken) << "'>"
-                  << currentToken << "</identifier>";
-          break; 
-        case tokenType::INT_CONST: 
-          outFile << "<integerConstant> " << currentToken<< " </integerConstant>";
-          break; 
-        case tokenType::STR_CONST: 
-          outFile << "<stringConstant> " << currentToken << " </stringConstant>";
-          break; 
-      }
-      outFile << std::endl;
-    }
-
     void printAndAdvance() {
-      printXMLToken();
+      //printXMLToken();
       if (tokenizer.hasMoreTokens()) {
         currentToken = tokenizer.advance();
       }
@@ -96,7 +46,7 @@ class CompilationEngine {
 
     void eat(std::string token) {
       if (token == currentToken) {
-        printXMLToken();
+        //printXMLToken();
       }
       else {
         printError(token);
@@ -108,26 +58,17 @@ class CompilationEngine {
      
   public:
     CompilationEngine(std::string path) {
+      // Initialize tokenizer
       tokenizer.init(path);
-
-      // check if file contains any tokens
-      if (!tokenizer.hasMoreTokens()) {
-        std::cerr << "Empty file" << std::endl;
-        exit(1);
-      }
        
       // Get the current token
       currentToken = tokenizer.advance(); 
 
+      // Initialize vmwriter
+      vmwriter.init(path);
+
       // Remove file extension
       fileName = path.substr(0, path.find_last_of("."));
-
-      std::cout << "Path " << path << " --> " << fileName << ".xml" << std::endl; 
-      
-      outFile.open(fileName + ".xml");
-
-      if (!outFile) 
-        throw std::runtime_error(std::string("Failed to open file: ") + fileName + ".xml");
 
       // Get the file name only
       fileName = fileName.substr(fileName.find_last_of("/")+1, fileName.length()); 
@@ -169,7 +110,7 @@ class CompilationEngine {
       std::string type;
       enum::kind kindOf;  
 
-      switch(tokenizer.keyWord()) {
+      switch (tokenizer.keyWord()) {
         case keyWord::STATIC:
           kindOf = kind::STATIC;
           printAndAdvance();
@@ -527,7 +468,7 @@ class CompilationEngine {
 			switch (tokenizer.tokenType()) {
         // Notice there is no break
         case tokenType::KEYWORD:
-          switch(tokenizer.keyWord()) {
+          switch (tokenizer.keyWord()) {
             case keyWord::TRUE:
             case keyWord::FALSE:
             case keyWord::NONE:

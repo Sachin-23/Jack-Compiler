@@ -40,6 +40,29 @@ enum class kind {
   , ARG
 };
 
+enum class segment {
+  CONSTANT
+  , ARGUMENT 
+  , LOCAL
+  , STATIC
+  , THIS
+  , THAT
+  , POINTER
+  , TEMP
+};
+
+enum class command {
+  ADD
+  , SUB
+  , NEG
+  , EQ
+  , GT
+  , LT
+  , AND
+  , OR
+  , NOT
+};
+
 const std::map<std::string, enum::keyWord> keyWords = {
  {"class",        keyWord::CLASS} 
  , {"method"      , keyWord::METHOD}
