@@ -48,6 +48,9 @@ class JackTokenizer {
 
     void init(std::string path) {
       inFile.open(path);
+
+      std::cout << "JackTokenizer: " << path << std::endl;
+
       if (!inFile) {
         throw std::runtime_error(std::string("Failed to open file: " + path));
       }

@@ -1,0 +1,9 @@
+function Main.main 0
+push constant 1
+push constant 2
+push constant 3
+call Math.Multiply 2
+add
+call Output.printInt 0
+pop temp 0
+return

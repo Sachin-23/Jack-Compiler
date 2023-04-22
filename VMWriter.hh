@@ -21,13 +21,14 @@ class VMWriter {
         
       // Remove file extension
       fileName = path.substr(0, path.find_last_of("."));
+      path = fileName + ".vm";
+
+      outFile.open(path);
 
       std::cout << "VMWriter: " << path << std::endl;
 
-      outFile.open(fileName + ".tvm");
-
       if (!outFile) 
-        throw std::runtime_error(std::string("Failed to open file: ") + fileName + ".xml");
+        throw std::runtime_error(std::string("Failed to open file: ") + path); 
     }
 
     void close() {
@@ -42,21 +43,21 @@ class VMWriter {
     void writePush(enum::segment seg, uint64_t index) {
       std::string _segment;
       switch (seg) {
-        case segment::CONSTANT: _segment = "CONSTANT";
+        case segment::CONSTANT: _segment = "constant";
           break;
-        case segment::ARGUMENT: _segment = "ARGUMENT";
+        case segment::ARGUMENT: _segment = "argument";
           break;
-        case segment::LOCAL: _segment = "LOCAL";
+        case segment::LOCAL: _segment = "local";
           break;
-        case segment::STATIC: _segment = "STATIC";
+        case segment::STATIC: _segment = "static";
           break;
-        case segment::THIS: _segment = "THIS";
+        case segment::THIS: _segment = "this";
           break;
-        case segment::THAT: _segment = "THAT";
+        case segment::THAT: _segment = "that";
           break;
-        case segment::POINTER: _segment = "POINTER";
+        case segment::POINTER: _segment = "pointer";
           break;
-        case segment::TEMP: _segment = "TEMP";
+        case segment::TEMP: _segment = "temp";
           break;
         default: printError();
       }
@@ -66,37 +67,45 @@ class VMWriter {
     void writePop(enum::segment seg, uint64_t index) {
       std::string _segment;
       switch (seg) {
-        case segment::CONSTANT: _segment = "CONSTANT";
+        case segment::CONSTANT: _segment = "constant";
           break;
-        case segment::ARGUMENT: _segment = "ARGUMENT";
+        case segment::ARGUMENT: _segment = "argument";
           break;
-        case segment::LOCAL: _segment = "LOCAL";
+        case segment::LOCAL: _segment = "local";
           break;
-        case segment::STATIC: _segment = "STATIC";
+        case segment::STATIC: _segment = "static";
           break;
-        case segment::THIS: _segment = "THIS";
+        case segment::THIS: _segment = "this";
           break;
-        case segment::THAT: _segment = "THAT";
+        case segment::THAT: _segment = "that";
           break;
-        case segment::POINTER: _segment = "POINTER";
+        case segment::POINTER: _segment = "pointer";
           break;
-        case segment::TEMP: _segment = "TEMP";
+        case segment::TEMP: _segment = "temp";
           break;
         default: printError();
       }
-      outFile << "pop" << _segment << " " << index << std::endl;;
+      outFile << "pop " << _segment << " " << index << std::endl;;
     }
 
-    void writeArithemetic(enum::command _command) {
+    void writeArithmetic(enum::command _command) {
       switch (_command) {
         case command::ADD: outFile << "add";
+          break;
         case command::SUB: outFile << "sub";
+          break;
         case command::NEG: outFile << "neg";
+          break;
         case command::EQ: outFile << "eq";
+          break;
         case command::GT: outFile << "gt";
+          break;
         case command::LT: outFile << "lt";
+          break;
         case command::AND: outFile << "and";
+          break;
         case command::OR: outFile << "or";
+          break;
         case command::NOT: outFile << "not";
       }
       outFile << std::endl;

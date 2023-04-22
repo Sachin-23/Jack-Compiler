@@ -14,13 +14,11 @@ class CompilationEngine {
     // Tokenizer object
     JackTokenizer tokenizer;
     // VMWriter object
-    VMWriter vmwriter;
-    // false if in class, else in subroutine
-    bool subLevel=false;
-    uint64_t depth = 0;
+    VMWriter vmWriter;
 
     SymbolTable classTable;
     SymbolTable subTable;
+    uint64_t classVarCount = 0;
 
     void printError(std::string token) {
       std::cerr << "Syntax Error at " << tokenizer.curLine() 
@@ -34,38 +32,32 @@ class CompilationEngine {
               || currentToken == "*" || currentToken == "/"
               || currentToken == "&" || currentToken == "|"
               || currentToken == "<" || currentToken == ">"
-              || currentToken == "=";
+              || currentToken == "="; 
     }
 
-    void printAndAdvance() {
-      //printXMLToken();
-      if (tokenizer.hasMoreTokens()) {
-        currentToken = tokenizer.advance();
-      }
-    }
-
-    void eat(std::string token) {
-      if (token == currentToken) {
-        //printXMLToken();
-      }
-      else {
-        printError(token);
-      }
-      if (tokenizer.hasMoreTokens()) {
-        currentToken = tokenizer.advance();
+    void advance() {
+      if (tokenizer.hasMoreTokens())  {
+        // Get the current token
+        currentToken = tokenizer.advance(); 
       }
     }
      
+    void eat(std::string token) {
+      if (token != currentToken) {
+        printError(token);
+      }
+      advance();
+    }
+
   public:
     CompilationEngine(std::string path) {
       // Initialize tokenizer
       tokenizer.init(path);
-       
-      // Get the current token
-      currentToken = tokenizer.advance(); 
+
+      advance();
 
       // Initialize vmwriter
-      vmwriter.init(path);
+      vmWriter.init(path);
 
       // Remove file extension
       fileName = path.substr(0, path.find_last_of("."));
@@ -73,237 +65,192 @@ class CompilationEngine {
       // Get the file name only
       fileName = fileName.substr(fileName.find_last_of("/")+1, fileName.length()); 
     }
+
     ~CompilationEngine() {
-      outFile.close();
     }
 
     void compileClass() {
-      outFile << "<class>\n";
-      ++depth;
       eat("class");
       eat(fileName);
       eat("{");
-      while (currentToken == "static" || currentToken == "field")
+      while (currentToken == "static" || currentToken == "field") {
         compileClassVarDec();   
+        ++classVarCount;
+      }
       while (currentToken == "constructor" || currentToken == "function" 
               || currentToken == "method") {
-        // Compiling in subroutine level
-        subLevel = true;
         compileSubroutine();   
-        subTable.reset();
         // subtable is cleared
+        subTable.reset();
       }
-      // Now at class level
-      subLevel = false;
       eat("}");
       // class table is cleared 
       classTable.reset();
-      --depth;
-      outFile << "</class>\n";
     }
 
     void compileClassVarDec() {
-      printTab();
-      outFile << "<classVarDec>\n";
-      ++depth;
-
       std::string type;
       enum::kind kindOf;  
 
       switch (tokenizer.keyWord()) {
         case keyWord::STATIC:
           kindOf = kind::STATIC;
-          printAndAdvance();
           break;
         case keyWord::FIELD:
           kindOf = kind::FIELD;
-          printAndAdvance();
           break;
         default: 
           printError("static|field");
       }
+      advance();
 
-      // Weird Syntax ?
-      if (tokenizer.tokenType() == tokenType::IDENTIFIER
-          || (tokenizer.tokenType() == tokenType::KEYWORD
-          && (tokenizer.keyWord() == keyWord::INT
-              || tokenizer.keyWord() == keyWord::CHAR
-              || tokenizer.keyWord() == keyWord::BOOLEAN))) {
+      // Unstructured
+      if (compileType()) {
         type = currentToken; 
-        printAndAdvance(); 
+        advance();
       }
       else
         printError("int|char|boolean|className");
 
       if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
         classTable.define(currentToken, type, kindOf);
-        printAndAdvance();
+        advance();
       }
       else
         printError("varName");
       while (currentToken == ",") {
-        printAndAdvance();
+        advance();
         if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
           classTable.define(currentToken, type, kindOf);
-          printAndAdvance();
+          advance();
         }
         else
           printError("varName");
       }
       eat(";");
-      --depth;
-      printTab();
-      outFile << "</classVarDec>\n";
+    }
+
+    bool compileType() {
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+        return true;
+      }
+      if (tokenizer.tokenType() == tokenType::KEYWORD) {
+        switch (tokenizer.keyWord()) {
+          case keyWord::INT:  
+          case keyWord::CHAR: 
+          case keyWord::BOOLEAN: 
+            return true;
+          default: break;
+        }
+      }
+      return false;
     }
 
     void compileSubroutine() {
-      printTab();
-      outFile << "<subroutineDec>\n";
-      ++depth;
+      std::string functionName = fileName;
+      bool isMethod = false;
       switch (tokenizer.keyWord()) {
         case keyWord::CONSTRUCTOR:
-          printAndAdvance();
-          if (currentToken == fileName)
-            printAndAdvance();
-          else
-            printError(fileName);
+          advance(); 
+          eat(fileName);
           break;
-        case keyWord::FUNCTION:
+        // Note precedence of cases matters
         case keyWord::METHOD:
-          printAndAdvance();
+          isMethod = true; 
+        case keyWord::FUNCTION:
+          advance();
           // Weird Syntax ?
-          if (tokenizer.tokenType() == tokenType::IDENTIFIER
-              || (tokenizer.tokenType() == tokenType::KEYWORD
-              && (tokenizer.keyWord() == keyWord::INT
-                  || tokenizer.keyWord() == keyWord::CHAR
-                  || tokenizer.keyWord() == keyWord::VOID
-                  || tokenizer.keyWord() == keyWord::BOOLEAN)))
-            printAndAdvance(); 
+          if (compileType() || tokenizer.keyWord() == keyWord::VOID)
+            advance();
           else
-            printError("int|char|boolean|className");
+            printError("void|int|char|boolean|className");
         default: break;
       }
-      if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printAndAdvance();
+      if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+        functionName += "." + currentToken;
+        advance();
+      }
       else
         printError("subroutineName");
+      vmWriter.writeFunction(functionName, classVarCount);
       eat("(");
       compileParameterList();
       eat(")");
       compileSubroutineBody(); 
-      --depth;
-      printTab();
-      outFile << "</subroutineDec>\n";
     }
 
     void compileParameterList() {
-      printTab();
-      outFile << "<parameterList>\n";
-      ++depth;
       std::string type;
       if (currentToken != ")") {
-
-        // Weird Syntax ?
-        if (tokenizer.tokenType() == tokenType::IDENTIFIER
-            || (tokenizer.tokenType() == tokenType::KEYWORD
-            && (tokenizer.keyWord() == keyWord::INT
-                || tokenizer.keyWord() == keyWord::CHAR
-                || tokenizer.keyWord() == keyWord::BOOLEAN))) {
+        if (compileType()) {
           type = currentToken;
-          printAndAdvance(); 
+          advance();
         }
         else
           printError("int|char|boolean|className");
 
         if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
           subTable.define(currentToken, type, kind::ARG);
-          printAndAdvance();
+          advance();
         }
         else
           printError("varName");
         while (currentToken == ",") {
-          printAndAdvance();
-          // Weird Syntax ?
-          if (tokenizer.tokenType() == tokenType::IDENTIFIER
-              || (tokenizer.tokenType() == tokenType::KEYWORD
-              && (tokenizer.keyWord() == keyWord::INT
-                  || tokenizer.keyWord() == keyWord::CHAR
-                  || tokenizer.keyWord() == keyWord::BOOLEAN))) {
-            type = currentToken;
-            printAndAdvance(); 
+          tokenizer.advance();
+          if (compileType()) {
+            advance();
           }
           else
             printError("int|char|boolean|className");
           if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
             subTable.define(currentToken, type, kind::ARG);
-            printAndAdvance();
+            advance();
           }
           else
             printError("varName");
         }
       }
-      --depth;
-      printTab();
-      outFile << "</parameterList>\n";
     }
-
     void compileSubroutineBody() {
-      printTab();
-      outFile << "<subroutineBody>\n";
-      ++depth;
       eat("{");
       while (tokenizer.keyWord() == keyWord::VAR)
         compileVarDec();
       compileStatements();
       eat("}");
-      --depth;
-      printTab();
-      outFile << "</subroutineBody>\n";
     }
 
     void compileVarDec() {
-      printTab();
-      outFile << "<varDec>\n" ;
-      ++depth;
       eat("var");
       std::string type;
-      // Weird Syntax ?
-      if (tokenizer.tokenType() == tokenType::IDENTIFIER
-          || (tokenizer.tokenType() == tokenType::KEYWORD
-          && (tokenizer.keyWord() == keyWord::INT
-              || tokenizer.keyWord() == keyWord::CHAR
-              || tokenizer.keyWord() == keyWord::BOOLEAN))) {
+
+      if (compileType()) {
         type = currentToken; 
-        printAndAdvance(); 
+        advance(); 
       }
       else
         printError("int|char|boolean|className");
 
       if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
         subTable.define(currentToken, type, kind::VAR); 
-        printAndAdvance();
+        advance();
       }
       else
         printError("varName");
+
       while (currentToken == ",") {
-        printAndAdvance();
+        advance();
         if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
           subTable.define(currentToken, type, kind::VAR); 
-          printAndAdvance();
+          advance();
         }
         else
           printError("varName");
       }
+
       eat(";");
-      --depth;
-      printTab();
-      outFile << "</varDec>\n" ;
     } 
 
     void compileStatements() {
-      printTab();
-      outFile << "<statements>\n" ;
-      ++depth;
       while (tokenizer.tokenType() == tokenType::KEYWORD) {
         switch (tokenizer.keyWord()) {
           case keyWord::LET:
@@ -324,37 +271,25 @@ class CompilationEngine {
           default:  printError("let|if|while|do|return"); 
         }
       }
-      --depth;
-      printTab();
-      outFile << "</statements>\n";
     }
 
     void compileLet() {
-      printTab();  
-      outFile << "<letStatement>\n";
-      ++depth;
       eat("let");
       if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printAndAdvance();
+        advance();
       else
         printError("varName");
       if (currentToken == "[") {
-        printAndAdvance();
+        advance();
         compileExpression();
         eat("]");
       } 
       eat("=");
       compileExpression();
       eat(";");
-      --depth;
-      printTab();
-      outFile << "</letStatement>\n";
     }
 
     void compileIf() {
-      printTab();  
-      outFile << "<ifStatement>\n";
-      ++depth;
       eat("if");
       eat("(");
       compileExpression();
@@ -363,20 +298,14 @@ class CompilationEngine {
       compileStatements();
       eat("}");
       if (currentToken == "else") {
-        printAndAdvance();
+        advance();
         eat("{");
         compileStatements();
         eat("}");
       }
-      --depth;
-      printTab();
-      outFile << "</ifStatement>\n";
     }
 
     void compileWhile() {
-      printTab();  
-      outFile << "<whileStatement>\n";
-      ++depth;
 			eat("while");
 			eat("(");
 			compileExpression();
@@ -384,53 +313,45 @@ class CompilationEngine {
       eat("{");
       compileStatements();
       eat("}");
-      --depth;
-      printTab();
-      outFile << "</whileStatement>\n";
     }
 
     void compileDo() {
-      printTab();  
-      outFile << "<doStatement>\n";
-      ++depth;
       eat("do");
-			if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-        printAndAdvance();
+      std::string functionName;  
+			if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+        functionName += currentToken;
+        advance();
+      }
       else
         printError("subroutineName|className|varName");
+
       if (currentToken == ".") {
-        printAndAdvance();
-        if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-					printAndAdvance();
+        functionName += currentToken;
+        advance();
+        if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
+          functionName += currentToken;
+          advance();
+        }
         else
           printError("subroutineName");
       }
       eat("(");
       compileExpressionList();
       eat(")");
+      vmWriter.writeCall(functionName, 0);
+      vmWriter.writePop(segment::TEMP, 0); 
       eat(";");
-      --depth;
-      printTab();
-      outFile << "</doStatement>\n";
     }
 
     void compileReturn() {
-      printTab();  
-      outFile << "<returnStatement>\n";
-      ++depth;
       eat("return");
       if (currentToken != ";")
         compileExpression();
       eat(";");
-      --depth;
-      printTab();
-      outFile << "</returnStatement>\n";
+      vmWriter.writeReturn();
     }
 
     int compileExpressionList() {
-      printTab();  
-      outFile << "<expressionList>\n";
-      ++depth;
       uint64_t exprs = 0;
       if (currentToken != ")") {
         exprs = 1;
@@ -441,30 +362,42 @@ class CompilationEngine {
           ++exprs;
         }
       }
-      --depth;
-      printTab();
-      outFile << "</expressionList>\n";
       return exprs;
     }
 
     void compileExpression() {
-      printTab();  
-      outFile << "<expression>\n";
-      ++depth;
+      char op;
       compileTerm();
       if (isOp()) {
-        printAndAdvance();
+        op = tokenizer.symbol();
+        advance();
         compileTerm();
+        switch(op) {
+          case '+': vmWriter.writeArithmetic(command::ADD);   
+              break;
+          case '-': vmWriter.writeArithmetic(command::SUB); 
+              break;
+          case '*': vmWriter.writeCall("Math.Multiply", 2); 
+              break;
+          case '/': vmWriter.writeCall("Math.Divide", 2); 
+              break;
+          case '&': vmWriter.writeArithmetic(command::AND); 
+              break;
+          case '|': vmWriter.writeArithmetic(command::NOT); 
+              break;
+          case '!': vmWriter.writeArithmetic(command::NEG); 
+              break;
+          case '<': vmWriter.writeArithmetic(command::GT); 
+              break;
+          case '>': vmWriter.writeArithmetic(command::LT); 
+              break;
+          case '=': vmWriter.writeArithmetic(command::EQ); 
+              break;
+        }
       }
-      --depth;
-      printTab();
-      outFile << "</expression>\n";
     }
 
     void compileTerm() {
-      printTab();  
-      outFile << "<term>\n";
-      ++depth;
 			switch (tokenizer.tokenType()) {
         // Notice there is no break
         case tokenType::KEYWORD:
@@ -477,28 +410,33 @@ class CompilationEngine {
             default: 
               printError("true|false|null|this");
           }
+          advance();
+          break;
 				case tokenType::INT_CONST: 
+          vmWriter.writePush(segment::CONSTANT, tokenizer.intVal());
+          advance();
+          break;
 				case tokenType::STR_CONST: 
-					printAndAdvance();
+					advance();
 					break;	
 				case tokenType::IDENTIFIER:
-					printAndAdvance();
+					advance();
           switch (tokenizer.symbol()) {
             case '[':  
-              printAndAdvance();
+              advance();
               compileExpression();
               eat("]");
               break;
-            // Code reability vs performance ?
+            // Code reability vs optimization ?
             case '.':
-              printAndAdvance();
+              advance();
               if (tokenizer.tokenType() == tokenType::IDENTIFIER)
-                printAndAdvance();
+                advance();
               // eat("(");
-              // compileExpressionList(); 
+              // compileExpressionList();
               // eat(")");
             case '(': 
-              printAndAdvance();
+              advance();
               compileExpressionList(); 
               eat(")");
               break;
@@ -507,19 +445,16 @@ class CompilationEngine {
 					break;
 				case tokenType::SYMBOL:
 					if (currentToken == "(") {
-						printAndAdvance();
+						advance();
 						compileExpression();
 						eat(")");
 					}
 					else if (currentToken == "~" || currentToken == "-") {
-						printAndAdvance();
+						advance();
 						compileTerm();
 					}
           break;
         default: printError("Error in term");
 			}
-      --depth;
-      printTab();
-      outFile << "</term>\n";
     }
 };
