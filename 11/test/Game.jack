@@ -1,0 +1,9 @@
+class Game {
+  field Array test;
+  field int x;
+  constructor Game new() {
+     let test = Array.new(10);
+     let test[1] = 0;
+     return this;
+   }
+}

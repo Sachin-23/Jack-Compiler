@@ -1,23 +1,23 @@
 <class>
   <keyword> class </keyword>
-  <identifier type='' kind='var' index='0'>SquareGame</identifier>
+  <identifier> SquareGame </identifier>
   <symbol> { </symbol>
   <classVarDec>
     <keyword> field </keyword>
-    <identifier type='' kind='var' index='0'>Square</identifier>
-    <identifier type='Square' kind='field' index='0'>square</identifier>
+    <identifier> Square </identifier>
+    <identifier typeOf='Square' indexOf='0' kindOf='FIELD'>square</identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <classVarDec>
     <keyword> field </keyword>
     <keyword> int </keyword>
-    <identifier type='int' kind='field' index='1'>direction</identifier>
+    <identifier typeOf='int' indexOf='1' kindOf='FIELD'>direction</identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <subroutineDec>
     <keyword> constructor </keyword>
-    <identifier type='' kind='var' index='0'>SquareGame</identifier>
-    <identifier type='' kind='var' index='0'>new</identifier>
+    <identifier> SquareGame </identifier>
+    <identifier> new </identifier>
     <symbol> ( </symbol>
     <parameterList>
     </parameterList>
@@ -27,13 +27,13 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier type='' kind='var' index='0'>square</identifier>
+          <identifier> square </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier type='' kind='var' index='0'>Square</identifier>
+              <identifier> Square </identifier>
               <symbol> . </symbol>
-              <identifier type='' kind='var' index='0'>new</identifier>
+              <identifier> new </identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -61,7 +61,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier type='' kind='var' index='0'>direction</identifier>
+          <identifier> direction </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -86,7 +86,7 @@
   <subroutineDec>
     <keyword> method </keyword>
     <keyword> void </keyword>
-    <identifier type='' kind='var' index='0'>dispose</identifier>
+    <identifier> dispose </identifier>
     <symbol> ( </symbol>
     <parameterList>
     </parameterList>
@@ -96,9 +96,9 @@
       <statements>
         <doStatement>
           <keyword> do </keyword>
-          <identifier type='' kind='var' index='0'>square</identifier>
+          <identifier> square </identifier>
           <symbol> . </symbol>
-          <identifier type='' kind='var' index='0'>dispose</identifier>
+          <identifier> dispose </identifier>
           <symbol> ( </symbol>
           <expressionList>
           </expressionList>
@@ -107,9 +107,9 @@
         </doStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier type='' kind='var' index='0'>Memory</identifier>
+          <identifier> Memory </identifier>
           <symbol> . </symbol>
-          <identifier type='' kind='var' index='0'>deAlloc</identifier>
+          <identifier> deAlloc </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -132,7 +132,7 @@
   <subroutineDec>
     <keyword> method </keyword>
     <keyword> void </keyword>
-    <identifier type='' kind='var' index='0'>moveSquare</identifier>
+    <identifier> moveSquare </identifier>
     <symbol> ( </symbol>
     <parameterList>
     </parameterList>
@@ -145,7 +145,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier type='' kind='var' index='0'>direction</identifier>
+              <identifier> direction </identifier>
             </term>
             <symbol> = </symbol>
             <term>
@@ -157,9 +157,9 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier type='' kind='var' index='0'>square</identifier>
+              <identifier> square </identifier>
               <symbol> . </symbol>
-              <identifier type='' kind='var' index='0'>moveUp</identifier>
+              <identifier> moveUp </identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -174,7 +174,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier type='' kind='var' index='0'>direction</identifier>
+              <identifier> direction </identifier>
             </term>
             <symbol> = </symbol>
             <term>
@@ -186,9 +186,9 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier type='' kind='var' index='0'>square</identifier>
+              <identifier> square </identifier>
               <symbol> . </symbol>
-              <identifier type='' kind='var' index='0'>moveDown</identifier>
+              <identifier> moveDown </identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -203,7 +203,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier type='' kind='var' index='0'>direction</identifier>
+              <identifier> direction </identifier>
             </term>
             <symbol> = </symbol>
             <term>
@@ -215,9 +215,9 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier type='' kind='var' index='0'>square</identifier>
+              <identifier> square </identifier>
               <symbol> . </symbol>
-              <identifier type='' kind='var' index='0'>moveLeft</identifier>
+              <identifier> moveLeft </identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -232,7 +232,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier type='' kind='var' index='0'>direction</identifier>
+              <identifier> direction </identifier>
             </term>
             <symbol> = </symbol>
             <term>
@@ -244,9 +244,9 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier type='' kind='var' index='0'>square</identifier>
+              <identifier> square </identifier>
               <symbol> . </symbol>
-              <identifier type='' kind='var' index='0'>moveRight</identifier>
+              <identifier> moveRight </identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -258,9 +258,9 @@
         </ifStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier type='' kind='var' index='0'>Sys</identifier>
+          <identifier> Sys </identifier>
           <symbol> . </symbol>
-          <identifier type='' kind='var' index='0'>wait</identifier>
+          <identifier> wait </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -283,7 +283,7 @@
   <subroutineDec>
     <keyword> method </keyword>
     <keyword> void </keyword>
-    <identifier type='' kind='var' index='0'>run</identifier>
+    <identifier> run </identifier>
     <symbol> ( </symbol>
     <parameterList>
     </parameterList>
@@ -293,19 +293,19 @@
       <varDec>
         <keyword> var </keyword>
         <keyword> char </keyword>
-        <identifier type='char' kind='var' index='0'>key</identifier>
+        <identifier typeOf='' indexOf='0' kindOf='VAR'>key</identifier>
         <symbol> ; </symbol>
       </varDec>
       <varDec>
         <keyword> var </keyword>
         <keyword> boolean </keyword>
-        <identifier type='boolean' kind='var' index='1'>exit</identifier>
+        <identifier typeOf='' indexOf='1' kindOf='VAR'>exit</identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier type='boolean' kind='var' index='1'>exit</identifier>
+          <identifier> exit </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -321,7 +321,7 @@
             <term>
               <symbol> ~ </symbol>
               <term>
-                <identifier type='boolean' kind='var' index='1'>exit</identifier>
+                <identifier> exit </identifier>
               </term>
             </term>
           </expression>
@@ -333,7 +333,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -345,13 +345,13 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier type='' kind='var' index='0'>Keyboard</identifier>
+                      <identifier> Keyboard </identifier>
                       <symbol> . </symbol>
-                      <identifier type='' kind='var' index='0'>keyPressed</identifier>
+                      <identifier> keyPressed </identifier>
                       <symbol> ( </symbol>
                       <expressionList>
                       </expressionList>
@@ -362,7 +362,7 @@
                 </letStatement>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier type='' kind='var' index='0'>moveSquare</identifier>
+                  <identifier> moveSquare </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>
@@ -377,7 +377,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -389,7 +389,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier type='boolean' kind='var' index='1'>exit</identifier>
+                  <identifier> exit </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -406,7 +406,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -418,9 +418,9 @@
               <statements>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier type='' kind='var' index='0'>square</identifier>
+                  <identifier> square </identifier>
                   <symbol> . </symbol>
-                  <identifier type='' kind='var' index='0'>decSize</identifier>
+                  <identifier> decSize </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>
@@ -435,7 +435,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -447,9 +447,9 @@
               <statements>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier type='' kind='var' index='0'>square</identifier>
+                  <identifier> square </identifier>
                   <symbol> . </symbol>
-                  <identifier type='' kind='var' index='0'>incSize</identifier>
+                  <identifier> incSize </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>
@@ -464,7 +464,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -476,7 +476,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier type='' kind='var' index='0'>direction</identifier>
+                  <identifier> direction </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -493,7 +493,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -505,7 +505,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier type='' kind='var' index='0'>direction</identifier>
+                  <identifier> direction </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -522,7 +522,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -534,7 +534,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier type='' kind='var' index='0'>direction</identifier>
+                  <identifier> direction </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -551,7 +551,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -563,7 +563,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier type='' kind='var' index='0'>direction</identifier>
+                  <identifier> direction </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -585,7 +585,7 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
-                        <identifier type='char' kind='var' index='0'>key</identifier>
+                        <identifier> key </identifier>
                       </term>
                       <symbol> = </symbol>
                       <term>
@@ -601,13 +601,13 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier type='char' kind='var' index='0'>key</identifier>
+                  <identifier> key </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier type='' kind='var' index='0'>Keyboard</identifier>
+                      <identifier> Keyboard </identifier>
                       <symbol> . </symbol>
-                      <identifier type='' kind='var' index='0'>keyPressed</identifier>
+                      <identifier> keyPressed </identifier>
                       <symbol> ( </symbol>
                       <expressionList>
                       </expressionList>
@@ -618,7 +618,7 @@
                 </letStatement>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier type='' kind='var' index='0'>moveSquare</identifier>
+                  <identifier> moveSquare </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>

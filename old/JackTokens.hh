@@ -87,9 +87,3 @@ const std::map<std::string, enum::keyWord> keyWords = {
  , {"this"        , keyWord::THIS}
 };
 
-const std::map<enum::kind, std::string> kindName = {
-  {kind::VAR, "VAR"}
-  , {kind::FIELD, "FIELD"}
-  , {kind::ARG, "ARG"}
-  , {kind::STATIC, "STATIC"}
-};

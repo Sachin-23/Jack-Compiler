@@ -1,11 +1,11 @@
 <class>
   <keyword> class </keyword>
-  <identifier type='' kind='var' index='0'>Main</identifier>
+  <identifier> Main </identifier>
   <symbol> { </symbol>
   <subroutineDec>
     <keyword> function </keyword>
     <keyword> void </keyword>
-    <identifier type='' kind='var' index='0'>main</identifier>
+    <identifier> main </identifier>
     <symbol> ( </symbol>
     <parameterList>
     </parameterList>
@@ -14,20 +14,20 @@
       <symbol> { </symbol>
       <varDec>
         <keyword> var </keyword>
-        <identifier type='' kind='var' index='0'>SquareGame</identifier>
-        <identifier type='SquareGame' kind='var' index='0'>game</identifier>
+        <identifier> SquareGame </identifier>
+        <identifier typeOf='' indexOf='0' kindOf='VAR'>game</identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier type='SquareGame' kind='var' index='0'>game</identifier>
+          <identifier> game </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier type='' kind='var' index='0'>SquareGame</identifier>
+              <identifier> SquareGame </identifier>
               <symbol> . </symbol>
-              <identifier type='' kind='var' index='0'>new</identifier>
+              <identifier> new </identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -38,9 +38,9 @@
         </letStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier type='SquareGame' kind='var' index='0'>game</identifier>
+          <identifier> game </identifier>
           <symbol> . </symbol>
-          <identifier type='' kind='var' index='0'>run</identifier>
+          <identifier> run </identifier>
           <symbol> ( </symbol>
           <expressionList>
           </expressionList>
@@ -49,9 +49,9 @@
         </doStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier type='SquareGame' kind='var' index='0'>game</identifier>
+          <identifier> game </identifier>
           <symbol> . </symbol>
-          <identifier type='' kind='var' index='0'>dispose</identifier>
+          <identifier> dispose </identifier>
           <symbol> ( </symbol>
           <expressionList>
           </expressionList>
