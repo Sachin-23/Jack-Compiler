@@ -1,0 +1,14 @@
+function Main.main 1
+call Game.new 0
+pop local 0
+push local 0
+call Game.hello 1
+pop temp 0
+push constant 0
+return
+function Main.test 0
+push argument 0
+call Game.hello 1
+pop temp 0
+push constant 0
+return

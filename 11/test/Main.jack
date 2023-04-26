@@ -9,13 +9,14 @@
  */
 class Main {
    function void main() {
-      var Array test;
       var Game game;
-      //let test = Array.new(10);
-      //let test[1] = 0;
       let game = Game.new();
-      let game.x = 1;
+      do game.hello();
       return;
    }
-
+   
+   function void test(Game game) {
+     do game.hello();
+     return ;
+   }
 }

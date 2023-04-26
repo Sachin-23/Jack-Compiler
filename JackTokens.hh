@@ -93,3 +93,14 @@ const std::map<enum::kind, std::string> kindName = {
   , {kind::ARG, "ARG"}
   , {kind::STATIC, "STATIC"}
 };
+
+const std::map<enum::segment, std::string> segName = {
+  {segment::CONSTANT, "CONSTANT"}
+  , {segment::ARGUMENT, "ARGUMENT"}
+  , {segment::LOCAL, "LOCAL"}
+  , {segment::STATIC, "STATIC"}
+  , {segment::THIS, "THIS"}
+  , {segment::THAT, "THAT"}
+  , {segment::POINTER, "POINTER"}
+  , {segment::TEMP, "TEMP"}
+};

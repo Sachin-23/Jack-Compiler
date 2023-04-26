@@ -1,0 +1,72 @@
+SymbolTable:
+  | Name   | type         | kind  | index |
+  | square | Square class | field | int   |  
+
+Here are two do statements
+
+<doStatement>
+  <keyword> do </keyword>
+  <identifier> square </identifier>
+  <symbol> . </symbol>
+  <identifier> dispose </identifier> <--
+  <symbol> ( </symbol>
+  <expressionList>
+  </expressionList>
+  <symbol> ) </symbol>
+  <symbol> ; </symbol>
+</doStatement>
+if <identifier> is in subtable or classTable, 
+  how to know if it is a ?
+  or may be push the this and if the method/constructor/function needs it it will use it ? 
+  **class function are to be called by there name not the method <- verify this one and move on**
+
+  and the end pop the return value to temp
+
+<doStatement>
+  <keyword> do </keyword>
+  <identifier> Memory </identifier>
+  <symbol> . </symbol>
+  <identifier> deAlloc </identifier>
+  <symbol> ( </symbol>
+  <expressionList>
+    <expression>
+      <term>
+        <keyword> this </keyword>
+      </term>
+    </expression>
+  </expressionList>
+  <symbol> ) </symbol>
+  <symbol> ; </symbol>
+</doStatement>
+here it is a simple function dealloc
+
+
+let lhs = exp2 || let lhs[exp1] = exp2;
+if lhs of let is an array or simple variable.
+  -> if array
+    do the necessary
+    pop segment_type index;
+  -> else
+    push exp2
+    pop segment_type index;
+    do the necessary
+
+Observe both of them require segment_type and index. Also lhs is handled by the let statement unline by the general expression.
+
+Now coming to exp2
+We need to check if the variable is normal, array, some function call ?
+  get the segment_type and index; // may be create a new type like none or something start with index = -1
+  '[': if it is an array (if index = -1 and not found in tables print error and exit)
+        push exp2 
+        push segment_type index;
+        add 
+  '.': if it is some method or function 
+        check if it is in sub or class if yes then it is an method. 
+        push this
+        replace with type of class and call class with nVars
+        after calculating the variables;
+  '': find it in table if not then it is a simple 
+    
+
+
+

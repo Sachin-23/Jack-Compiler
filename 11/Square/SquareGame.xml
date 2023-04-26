@@ -27,13 +27,11 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> square </identifier>
+          <identifier index='0' segmentType='THIS'>square</identifier>
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> Square </identifier>
-              <symbol> . </symbol>
-              <identifier> new </identifier>
+              <identifier subroutine>Square.new</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -61,7 +59,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> direction </identifier>
+          <identifier index='1' segmentType='THIS'>direction</identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -96,9 +94,8 @@
       <statements>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> square </identifier>
           <symbol> . </symbol>
-          <identifier> dispose </identifier>
+          <identifier>Square.dispose</identifier>
           <symbol> ( </symbol>
           <expressionList>
           </expressionList>
@@ -107,9 +104,8 @@
         </doStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> Memory </identifier>
           <symbol> . </symbol>
-          <identifier> deAlloc </identifier>
+          <identifier>Memory.deAlloc</identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -145,7 +141,6 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> direction </identifier>
             </term>
             <symbol> = </symbol>
             <term>
@@ -157,9 +152,8 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> square </identifier>
               <symbol> . </symbol>
-              <identifier> moveUp </identifier>
+              <identifier>Square.moveUp</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -174,7 +168,6 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> direction </identifier>
             </term>
             <symbol> = </symbol>
             <term>
@@ -186,9 +179,8 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> square </identifier>
               <symbol> . </symbol>
-              <identifier> moveDown </identifier>
+              <identifier>Square.moveDown</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -203,7 +195,6 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> direction </identifier>
             </term>
             <symbol> = </symbol>
             <term>
@@ -215,9 +206,8 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> square </identifier>
               <symbol> . </symbol>
-              <identifier> moveLeft </identifier>
+              <identifier>Square.moveLeft</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -232,7 +222,6 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> direction </identifier>
             </term>
             <symbol> = </symbol>
             <term>
@@ -244,9 +233,8 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> square </identifier>
               <symbol> . </symbol>
-              <identifier> moveRight </identifier>
+              <identifier>Square.moveRight</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -258,9 +246,8 @@
         </ifStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> Sys </identifier>
           <symbol> . </symbol>
-          <identifier> wait </identifier>
+          <identifier>Sys.wait</identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -293,19 +280,19 @@
       <varDec>
         <keyword> var </keyword>
         <keyword> char </keyword>
-        <identifier typeOf='' indexOf='0' kindOf='VAR'>key</identifier>
+        <identifier typeOf='char' indexOf='0' kindOf='VAR'>key</identifier>
         <symbol> ; </symbol>
       </varDec>
       <varDec>
         <keyword> var </keyword>
         <keyword> boolean </keyword>
-        <identifier typeOf='' indexOf='1' kindOf='VAR'>exit</identifier>
+        <identifier typeOf='boolean' indexOf='1' kindOf='VAR'>exit</identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> exit </identifier>
+          <identifier index='1' segmentType='LOCAL'>exit</identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -321,7 +308,6 @@
             <term>
               <symbol> ~ </symbol>
               <term>
-                <identifier> exit </identifier>
               </term>
             </term>
           </expression>
@@ -333,7 +319,6 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -345,13 +330,11 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> key </identifier>
+                  <identifier index='0' segmentType='LOCAL'>key</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> Keyboard </identifier>
-                      <symbol> . </symbol>
-                      <identifier> keyPressed </identifier>
+                      <identifier subroutine>Keyboard.keyPressed</identifier>
                       <symbol> ( </symbol>
                       <expressionList>
                       </expressionList>
@@ -362,7 +345,7 @@
                 </letStatement>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier> moveSquare </identifier>
+                  <identifier>moveSquare</identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>
@@ -377,7 +360,6 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -389,7 +371,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> exit </identifier>
+                  <identifier index='1' segmentType='LOCAL'>exit</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -406,7 +388,6 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -418,9 +399,8 @@
               <statements>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier> square </identifier>
                   <symbol> . </symbol>
-                  <identifier> decSize </identifier>
+                  <identifier>Square.decSize</identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>
@@ -435,7 +415,6 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -447,9 +426,8 @@
               <statements>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier> square </identifier>
                   <symbol> . </symbol>
-                  <identifier> incSize </identifier>
+                  <identifier>Square.incSize</identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>
@@ -464,7 +442,6 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -476,7 +453,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> direction </identifier>
+                  <identifier index='1' segmentType='THIS'>direction</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -493,7 +470,6 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -505,7 +481,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> direction </identifier>
+                  <identifier index='0' segmentType='LOCAL'>direction</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -522,7 +498,6 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -534,7 +509,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> direction </identifier>
+                  <identifier index='0' segmentType='LOCAL'>direction</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -551,7 +526,6 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> key </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -563,7 +537,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> direction </identifier>
+                  <identifier index='0' segmentType='LOCAL'>direction</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -585,7 +559,6 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
-                        <identifier> key </identifier>
                       </term>
                       <symbol> = </symbol>
                       <term>
@@ -601,13 +574,11 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> key </identifier>
+                  <identifier index='0' segmentType='LOCAL'>key</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> Keyboard </identifier>
-                      <symbol> . </symbol>
-                      <identifier> keyPressed </identifier>
+                      <identifier subroutine>Keyboard.keyPressed</identifier>
                       <symbol> ( </symbol>
                       <expressionList>
                       </expressionList>
@@ -618,7 +589,7 @@
                 </letStatement>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier> moveSquare </identifier>
+                  <identifier>moveSquare</identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>

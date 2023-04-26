@@ -23,13 +23,13 @@
     <symbol> ( </symbol>
     <parameterList>
       <keyword> int </keyword>
-      <identifier typeOf='' indexOf='0' kindOf='ARG'>Ax</identifier>
+      <identifier typeOf='int' indexOf='0' kindOf='ARG'>Ax</identifier>
       <symbol> , </symbol>
       <keyword> int </keyword>
-      <identifier typeOf='' indexOf='1' kindOf='ARG'>Ay</identifier>
+      <identifier typeOf='int' indexOf='1' kindOf='ARG'>Ay</identifier>
       <symbol> , </symbol>
       <keyword> int </keyword>
-      <identifier typeOf='' indexOf='2' kindOf='ARG'>Asize</identifier>
+      <identifier typeOf='int' indexOf='2' kindOf='ARG'>Asize</identifier>
     </parameterList>
     <symbol> ) </symbol>
     <subroutineBody>
@@ -37,40 +37,37 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> x </identifier>
+          <identifier index='0' segmentType='THIS'>x</identifier>
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> Ax </identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> y </identifier>
+          <identifier index='1' segmentType='THIS'>y</identifier>
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> Ay </identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> size </identifier>
+          <identifier index='2' segmentType='THIS'>size</identifier>
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> Asize </identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
         </letStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> draw </identifier>
+          <identifier>draw</identifier>
           <symbol> ( </symbol>
           <expressionList>
           </expressionList>
@@ -103,9 +100,8 @@
       <statements>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> Memory </identifier>
           <symbol> . </symbol>
-          <identifier> deAlloc </identifier>
+          <identifier>Memory.deAlloc</identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -138,9 +134,8 @@
       <statements>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> setColor </identifier>
+          <identifier>Screen.setColor</identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -154,40 +149,33 @@
         </doStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> drawRectangle </identifier>
+          <identifier>Screen.drawRectangle</identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
               <term>
-                <identifier> x </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> y </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> x </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> size </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> y </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> size </identifier>
               </term>
             </expression>
           </expressionList>
@@ -215,9 +203,8 @@
       <statements>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> setColor </identifier>
+          <identifier>Screen.setColor</identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -231,40 +218,33 @@
         </doStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> drawRectangle </identifier>
+          <identifier>Screen.drawRectangle</identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
               <term>
-                <identifier> x </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> y </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> x </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> size </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> y </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> size </identifier>
               </term>
             </expression>
           </expressionList>
@@ -301,23 +281,21 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
-                      <identifier> y </identifier>
                     </term>
                     <symbol> + </symbol>
                     <term>
-                      <identifier> size </identifier>
                     </term>
                   </expression>
                   <symbol> ) </symbol>
                 </term>
-                <symbol> < </symbol>
+                <symbol> &lt; </symbol>
                 <term>
                   <integerConstant> 254 </integerConstant>
                 </term>
               </expression>
               <symbol> ) </symbol>
             </term>
-            <symbol> & </symbol>
+            <symbol> &amp; </symbol>
             <term>
               <symbol> ( </symbol>
               <expression>
@@ -325,16 +303,14 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
-                      <identifier> x </identifier>
                     </term>
                     <symbol> + </symbol>
                     <term>
-                      <identifier> size </identifier>
                     </term>
                   </expression>
                   <symbol> ) </symbol>
                 </term>
-                <symbol> < </symbol>
+                <symbol> &lt; </symbol>
                 <term>
                   <integerConstant> 510 </integerConstant>
                 </term>
@@ -347,7 +323,7 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> erase </identifier>
+              <identifier>erase</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -356,11 +332,10 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> size </identifier>
+              <identifier index='0' segmentType='LOCAL'>size</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> size </identifier>
                 </term>
                 <symbol> + </symbol>
                 <term>
@@ -371,7 +346,7 @@
             </letStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> draw </identifier>
+              <identifier>draw</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -405,9 +380,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> size </identifier>
             </term>
-            <symbol> > </symbol>
+            <symbol> &gt; </symbol>
             <term>
               <integerConstant> 2 </integerConstant>
             </term>
@@ -417,7 +391,7 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> erase </identifier>
+              <identifier>erase</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -426,11 +400,10 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> size </identifier>
+              <identifier index='0' segmentType='LOCAL'>size</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> size </identifier>
                 </term>
                 <symbol> - </symbol>
                 <term>
@@ -441,7 +414,7 @@
             </letStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> draw </identifier>
+              <identifier>draw</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -475,9 +448,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> y </identifier>
             </term>
-            <symbol> > </symbol>
+            <symbol> &gt; </symbol>
             <term>
               <integerConstant> 1 </integerConstant>
             </term>
@@ -487,9 +459,8 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> setColor </identifier>
+              <identifier>Screen.setColor</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -503,14 +474,12 @@
             </doStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawRectangle </identifier>
+              <identifier>Screen.drawRectangle</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
@@ -519,11 +488,9 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
-                        <identifier> y </identifier>
                       </term>
                       <symbol> + </symbol>
                       <term>
-                        <identifier> size </identifier>
                       </term>
                     </expression>
                     <symbol> ) </symbol>
@@ -536,21 +503,17 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -559,11 +522,10 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> y </identifier>
+              <identifier index='0' segmentType='LOCAL'>y</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> y </identifier>
                 </term>
                 <symbol> - </symbol>
                 <term>
@@ -574,9 +536,8 @@
             </letStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> setColor </identifier>
+              <identifier>Screen.setColor</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -590,36 +551,30 @@
             </doStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawRectangle </identifier>
+              <identifier>Screen.drawRectangle</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
@@ -660,16 +615,14 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> y </identifier>
                 </term>
                 <symbol> + </symbol>
                 <term>
-                  <identifier> size </identifier>
                 </term>
               </expression>
               <symbol> ) </symbol>
             </term>
-            <symbol> < </symbol>
+            <symbol> &lt; </symbol>
             <term>
               <integerConstant> 254 </integerConstant>
             </term>
@@ -679,9 +632,8 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> setColor </identifier>
+              <identifier>Screen.setColor</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -695,36 +647,30 @@
             </doStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawRectangle </identifier>
+              <identifier>Screen.drawRectangle</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
@@ -737,11 +683,10 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> y </identifier>
+              <identifier index='0' segmentType='LOCAL'>y</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> y </identifier>
                 </term>
                 <symbol> + </symbol>
                 <term>
@@ -752,9 +697,8 @@
             </letStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> setColor </identifier>
+              <identifier>Screen.setColor</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -768,14 +712,12 @@
             </doStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawRectangle </identifier>
+              <identifier>Screen.drawRectangle</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
@@ -784,11 +726,9 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
-                        <identifier> y </identifier>
                       </term>
                       <symbol> + </symbol>
                       <term>
-                        <identifier> size </identifier>
                       </term>
                     </expression>
                     <symbol> ) </symbol>
@@ -801,21 +741,17 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -849,9 +785,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> x </identifier>
             </term>
-            <symbol> > </symbol>
+            <symbol> &gt; </symbol>
             <term>
               <integerConstant> 1 </integerConstant>
             </term>
@@ -861,9 +796,8 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> setColor </identifier>
+              <identifier>Screen.setColor</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -877,9 +811,8 @@
             </doStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawRectangle </identifier>
+              <identifier>Screen.drawRectangle</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -887,11 +820,9 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
-                        <identifier> x </identifier>
                       </term>
                       <symbol> + </symbol>
                       <term>
-                        <identifier> size </identifier>
                       </term>
                     </expression>
                     <symbol> ) </symbol>
@@ -904,27 +835,22 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -933,11 +859,10 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> x </identifier>
+              <identifier index='0' segmentType='LOCAL'>x</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> x </identifier>
                 </term>
                 <symbol> - </symbol>
                 <term>
@@ -948,9 +873,8 @@
             </letStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> setColor </identifier>
+              <identifier>Screen.setColor</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -964,26 +888,22 @@
             </doStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawRectangle </identifier>
+              <identifier>Screen.drawRectangle</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
@@ -993,11 +913,9 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -1034,16 +952,14 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> x </identifier>
                 </term>
                 <symbol> + </symbol>
                 <term>
-                  <identifier> size </identifier>
                 </term>
               </expression>
               <symbol> ) </symbol>
             </term>
-            <symbol> < </symbol>
+            <symbol> &lt; </symbol>
             <term>
               <integerConstant> 510 </integerConstant>
             </term>
@@ -1053,9 +969,8 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> setColor </identifier>
+              <identifier>Screen.setColor</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -1069,26 +984,22 @@
             </doStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawRectangle </identifier>
+              <identifier>Screen.drawRectangle</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
@@ -1098,11 +1009,9 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -1111,11 +1020,10 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> x </identifier>
+              <identifier index='0' segmentType='LOCAL'>x</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> x </identifier>
                 </term>
                 <symbol> + </symbol>
                 <term>
@@ -1126,9 +1034,8 @@
             </letStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> setColor </identifier>
+              <identifier>Screen.setColor</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -1142,9 +1049,8 @@
             </doStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawRectangle </identifier>
+              <identifier>Screen.drawRectangle</identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -1152,11 +1058,9 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
-                        <identifier> x </identifier>
                       </term>
                       <symbol> + </symbol>
                       <term>
-                        <identifier> size </identifier>
                       </term>
                     </expression>
                     <symbol> ) </symbol>
@@ -1169,27 +1073,22 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> x </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
-                    <identifier> y </identifier>
                   </term>
                   <symbol> + </symbol>
                   <term>
-                    <identifier> size </identifier>
                   </term>
                 </expression>
               </expressionList>
