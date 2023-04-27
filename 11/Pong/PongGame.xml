@@ -1,1230 +1,767 @@
 <class>
-  <keyword> class </keyword>
-  <identifier> PongGame </identifier>
-  <symbol> { </symbol>
-  <classVarDec>
-    <keyword> static </keyword>
-    <identifier> PongGame </identifier>
-    <identifier typeOf='PongGame' indexOf='0' kindOf='STATIC'>instance</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <identifier> Bat </identifier>
-    <identifier typeOf='Bat' indexOf='0' kindOf='FIELD'>bat</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <identifier> Ball </identifier>
-    <identifier typeOf='Ball' indexOf='1' kindOf='FIELD'>ball</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='2' kindOf='FIELD'>wall</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> boolean </keyword>
-    <identifier typeOf='boolean' indexOf='3' kindOf='FIELD'>exit</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='4' kindOf='FIELD'>score</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='5' kindOf='FIELD'>lastWall</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='6' kindOf='FIELD'>batWidth</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <subroutineDec>
-    <keyword> constructor </keyword>
-    <identifier> PongGame </identifier>
-    <identifier> new </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Screen.clearScreen</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='6' segmentType='THIS'>batWidth</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <integerConstant> 50 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='0' segmentType='THIS'>bat</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> . </symbol>
-              <identifier subroutine>Bat.new</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <integerConstant> 230 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <integerConstant> 229 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='6' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <integerConstant> 7 </integerConstant>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='1' segmentType='THIS'>ball</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> . </symbol>
-              <identifier subroutine>Ball.new</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <integerConstant> 253 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <integerConstant> 222 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <integerConstant> 0 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <integerConstant> 511 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <integerConstant> 0 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <integerConstant> 229 </integerConstant>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Ball.setDestination</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <integerConstant> 400 </integerConstant>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <integerConstant> 0 </integerConstant>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Screen.drawRectangle</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <integerConstant> 0 </integerConstant>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <integerConstant> 238 </integerConstant>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <integerConstant> 511 </integerConstant>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <integerConstant> 240 </integerConstant>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Output.moveCursor</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <integerConstant> 22 </integerConstant>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <integerConstant> 0 </integerConstant>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Output.printString</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <stringConstant> Score: 0 </stringConstant>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='3' segmentType='THIS'>exit</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <keyword> false </keyword>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='4' segmentType='THIS'>score</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='2' segmentType='THIS'>wall</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='5' segmentType='THIS'>lastWall</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <keyword> this </keyword>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> dispose </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Bat.dispose</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Ball.dispose</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Memory.deAlloc</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <keyword> this </keyword>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> function </keyword>
-    <keyword> void </keyword>
-    <identifier> newInstance </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='0' segmentType='STATIC'>instance</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> . </symbol>
-              <identifier subroutine>PongGame.new</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-              </expressionList>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> function </keyword>
-    <identifier> PongGame </identifier>
-    <identifier> getInstance </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <identifier index='0' segmentType='STATIC'>PongGame</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> run </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <varDec>
-        <keyword> var </keyword>
-        <keyword> char </keyword>
-        <identifier typeOf='char' indexOf='0' kindOf='VAR'>key</identifier>
-        <symbol> ; </symbol>
-      </varDec>
-      <statements>
-        <whileStatement>
-          <keyword> while </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <symbol> ~ </symbol>
-              <term>
-                <identifier index='3' segmentType='THIS'>boolean</identifier>
-              </term>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <whileStatement>
-              <keyword> while </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='0' segmentType='LOCAL'>char</identifier>
-                    </term>
-                    <term>
-                      <integerConstant> 0 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <symbol> ~ </symbol>
-                      <term>
-                        <identifier index='3' segmentType='THIS'>boolean</identifier>
-                      </term>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='0' segmentType='LOCAL'>key</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <symbol> . </symbol>
-                      <identifier subroutine>Keyboard.keyPressed</identifier>
-                      <symbol> ( </symbol>
-                      <expressionList>
-                      </expressionList>
-                      <symbol> ) </symbol>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <symbol> . </symbol>
-                  <identifier>Bat.move</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <identifier>PongGame.moveBall</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <symbol> . </symbol>
-                  <identifier>Sys.wait</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                    <expression>
-                      <term>
-                        <integerConstant> 50 </integerConstant>
-                      </term>
-                    </expression>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
-              </statements>
-              <symbol> } </symbol>
-            </whileStatement>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='0' segmentType='LOCAL'>char</identifier>
-                </term>
-                <term>
-                  <integerConstant> 130 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <symbol> . </symbol>
-                  <identifier>Bat.setDirection</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                    <expression>
-                      <term>
-                        <integerConstant> 1 </integerConstant>
-                      </term>
-                    </expression>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
-              </statements>
-              <symbol> } </symbol>
-              <keyword> else </keyword>
-              <symbol> { </symbol>
-              <statements>
-                <ifStatement>
-                  <keyword> if </keyword>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='0' segmentType='LOCAL'>char</identifier>
-                    </term>
-                    <term>
-                      <integerConstant> 132 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                  <symbol> { </symbol>
-                  <statements>
-                    <doStatement>
-                      <keyword> do </keyword>
-                      <symbol> . </symbol>
-                      <identifier>Bat.setDirection</identifier>
-                      <symbol> ( </symbol>
-                      <expressionList>
-                        <expression>
-                          <term>
-                            <integerConstant> 2 </integerConstant>
-                          </term>
-                        </expression>
-                      </expressionList>
-                      <symbol> ) </symbol>
-                      <symbol> ; </symbol>
-                    </doStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                  <keyword> else </keyword>
-                  <symbol> { </symbol>
-                  <statements>
-                    <ifStatement>
-                      <keyword> if </keyword>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='0' segmentType='LOCAL'>char</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 140 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                      <symbol> { </symbol>
-                      <statements>
-                        <letStatement>
-                          <keyword> let </keyword>
-                          <identifier index='3' segmentType='THIS'>exit</identifier>
-                          <symbol> = </symbol>
-                          <expression>
-                            <term>
-                              <keyword> true </keyword>
-                            </term>
-                          </expression>
-                          <symbol> ; </symbol>
-                        </letStatement>
-                      </statements>
-                      <symbol> } </symbol>
-                    </ifStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                </ifStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-            <whileStatement>
-              <keyword> while </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <symbol> ~ </symbol>
-                      <term>
-                        <symbol> ( </symbol>
-                        <expression>
-                          <term>
-                            <identifier index='0' segmentType='LOCAL'>char</identifier>
-                          </term>
-                          <term>
-                            <integerConstant> 0 </integerConstant>
-                          </term>
-                        </expression>
-                        <symbol> ) </symbol>
-                      </term>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <symbol> ~ </symbol>
-                      <term>
-                        <identifier index='3' segmentType='THIS'>boolean</identifier>
-                      </term>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='0' segmentType='LOCAL'>key</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <symbol> . </symbol>
-                      <identifier subroutine>Keyboard.keyPressed</identifier>
-                      <symbol> ( </symbol>
-                      <expressionList>
-                      </expressionList>
-                      <symbol> ) </symbol>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <symbol> . </symbol>
-                  <identifier>Bat.move</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <identifier>PongGame.moveBall</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <symbol> . </symbol>
-                  <identifier>Sys.wait</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                    <expression>
-                      <term>
-                        <integerConstant> 50 </integerConstant>
-                      </term>
-                    </expression>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
-              </statements>
-              <symbol> } </symbol>
-            </whileStatement>
-          </statements>
-          <symbol> } </symbol>
-        </whileStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <identifier index='3' segmentType='THIS'>boolean</identifier>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Output.moveCursor</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <integerConstant> 10 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <integerConstant> 27 </integerConstant>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Output.printString</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <stringConstant> Game Over </stringConstant>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> moveBall </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <varDec>
-        <keyword> var </keyword>
-        <keyword> int </keyword>
-        <identifier typeOf='int' indexOf='0' kindOf='VAR'>bouncingDirection</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='1' kindOf='VAR'>batLeft</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='2' kindOf='VAR'>batRight</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='3' kindOf='VAR'>ballLeft</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='4' kindOf='VAR'>ballRight</identifier>
-        <symbol> ; </symbol>
-      </varDec>
-      <statements>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='2' segmentType='THIS'>wall</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> . </symbol>
-              <identifier subroutine>Ball.move</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-              </expressionList>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='2' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <integerConstant> 0 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-            </term>
-            <term>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <symbol> ~ </symbol>
-                  <term>
-                    <symbol> ( </symbol>
-                    <expression>
-                      <term>
-                        <identifier index='2' segmentType='THIS'>int</identifier>
-                      </term>
-                      <term>
-                        <identifier index='5' segmentType='THIS'>int</identifier>
-                      </term>
-                    </expression>
-                    <symbol> ) </symbol>
-                  </term>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='5' segmentType='THIS'>lastWall</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='2' segmentType='THIS'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>bouncingDirection</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <integerConstant> 0 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='1' segmentType='LOCAL'>batLeft</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> . </symbol>
-                  <identifier subroutine>Bat.getLeft</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='2' segmentType='LOCAL'>batRight</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> . </symbol>
-                  <identifier subroutine>Bat.getRight</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='3' segmentType='LOCAL'>ballLeft</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> . </symbol>
-                  <identifier subroutine>Ball.getLeft</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='4' segmentType='LOCAL'>ballRight</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> . </symbol>
-                  <identifier subroutine>Ball.getRight</identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='2' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <integerConstant> 4 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='3' segmentType='THIS'>exit</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='1' segmentType='LOCAL'>int</identifier>
-                        </term>
-                        <term>
-                          <identifier index='4' segmentType='LOCAL'>int</identifier>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='2' segmentType='LOCAL'>int</identifier>
-                        </term>
-                        <term>
-                          <identifier index='3' segmentType='LOCAL'>int</identifier>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-                <ifStatement>
-                  <keyword> if </keyword>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <symbol> ~ </symbol>
-                      <term>
-                        <identifier index='3' segmentType='THIS'>boolean</identifier>
-                      </term>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                  <symbol> { </symbol>
-                  <statements>
-                    <ifStatement>
-                      <keyword> if </keyword>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='4' segmentType='LOCAL'>int</identifier>
-                        </term>
-                        <term>
-                          <symbol> ( </symbol>
-                          <expression>
-                            <term>
-                              <identifier index='1' segmentType='LOCAL'>int</identifier>
-                            </term>
-                            <term>
-                              <integerConstant> 10 </integerConstant>
-                            </term>
-                          </expression>
-                          <symbol> ) </symbol>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                      <symbol> { </symbol>
-                      <statements>
-                        <letStatement>
-                          <keyword> let </keyword>
-                          <identifier index='0' segmentType='LOCAL'>bouncingDirection</identifier>
-                          <symbol> = </symbol>
-                          <expression>
-                            <term>
-                              <symbol> - </symbol>
-                              <term>
-                                <integerConstant> 1 </integerConstant>
-                              </term>
-                            </term>
-                          </expression>
-                          <symbol> ; </symbol>
-                        </letStatement>
-                      </statements>
-                      <symbol> } </symbol>
-                      <keyword> else </keyword>
-                      <symbol> { </symbol>
-                      <statements>
-                        <ifStatement>
-                          <keyword> if </keyword>
-                          <symbol> ( </symbol>
-                          <expression>
-                            <term>
-                              <identifier index='3' segmentType='LOCAL'>int</identifier>
-                            </term>
-                            <term>
-                              <symbol> ( </symbol>
-                              <expression>
-                                <term>
-                                  <identifier index='2' segmentType='LOCAL'>int</identifier>
-                                </term>
-                                <term>
-                                  <integerConstant> 10 </integerConstant>
-                                </term>
-                              </expression>
-                              <symbol> ) </symbol>
-                            </term>
-                          </expression>
-                          <symbol> ) </symbol>
-                          <symbol> { </symbol>
-                          <statements>
-                            <letStatement>
-                              <keyword> let </keyword>
-                              <identifier index='0' segmentType='LOCAL'>bouncingDirection</identifier>
-                              <symbol> = </symbol>
-                              <expression>
-                                <term>
-                                  <integerConstant> 1 </integerConstant>
-                                </term>
-                              </expression>
-                              <symbol> ; </symbol>
-                            </letStatement>
-                          </statements>
-                          <symbol> } </symbol>
-                        </ifStatement>
-                      </statements>
-                      <symbol> } </symbol>
-                    </ifStatement>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='6' segmentType='THIS'>batWidth</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='6' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 2 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                    <doStatement>
-                      <keyword> do </keyword>
-                      <symbol> . </symbol>
-                      <identifier>Bat.setWidth</identifier>
-                      <symbol> ( </symbol>
-                      <expressionList>
-                        <expression>
-                          <term>
-                            <identifier index='6' segmentType='THIS'>int</identifier>
-                          </term>
-                        </expression>
-                      </expressionList>
-                      <symbol> ) </symbol>
-                      <symbol> ; </symbol>
-                    </doStatement>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='4' segmentType='THIS'>score</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='4' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 1 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                    <doStatement>
-                      <keyword> do </keyword>
-                      <symbol> . </symbol>
-                      <identifier>Output.moveCursor</identifier>
-                      <symbol> ( </symbol>
-                      <expressionList>
-                        <expression>
-                          <term>
-                            <integerConstant> 22 </integerConstant>
-                          </term>
-                        </expression>
-                        <symbol> , </symbol>
-                        <expression>
-                          <term>
-                            <integerConstant> 7 </integerConstant>
-                          </term>
-                        </expression>
-                      </expressionList>
-                      <symbol> ) </symbol>
-                      <symbol> ; </symbol>
-                    </doStatement>
-                    <doStatement>
-                      <keyword> do </keyword>
-                      <symbol> . </symbol>
-                      <identifier>Output.printInt</identifier>
-                      <symbol> ( </symbol>
-                      <expressionList>
-                        <expression>
-                          <term>
-                            <identifier index='4' segmentType='THIS'>int</identifier>
-                          </term>
-                        </expression>
-                      </expressionList>
-                      <symbol> ) </symbol>
-                      <symbol> ; </symbol>
-                    </doStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                </ifStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Ball.bounce</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <identifier index='0' segmentType='LOCAL'>int</identifier>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <symbol> } </symbol>
+<classVarDec>
+<identifier typeOf='PongGame' indexOf='0' kindOf='STATIC'>instance</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='Bat' indexOf='0' kindOf='FIELD'>bat</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='Ball' indexOf='1' kindOf='FIELD'>ball</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='2' kindOf='FIELD'>wall</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='boolean' indexOf='3' kindOf='FIELD'>exit</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='4' kindOf='FIELD'>score</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='5' kindOf='FIELD'>lastWall</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='6' kindOf='FIELD'>batWidth</identifier>
+</classVarDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Screen.clearScreen</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<letStatement>
+<identifier index='6' segmentType='THIS'>batWidth</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='THIS'>bat</identifier>
+<expression>
+<term>
+<identifier subroutine>Bat.new</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='6' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='THIS'>ball</identifier>
+<expression>
+<term>
+<identifier subroutine>Ball.new</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>Ball.setDestination</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Screen.drawRectangle</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Output.moveCursor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Output.printString</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<letStatement>
+<identifier index='3' segmentType='THIS'>exit</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='4' segmentType='THIS'>score</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='2' segmentType='THIS'>wall</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='5' segmentType='THIS'>lastWall</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<returnStatement>
+<expression>
+<term>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Bat.dispose</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Ball.dispose</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Memory.deAlloc</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='STATIC'>instance</identifier>
+<expression>
+<term>
+<identifier subroutine>PongGame.new</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<returnStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='STATIC'>PongGame</identifier>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<varDec>
+<identifier typeOf='char' indexOf='0' kindOf='VAR'>key</identifier>
+</varDec>
+<statements>
+<whileStatement>
+<expression>
+<term>
+<term>
+<identifier index='3' segmentType='THIS'>boolean</identifier>
+</term>
+</term>
+</expression>
+<statements>
+<whileStatement>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>char</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+<term>
+<expression>
+<term>
+<term>
+<identifier index='3' segmentType='THIS'>boolean</identifier>
+</term>
+</term>
+</expression>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>key</identifier>
+<expression>
+<term>
+<identifier subroutine>Keyboard.keyPressed</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>Bat.move</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>PongGame.moveBall</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Sys.wait</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+</whileStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>char</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<doStatement>
+<identifier>Bat.setDirection</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>char</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<doStatement>
+<identifier>Bat.setDirection</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>char</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='3' segmentType='THIS'>exit</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+<whileStatement>
+<expression>
+<term>
+<expression>
+<term>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>char</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+</term>
+</expression>
+</term>
+<term>
+<expression>
+<term>
+<term>
+<identifier index='3' segmentType='THIS'>boolean</identifier>
+</term>
+</term>
+</expression>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>key</identifier>
+<expression>
+<term>
+<identifier subroutine>Keyboard.keyPressed</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>Bat.move</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>PongGame.moveBall</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Sys.wait</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+</whileStatement>
+</statements>
+</whileStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='3' segmentType='THIS'>boolean</identifier>
+</term>
+</expression>
+<statements>
+<doStatement>
+<identifier>Output.moveCursor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Output.printString</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+</ifStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<varDec>
+<identifier typeOf='int' indexOf='0' kindOf='VAR'>bouncingDirection</identifier>
+<identifier typeOf='int' indexOf='1' kindOf='VAR'>batLeft</identifier>
+<identifier typeOf='int' indexOf='2' kindOf='VAR'>batRight</identifier>
+<identifier typeOf='int' indexOf='3' kindOf='VAR'>ballLeft</identifier>
+<identifier typeOf='int' indexOf='4' kindOf='VAR'>ballRight</identifier>
+</varDec>
+<statements>
+<letStatement>
+<identifier index='2' segmentType='THIS'>wall</identifier>
+<expression>
+<term>
+<identifier subroutine>Ball.move</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<ifStatement>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+<term>
+<expression>
+<term>
+<term>
+<expression>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='5' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+</term>
+</expression>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='5' segmentType='THIS'>lastWall</identifier>
+<expression>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>bouncingDirection</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>batLeft</identifier>
+<expression>
+<term>
+<identifier subroutine>Bat.getLeft</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='2' segmentType='LOCAL'>batRight</identifier>
+<expression>
+<term>
+<identifier subroutine>Bat.getRight</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='3' segmentType='LOCAL'>ballLeft</identifier>
+<expression>
+<term>
+<identifier subroutine>Ball.getLeft</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='4' segmentType='LOCAL'>ballRight</identifier>
+<expression>
+<term>
+<identifier subroutine>Ball.getRight</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='3' segmentType='THIS'>exit</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<identifier index='4' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='2' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<identifier index='3' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+<ifStatement>
+<expression>
+<term>
+<term>
+<identifier index='3' segmentType='THIS'>boolean</identifier>
+</term>
+</term>
+</expression>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='4' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>bouncingDirection</identifier>
+<expression>
+<term>
+<term>
+</term>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='3' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='2' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>bouncingDirection</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+<letStatement>
+<identifier index='6' segmentType='THIS'>batWidth</identifier>
+<expression>
+<term>
+<identifier index='6' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>Bat.setWidth</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='6' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<letStatement>
+<identifier index='4' segmentType='THIS'>score</identifier>
+<expression>
+<term>
+<identifier index='4' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>Output.moveCursor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Output.printInt</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='4' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+<doStatement>
+<identifier>Ball.bounce</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+</ifStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
 </class>

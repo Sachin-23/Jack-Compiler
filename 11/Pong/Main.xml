@@ -1,77 +1,40 @@
 <class>
-  <keyword> class </keyword>
-  <identifier> Main </identifier>
-  <symbol> { </symbol>
-  <subroutineDec>
-    <keyword> function </keyword>
-    <keyword> void </keyword>
-    <identifier> main </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <varDec>
-        <keyword> var </keyword>
-        <identifier> PongGame </identifier>
-        <identifier typeOf='PongGame' indexOf='0' kindOf='VAR'>game</identifier>
-        <symbol> ; </symbol>
-      </varDec>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>PongGame.newInstance</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='0' segmentType='LOCAL'>game</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> . </symbol>
-              <identifier subroutine>PongGame.getInstance</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-              </expressionList>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>PongGame.run</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>PongGame.dispose</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <symbol> } </symbol>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<varDec>
+<identifier typeOf='PongGame' indexOf='0' kindOf='VAR'>game</identifier>
+</varDec>
+<statements>
+<doStatement>
+<identifier>PongGame.newInstance</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>game</identifier>
+<expression>
+<term>
+<identifier subroutine>PongGame.getInstance</identifier>
+<expressionList>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>PongGame.run</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>PongGame.dispose</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
 </class>

@@ -1,827 +1,537 @@
 <class>
-  <keyword> class </keyword>
-  <identifier> Bat </identifier>
-  <symbol> { </symbol>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='0' kindOf='FIELD'>x</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='1' kindOf='FIELD'>y</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='2' kindOf='FIELD'>width</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='3' kindOf='FIELD'>height</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='4' kindOf='FIELD'>direction</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <subroutineDec>
-    <keyword> constructor </keyword>
-    <identifier> Bat </identifier>
-    <identifier> new </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='0' kindOf='ARG'>Ax</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='1' kindOf='ARG'>Ay</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='2' kindOf='ARG'>Awidth</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='3' kindOf='ARG'>Aheight</identifier>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='0' segmentType='THIS'>x</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='0' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='1' segmentType='THIS'>y</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='2' segmentType='THIS'>width</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='2' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='3' segmentType='THIS'>height</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='3' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='4' segmentType='THIS'>direction</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <integerConstant> 2 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Bat.show</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <keyword> this </keyword>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> dispose </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Memory.deAlloc</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <keyword> this </keyword>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> show </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Screen.setColor</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <keyword> true </keyword>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Bat.draw</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> hide </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Screen.setColor</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <keyword> false </keyword>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Bat.draw</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> draw </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Screen.drawRectangle</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <identifier index='0' segmentType='THIS'>int</identifier>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <identifier index='1' segmentType='THIS'>int</identifier>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <identifier index='0' segmentType='THIS'>int</identifier>
-              </term>
-              <term>
-                <identifier index='2' segmentType='THIS'>int</identifier>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <identifier index='1' segmentType='THIS'>int</identifier>
-              </term>
-              <term>
-                <identifier index='3' segmentType='THIS'>int</identifier>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> setDirection </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='1' kindOf='ARG'>Adirection</identifier>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='4' segmentType='THIS'>direction</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> int </keyword>
-    <identifier> getLeft </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <identifier index='0' segmentType='THIS'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> int </keyword>
-    <identifier> getRight </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <identifier index='0' segmentType='THIS'>int</identifier>
-            </term>
-            <term>
-              <identifier index='2' segmentType='THIS'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> setWidth </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='1' kindOf='ARG'>Awidth</identifier>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Bat.hide</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='2' segmentType='THIS'>width</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Bat.show</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> move </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <identifier index='4' segmentType='THIS'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 1 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='0' segmentType='THIS'>x</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='0' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <integerConstant> 4 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='0' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <integerConstant> 0 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='0' segmentType='THIS'>x</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <integerConstant> 0 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Screen.setColor</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <keyword> false </keyword>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Screen.drawRectangle</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <symbol> ( </symbol>
-                    <expression>
-                      <term>
-                        <identifier index='0' segmentType='THIS'>int</identifier>
-                      </term>
-                      <term>
-                        <identifier index='2' segmentType='THIS'>int</identifier>
-                      </term>
-                    </expression>
-                    <symbol> ) </symbol>
-                  </term>
-                  <term>
-                    <integerConstant> 1 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <symbol> ( </symbol>
-                    <expression>
-                      <term>
-                        <identifier index='0' segmentType='THIS'>int</identifier>
-                      </term>
-                      <term>
-                        <identifier index='2' segmentType='THIS'>int</identifier>
-                      </term>
-                    </expression>
-                    <symbol> ) </symbol>
-                  </term>
-                  <term>
-                    <integerConstant> 4 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='3' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Screen.setColor</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <keyword> true </keyword>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Screen.drawRectangle</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <identifier index='0' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='0' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <integerConstant> 3 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='3' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-          </statements>
-          <symbol> } </symbol>
-          <keyword> else </keyword>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='0' segmentType='THIS'>x</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='0' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <integerConstant> 4 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='0' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <identifier index='2' segmentType='THIS'>int</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-                <term>
-                  <integerConstant> 511 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='0' segmentType='THIS'>x</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <integerConstant> 511 </integerConstant>
-                    </term>
-                    <term>
-                      <identifier index='2' segmentType='THIS'>int</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Screen.setColor</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <keyword> false </keyword>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Screen.drawRectangle</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <identifier index='0' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <integerConstant> 4 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='0' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <integerConstant> 1 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='3' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Screen.setColor</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <keyword> true </keyword>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-            <doStatement>
-              <keyword> do </keyword>
-              <symbol> . </symbol>
-              <identifier>Screen.drawRectangle</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <symbol> ( </symbol>
-                    <expression>
-                      <term>
-                        <identifier index='0' segmentType='THIS'>int</identifier>
-                      </term>
-                      <term>
-                        <identifier index='2' segmentType='THIS'>int</identifier>
-                      </term>
-                    </expression>
-                    <symbol> ) </symbol>
-                  </term>
-                  <term>
-                    <integerConstant> 3 </integerConstant>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='0' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='2' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> , </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='3' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-              <symbol> ; </symbol>
-            </doStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <symbol> } </symbol>
+<classVarDec>
+<identifier typeOf='int' indexOf='0' kindOf='FIELD'>x</identifier>
+<identifier typeOf='int' indexOf='1' kindOf='FIELD'>y</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='2' kindOf='FIELD'>width</identifier>
+<identifier typeOf='int' indexOf='3' kindOf='FIELD'>height</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='4' kindOf='FIELD'>direction</identifier>
+</classVarDec>
+<subroutineDec>
+<parameterList>
+<identifier typeOf='int' indexOf='0' kindOf='ARG'>Ax</identifier>
+<identifier typeOf='int' indexOf='1' kindOf='ARG'>Ay</identifier>
+<identifier typeOf='int' indexOf='2' kindOf='ARG'>Awidth</identifier>
+<identifier typeOf='int' indexOf='3' kindOf='ARG'>Aheight</identifier>
+</parameterList>
+<subroutineBody>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='THIS'>y</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='2' segmentType='THIS'>width</identifier>
+<expression>
+<term>
+<identifier index='2' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='3' segmentType='THIS'>height</identifier>
+<expression>
+<term>
+<identifier index='3' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='4' segmentType='THIS'>direction</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>Bat.show</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+<expression>
+<term>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Memory.deAlloc</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Screen.setColor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Bat.draw</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Screen.setColor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Bat.draw</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Screen.drawRectangle</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='3' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+<identifier typeOf='int' indexOf='1' kindOf='ARG'>Adirection</identifier>
+</parameterList>
+<subroutineBody>
+<statements>
+<letStatement>
+<identifier index='4' segmentType='THIS'>direction</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<returnStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<returnStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+<identifier typeOf='int' indexOf='1' kindOf='ARG'>Awidth</identifier>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Bat.hide</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<letStatement>
+<identifier index='2' segmentType='THIS'>width</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>Bat.show</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='4' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+<doStatement>
+<identifier>Screen.setColor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Screen.drawRectangle</identifier>
+<expressionList>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='3' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Screen.setColor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Screen.drawRectangle</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='3' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+<ifStatement>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+</term>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+<doStatement>
+<identifier>Screen.setColor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Screen.drawRectangle</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='3' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Screen.setColor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Screen.drawRectangle</identifier>
+<expressionList>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='3' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+</statements>
+</ifStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
 </class>

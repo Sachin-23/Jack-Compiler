@@ -1,1792 +1,1182 @@
 <class>
-  <keyword> class </keyword>
-  <identifier> Ball </identifier>
-  <symbol> { </symbol>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='0' kindOf='FIELD'>x</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='1' kindOf='FIELD'>y</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='2' kindOf='FIELD'>lengthx</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='3' kindOf='FIELD'>lengthy</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='4' kindOf='FIELD'>d</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='5' kindOf='FIELD'>straightD</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='6' kindOf='FIELD'>diagonalD</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> boolean </keyword>
-    <identifier typeOf='boolean' indexOf='7' kindOf='FIELD'>invert</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='boolean' indexOf='8' kindOf='FIELD'>positivex</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='boolean' indexOf='9' kindOf='FIELD'>positivey</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='10' kindOf='FIELD'>leftWall</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='11' kindOf='FIELD'>rightWall</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='12' kindOf='FIELD'>topWall</identifier>
-    <symbol> , </symbol>
-    <identifier typeOf='int' indexOf='13' kindOf='FIELD'>bottomWall</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> field </keyword>
-    <keyword> int </keyword>
-    <identifier typeOf='int' indexOf='14' kindOf='FIELD'>wall</identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <subroutineDec>
-    <keyword> constructor </keyword>
-    <identifier> Ball </identifier>
-    <identifier> new </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='0' kindOf='ARG'>Ax</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='1' kindOf='ARG'>Ay</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='2' kindOf='ARG'>AleftWall</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='3' kindOf='ARG'>ArightWall</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='4' kindOf='ARG'>AtopWall</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='5' kindOf='ARG'>AbottomWall</identifier>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='0' segmentType='THIS'>x</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='0' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='1' segmentType='THIS'>y</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='10' segmentType='THIS'>leftWall</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='2' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='11' segmentType='THIS'>rightWall</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='3' segmentType='ARGUMENT'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 6 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='12' segmentType='THIS'>topWall</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='4' segmentType='ARGUMENT'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='13' segmentType='THIS'>bottomWall</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='5' segmentType='ARGUMENT'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 6 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='14' segmentType='THIS'>wall</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Ball.show</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <keyword> this </keyword>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> dispose </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Memory.deAlloc</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <keyword> this </keyword>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> show </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Screen.setColor</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <keyword> true </keyword>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Ball.draw</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> hide </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Screen.setColor</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <keyword> false </keyword>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Ball.draw</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> draw </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <symbol> . </symbol>
-          <identifier>Screen.drawRectangle</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <identifier index='0' segmentType='THIS'>int</identifier>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <identifier index='1' segmentType='THIS'>int</identifier>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <identifier index='0' segmentType='THIS'>int</identifier>
-              </term>
-              <term>
-                <integerConstant> 5 </integerConstant>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <identifier index='1' segmentType='THIS'>int</identifier>
-              </term>
-              <term>
-                <integerConstant> 5 </integerConstant>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> int </keyword>
-    <identifier> getLeft </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <identifier index='0' segmentType='THIS'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> int </keyword>
-    <identifier> getRight </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <identifier index='0' segmentType='THIS'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 5 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> setDestination </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='1' kindOf='ARG'>destx</identifier>
-      <symbol> , </symbol>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='2' kindOf='ARG'>desty</identifier>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <varDec>
-        <keyword> var </keyword>
-        <keyword> int </keyword>
-        <identifier typeOf='int' indexOf='0' kindOf='VAR'>dx</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='1' kindOf='VAR'>dy</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='2' kindOf='VAR'>temp</identifier>
-        <symbol> ; </symbol>
-      </varDec>
-      <statements>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='2' segmentType='THIS'>lengthx</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-            </term>
-            <term>
-              <identifier index='0' segmentType='THIS'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='3' segmentType='THIS'>lengthy</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='2' segmentType='ARGUMENT'>int</identifier>
-            </term>
-            <term>
-              <identifier index='1' segmentType='THIS'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='0' segmentType='LOCAL'>dx</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> . </symbol>
-              <identifier subroutine>Math.abs</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <identifier index='2' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='1' segmentType='LOCAL'>dy</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> . </symbol>
-              <identifier subroutine>Math.abs</identifier>
-              <symbol> ( </symbol>
-              <expressionList>
-                <expression>
-                  <term>
-                    <identifier index='3' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-              </expressionList>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='7' segmentType='THIS'>invert</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='0' segmentType='LOCAL'>int</identifier>
-                </term>
-                <term>
-                  <identifier index='1' segmentType='LOCAL'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <identifier index='7' segmentType='THIS'>boolean</identifier>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='2' segmentType='LOCAL'>temp</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='0' segmentType='LOCAL'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>dx</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='1' segmentType='LOCAL'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='1' segmentType='LOCAL'>dy</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='2' segmentType='LOCAL'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='8' segmentType='THIS'>positivex</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='1' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <identifier index='2' segmentType='ARGUMENT'>int</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='9' segmentType='THIS'>positivey</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='0' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-          <keyword> else </keyword>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='8' segmentType='THIS'>positivex</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='0' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='9' segmentType='THIS'>positivey</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='1' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <identifier index='2' segmentType='ARGUMENT'>int</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='4' segmentType='THIS'>d</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <integerConstant> 2 </integerConstant>
-                </term>
-                <term>
-                  <identifier index='1' segmentType='LOCAL'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-            </term>
-            <term>
-              <identifier index='0' segmentType='LOCAL'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='5' segmentType='THIS'>straightD</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <integerConstant> 2 </integerConstant>
-            </term>
-            <term>
-              <identifier index='1' segmentType='LOCAL'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='6' segmentType='THIS'>diagonalD</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <integerConstant> 2 </integerConstant>
-            </term>
-            <term>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='1' segmentType='LOCAL'>int</identifier>
-                </term>
-                <term>
-                  <identifier index='0' segmentType='LOCAL'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> int </keyword>
-    <identifier> move </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <statements>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Ball.hide</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <identifier index='4' segmentType='THIS'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='4' segmentType='THIS'>d</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='4' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <identifier index='5' segmentType='THIS'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-          <keyword> else </keyword>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='4' segmentType='THIS'>d</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='4' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <identifier index='6' segmentType='THIS'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='9' segmentType='THIS'>boolean</identifier>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <ifStatement>
-                  <keyword> if </keyword>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='7' segmentType='THIS'>boolean</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                  <symbol> { </symbol>
-                  <statements>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='0' segmentType='THIS'>x</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='0' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 4 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                  <keyword> else </keyword>
-                  <symbol> { </symbol>
-                  <statements>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='1' segmentType='THIS'>y</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='1' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 4 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                </ifStatement>
-              </statements>
-              <symbol> } </symbol>
-              <keyword> else </keyword>
-              <symbol> { </symbol>
-              <statements>
-                <ifStatement>
-                  <keyword> if </keyword>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='7' segmentType='THIS'>boolean</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                  <symbol> { </symbol>
-                  <statements>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='0' segmentType='THIS'>x</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='0' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 4 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                  <keyword> else </keyword>
-                  <symbol> { </symbol>
-                  <statements>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='1' segmentType='THIS'>y</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='1' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 4 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                </ifStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <identifier index='8' segmentType='THIS'>boolean</identifier>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='7' segmentType='THIS'>boolean</identifier>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='1' segmentType='THIS'>y</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='1' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <integerConstant> 4 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-              <keyword> else </keyword>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='0' segmentType='THIS'>x</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='0' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <integerConstant> 4 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-          </statements>
-          <symbol> } </symbol>
-          <keyword> else </keyword>
-          <symbol> { </symbol>
-          <statements>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='7' segmentType='THIS'>boolean</identifier>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='1' segmentType='THIS'>y</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='1' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <integerConstant> 4 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-              <keyword> else </keyword>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='0' segmentType='THIS'>x</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='0' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <integerConstant> 4 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <symbol> ~ </symbol>
-              <term>
-                <symbol> ( </symbol>
-                <expression>
-                  <term>
-                    <identifier index='0' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='10' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> ) </symbol>
-              </term>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='14' segmentType='THIS'>wall</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <integerConstant> 1 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='0' segmentType='THIS'>x</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='10' segmentType='THIS'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <symbol> ~ </symbol>
-              <term>
-                <symbol> ( </symbol>
-                <expression>
-                  <term>
-                    <identifier index='0' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='11' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> ) </symbol>
-              </term>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='14' segmentType='THIS'>wall</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <integerConstant> 2 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='0' segmentType='THIS'>x</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='11' segmentType='THIS'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <symbol> ~ </symbol>
-              <term>
-                <symbol> ( </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='12' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> ) </symbol>
-              </term>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='14' segmentType='THIS'>wall</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <integerConstant> 3 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='1' segmentType='THIS'>y</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='12' segmentType='THIS'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <symbol> ~ </symbol>
-              <term>
-                <symbol> ( </symbol>
-                <expression>
-                  <term>
-                    <identifier index='1' segmentType='THIS'>int</identifier>
-                  </term>
-                  <term>
-                    <identifier index='13' segmentType='THIS'>int</identifier>
-                  </term>
-                </expression>
-                <symbol> ) </symbol>
-              </term>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='14' segmentType='THIS'>wall</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <integerConstant> 4 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='1' segmentType='THIS'>y</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='13' segmentType='THIS'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Ball.show</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <expression>
-            <term>
-              <identifier index='14' segmentType='THIS'>int</identifier>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <subroutineDec>
-    <keyword> method </keyword>
-    <keyword> void </keyword>
-    <identifier> bounce </identifier>
-    <symbol> ( </symbol>
-    <parameterList>
-      <keyword> int </keyword>
-      <identifier typeOf='int' indexOf='1' kindOf='ARG'>bouncingDirection</identifier>
-    </parameterList>
-    <symbol> ) </symbol>
-    <subroutineBody>
-      <symbol> { </symbol>
-      <varDec>
-        <keyword> var </keyword>
-        <keyword> int </keyword>
-        <identifier typeOf='int' indexOf='0' kindOf='VAR'>newx</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='1' kindOf='VAR'>newy</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='2' kindOf='VAR'>divLengthx</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='3' kindOf='VAR'>divLengthy</identifier>
-        <symbol> , </symbol>
-        <identifier typeOf='int' indexOf='4' kindOf='VAR'>factor</identifier>
-        <symbol> ; </symbol>
-      </varDec>
-      <statements>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='2' segmentType='LOCAL'>divLengthx</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='2' segmentType='THIS'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 10 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <letStatement>
-          <keyword> let </keyword>
-          <identifier index='3' segmentType='LOCAL'>divLengthy</identifier>
-          <symbol> = </symbol>
-          <expression>
-            <term>
-              <identifier index='3' segmentType='THIS'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 10 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ; </symbol>
-        </letStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='4' segmentType='LOCAL'>factor</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <integerConstant> 10 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-          <keyword> else </keyword>
-          <symbol> { </symbol>
-          <statements>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <symbol> ~ </symbol>
-                          <term>
-                            <symbol> ( </symbol>
-                            <expression>
-                              <term>
-                                <identifier index='2' segmentType='THIS'>int</identifier>
-                              </term>
-                              <term>
-                                <integerConstant> 0 </integerConstant>
-                              </term>
-                            </expression>
-                            <symbol> ) </symbol>
-                          </term>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 1 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='2' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 0 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='1' segmentType='ARGUMENT'>int</identifier>
-                        </term>
-                        <term>
-                          <symbol> ( </symbol>
-                          <expression>
-                            <term>
-                              <symbol> - </symbol>
-                              <term>
-                                <integerConstant> 1 </integerConstant>
-                              </term>
-                            </term>
-                          </expression>
-                          <symbol> ) </symbol>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='4' segmentType='LOCAL'>factor</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <integerConstant> 20 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-              <keyword> else </keyword>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='4' segmentType='LOCAL'>factor</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <integerConstant> 5 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <ifStatement>
-          <keyword> if </keyword>
-          <symbol> ( </symbol>
-          <expression>
-            <term>
-              <identifier index='14' segmentType='THIS'>int</identifier>
-            </term>
-            <term>
-              <integerConstant> 1 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ) </symbol>
-          <symbol> { </symbol>
-          <statements>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>newx</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <integerConstant> 506 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='1' segmentType='LOCAL'>newy</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='3' segmentType='LOCAL'>int</identifier>
-                    </term>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <symbol> - </symbol>
-                          <term>
-                            <integerConstant> 50 </integerConstant>
-                          </term>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-                <term>
-                  <identifier index='2' segmentType='LOCAL'>int</identifier>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-            <letStatement>
-              <keyword> let </keyword>
-              <identifier index='1' segmentType='LOCAL'>newy</identifier>
-              <symbol> = </symbol>
-              <expression>
-                <term>
-                  <identifier index='1' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='1' segmentType='LOCAL'>int</identifier>
-                    </term>
-                    <term>
-                      <identifier index='4' segmentType='LOCAL'>int</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                </term>
-              </expression>
-              <symbol> ; </symbol>
-            </letStatement>
-          </statements>
-          <symbol> } </symbol>
-          <keyword> else </keyword>
-          <symbol> { </symbol>
-          <statements>
-            <ifStatement>
-              <keyword> if </keyword>
-              <symbol> ( </symbol>
-              <expression>
-                <term>
-                  <identifier index='14' segmentType='THIS'>int</identifier>
-                </term>
-                <term>
-                  <integerConstant> 2 </integerConstant>
-                </term>
-              </expression>
-              <symbol> ) </symbol>
-              <symbol> { </symbol>
-              <statements>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='0' segmentType='LOCAL'>newx</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <integerConstant> 0 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='1' segmentType='LOCAL'>newy</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='3' segmentType='LOCAL'>int</identifier>
-                        </term>
-                        <term>
-                          <integerConstant> 50 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                    <term>
-                      <identifier index='2' segmentType='LOCAL'>int</identifier>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-                <letStatement>
-                  <keyword> let </keyword>
-                  <identifier index='1' segmentType='LOCAL'>newy</identifier>
-                  <symbol> = </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='1' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <symbol> ( </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='1' segmentType='LOCAL'>int</identifier>
-                        </term>
-                        <term>
-                          <identifier index='4' segmentType='LOCAL'>int</identifier>
-                        </term>
-                      </expression>
-                      <symbol> ) </symbol>
-                    </term>
-                  </expression>
-                  <symbol> ; </symbol>
-                </letStatement>
-              </statements>
-              <symbol> } </symbol>
-              <keyword> else </keyword>
-              <symbol> { </symbol>
-              <statements>
-                <ifStatement>
-                  <keyword> if </keyword>
-                  <symbol> ( </symbol>
-                  <expression>
-                    <term>
-                      <identifier index='14' segmentType='THIS'>int</identifier>
-                    </term>
-                    <term>
-                      <integerConstant> 3 </integerConstant>
-                    </term>
-                  </expression>
-                  <symbol> ) </symbol>
-                  <symbol> { </symbol>
-                  <statements>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='1' segmentType='LOCAL'>newy</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <integerConstant> 250 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='0' segmentType='LOCAL'>newx</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <symbol> ( </symbol>
-                          <expression>
-                            <term>
-                              <identifier index='2' segmentType='LOCAL'>int</identifier>
-                            </term>
-                            <term>
-                              <symbol> ( </symbol>
-                              <expression>
-                                <term>
-                                  <symbol> - </symbol>
-                                  <term>
-                                    <integerConstant> 25 </integerConstant>
-                                  </term>
-                                </term>
-                              </expression>
-                              <symbol> ) </symbol>
-                            </term>
-                          </expression>
-                          <symbol> ) </symbol>
-                        </term>
-                        <term>
-                          <identifier index='3' segmentType='LOCAL'>int</identifier>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='0' segmentType='LOCAL'>newx</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='0' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <symbol> ( </symbol>
-                          <expression>
-                            <term>
-                              <identifier index='0' segmentType='LOCAL'>int</identifier>
-                            </term>
-                            <term>
-                              <identifier index='4' segmentType='LOCAL'>int</identifier>
-                            </term>
-                          </expression>
-                          <symbol> ) </symbol>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                  <keyword> else </keyword>
-                  <symbol> { </symbol>
-                  <statements>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='1' segmentType='LOCAL'>newy</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <integerConstant> 0 </integerConstant>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='0' segmentType='LOCAL'>newx</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <symbol> ( </symbol>
-                          <expression>
-                            <term>
-                              <identifier index='2' segmentType='LOCAL'>int</identifier>
-                            </term>
-                            <term>
-                              <integerConstant> 25 </integerConstant>
-                            </term>
-                          </expression>
-                          <symbol> ) </symbol>
-                        </term>
-                        <term>
-                          <identifier index='3' segmentType='LOCAL'>int</identifier>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                    <letStatement>
-                      <keyword> let </keyword>
-                      <identifier index='0' segmentType='LOCAL'>newx</identifier>
-                      <symbol> = </symbol>
-                      <expression>
-                        <term>
-                          <identifier index='0' segmentType='THIS'>int</identifier>
-                        </term>
-                        <term>
-                          <symbol> ( </symbol>
-                          <expression>
-                            <term>
-                              <identifier index='0' segmentType='LOCAL'>int</identifier>
-                            </term>
-                            <term>
-                              <identifier index='4' segmentType='LOCAL'>int</identifier>
-                            </term>
-                          </expression>
-                          <symbol> ) </symbol>
-                        </term>
-                      </expression>
-                      <symbol> ; </symbol>
-                    </letStatement>
-                  </statements>
-                  <symbol> } </symbol>
-                </ifStatement>
-              </statements>
-              <symbol> } </symbol>
-            </ifStatement>
-          </statements>
-          <symbol> } </symbol>
-        </ifStatement>
-        <doStatement>
-          <keyword> do </keyword>
-          <identifier>Ball.setDestination</identifier>
-          <symbol> ( </symbol>
-          <expressionList>
-            <expression>
-              <term>
-                <identifier index='0' segmentType='LOCAL'>int</identifier>
-              </term>
-            </expression>
-            <symbol> , </symbol>
-            <expression>
-              <term>
-                <identifier index='1' segmentType='LOCAL'>int</identifier>
-              </term>
-            </expression>
-          </expressionList>
-          <symbol> ) </symbol>
-          <symbol> ; </symbol>
-        </doStatement>
-        <returnStatement>
-          <keyword> return </keyword>
-          <symbol> ; </symbol>
-        </returnStatement>
-      </statements>
-      <symbol> } </symbol>
-    </subroutineBody>
-  </subroutineDec>
-  <symbol> } </symbol>
+<classVarDec>
+<identifier typeOf='int' indexOf='0' kindOf='FIELD'>x</identifier>
+<identifier typeOf='int' indexOf='1' kindOf='FIELD'>y</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='2' kindOf='FIELD'>lengthx</identifier>
+<identifier typeOf='int' indexOf='3' kindOf='FIELD'>lengthy</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='4' kindOf='FIELD'>d</identifier>
+<identifier typeOf='int' indexOf='5' kindOf='FIELD'>straightD</identifier>
+<identifier typeOf='int' indexOf='6' kindOf='FIELD'>diagonalD</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='boolean' indexOf='7' kindOf='FIELD'>invert</identifier>
+<identifier typeOf='boolean' indexOf='8' kindOf='FIELD'>positivex</identifier>
+<identifier typeOf='boolean' indexOf='9' kindOf='FIELD'>positivey</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='10' kindOf='FIELD'>leftWall</identifier>
+<identifier typeOf='int' indexOf='11' kindOf='FIELD'>rightWall</identifier>
+<identifier typeOf='int' indexOf='12' kindOf='FIELD'>topWall</identifier>
+<identifier typeOf='int' indexOf='13' kindOf='FIELD'>bottomWall</identifier>
+</classVarDec>
+<classVarDec>
+<identifier typeOf='int' indexOf='14' kindOf='FIELD'>wall</identifier>
+</classVarDec>
+<subroutineDec>
+<parameterList>
+<identifier typeOf='int' indexOf='0' kindOf='ARG'>Ax</identifier>
+<identifier typeOf='int' indexOf='1' kindOf='ARG'>Ay</identifier>
+<identifier typeOf='int' indexOf='2' kindOf='ARG'>AleftWall</identifier>
+<identifier typeOf='int' indexOf='3' kindOf='ARG'>ArightWall</identifier>
+<identifier typeOf='int' indexOf='4' kindOf='ARG'>AtopWall</identifier>
+<identifier typeOf='int' indexOf='5' kindOf='ARG'>AbottomWall</identifier>
+</parameterList>
+<subroutineBody>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='THIS'>y</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='10' segmentType='THIS'>leftWall</identifier>
+<expression>
+<term>
+<identifier index='2' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='11' segmentType='THIS'>rightWall</identifier>
+<expression>
+<term>
+<identifier index='3' segmentType='ARGUMENT'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='12' segmentType='THIS'>topWall</identifier>
+<expression>
+<term>
+<identifier index='4' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='13' segmentType='THIS'>bottomWall</identifier>
+<expression>
+<term>
+<identifier index='5' segmentType='ARGUMENT'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='14' segmentType='THIS'>wall</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<doStatement>
+<identifier>Ball.show</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+<expression>
+<term>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Memory.deAlloc</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Screen.setColor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Ball.draw</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Screen.setColor</identifier>
+<expressionList>
+<expression>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<doStatement>
+<identifier>Ball.draw</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Screen.drawRectangle</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<returnStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<returnStatement>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+<identifier typeOf='int' indexOf='1' kindOf='ARG'>destx</identifier>
+<identifier typeOf='int' indexOf='2' kindOf='ARG'>desty</identifier>
+</parameterList>
+<subroutineBody>
+<varDec>
+<identifier typeOf='int' indexOf='0' kindOf='VAR'>dx</identifier>
+<identifier typeOf='int' indexOf='1' kindOf='VAR'>dy</identifier>
+<identifier typeOf='int' indexOf='2' kindOf='VAR'>temp</identifier>
+</varDec>
+<statements>
+<letStatement>
+<identifier index='2' segmentType='THIS'>lengthx</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='3' segmentType='THIS'>lengthy</identifier>
+<expression>
+<term>
+<identifier index='2' segmentType='ARGUMENT'>int</identifier>
+</term>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>dx</identifier>
+<expression>
+<term>
+<identifier subroutine>Math.abs</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>dy</identifier>
+<expression>
+<term>
+<identifier subroutine>Math.abs</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='3' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='7' segmentType='THIS'>invert</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='7' segmentType='THIS'>boolean</identifier>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='2' segmentType='LOCAL'>temp</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>dx</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>dy</identifier>
+<expression>
+<term>
+<identifier index='2' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='8' segmentType='THIS'>positivex</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='9' segmentType='THIS'>positivey</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='8' segmentType='THIS'>positivex</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='9' segmentType='THIS'>positivey</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='2' segmentType='ARGUMENT'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+<letStatement>
+<identifier index='4' segmentType='THIS'>d</identifier>
+<expression>
+<term>
+<expression>
+<term>
+</term>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+<term>
+<identifier index='0' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='5' segmentType='THIS'>straightD</identifier>
+<expression>
+<term>
+</term>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='6' segmentType='THIS'>diagonalD</identifier>
+<expression>
+<term>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<identifier index='0' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+</parameterList>
+<subroutineBody>
+<statements>
+<doStatement>
+<identifier>Ball.hide</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='4' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='4' segmentType='THIS'>d</identifier>
+<expression>
+<term>
+<identifier index='4' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='5' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='4' segmentType='THIS'>d</identifier>
+<expression>
+<term>
+<identifier index='4' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='6' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='9' segmentType='THIS'>boolean</identifier>
+</term>
+</expression>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='7' segmentType='THIS'>boolean</identifier>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='1' segmentType='THIS'>y</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+</statements>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='7' segmentType='THIS'>boolean</identifier>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='1' segmentType='THIS'>y</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='8' segmentType='THIS'>boolean</identifier>
+</term>
+</expression>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='7' segmentType='THIS'>boolean</identifier>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='1' segmentType='THIS'>y</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+</statements>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='7' segmentType='THIS'>boolean</identifier>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='1' segmentType='THIS'>y</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+<ifStatement>
+<expression>
+<term>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='10' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='14' segmentType='THIS'>wall</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='10' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+<ifStatement>
+<expression>
+<term>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='11' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='14' segmentType='THIS'>wall</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='THIS'>x</identifier>
+<expression>
+<term>
+<identifier index='11' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+<ifStatement>
+<expression>
+<term>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='12' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='14' segmentType='THIS'>wall</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='THIS'>y</identifier>
+<expression>
+<term>
+<identifier index='12' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+<ifStatement>
+<expression>
+<term>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<identifier index='13' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='14' segmentType='THIS'>wall</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='THIS'>y</identifier>
+<expression>
+<term>
+<identifier index='13' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+<doStatement>
+<identifier>Ball.show</identifier>
+<expressionList>
+</expressionList>
+</doStatement>
+<returnStatement>
+<expression>
+<term>
+<identifier index='14' segmentType='THIS'>int</identifier>
+</term>
+</expression>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<parameterList>
+<identifier typeOf='int' indexOf='1' kindOf='ARG'>bouncingDirection</identifier>
+</parameterList>
+<subroutineBody>
+<varDec>
+<identifier typeOf='int' indexOf='0' kindOf='VAR'>newx</identifier>
+<identifier typeOf='int' indexOf='1' kindOf='VAR'>newy</identifier>
+<identifier typeOf='int' indexOf='2' kindOf='VAR'>divLengthx</identifier>
+<identifier typeOf='int' indexOf='3' kindOf='VAR'>divLengthy</identifier>
+<identifier typeOf='int' indexOf='4' kindOf='VAR'>factor</identifier>
+</varDec>
+<statements>
+<letStatement>
+<identifier index='2' segmentType='LOCAL'>divLengthx</identifier>
+<expression>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='3' segmentType='LOCAL'>divLengthy</identifier>
+<expression>
+<term>
+<identifier index='3' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</letStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='4' segmentType='LOCAL'>factor</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<expression>
+<term>
+<expression>
+<term>
+<term>
+<expression>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+</term>
+</expression>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+</expression>
+</term>
+<term>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='2' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='ARGUMENT'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<term>
+</term>
+</term>
+</expression>
+</term>
+</expression>
+</term>
+</expression>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='4' segmentType='LOCAL'>factor</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='4' segmentType='LOCAL'>factor</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+<ifStatement>
+<expression>
+<term>
+<identifier index='14' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>newx</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>newy</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='3' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<term>
+</term>
+</term>
+</expression>
+</term>
+</expression>
+</term>
+<term>
+<identifier index='2' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>newy</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<identifier index='4' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='14' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>newx</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>newy</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='3' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+<term>
+<identifier index='2' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>newy</identifier>
+<expression>
+<term>
+<identifier index='1' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<identifier index='4' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<ifStatement>
+<expression>
+<term>
+<identifier index='14' segmentType='THIS'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+<statements>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>newy</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>newx</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='2' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<term>
+</term>
+</term>
+</expression>
+</term>
+</expression>
+</term>
+<term>
+<identifier index='3' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>newx</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<identifier index='4' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+</statements>
+<statements>
+<letStatement>
+<identifier index='1' segmentType='LOCAL'>newy</identifier>
+<expression>
+<term>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>newx</identifier>
+<expression>
+<term>
+<expression>
+<term>
+<identifier index='2' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+</term>
+</expression>
+</term>
+<term>
+<identifier index='3' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</letStatement>
+<letStatement>
+<identifier index='0' segmentType='LOCAL'>newx</identifier>
+<expression>
+<term>
+<identifier index='0' segmentType='THIS'>int</identifier>
+</term>
+<term>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>int</identifier>
+</term>
+<term>
+<identifier index='4' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</term>
+</expression>
+</letStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+</statements>
+</ifStatement>
+<doStatement>
+<identifier>Ball.setDestination</identifier>
+<expressionList>
+<expression>
+<term>
+<identifier index='0' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+<expression>
+<term>
+<identifier index='1' segmentType='LOCAL'>int</identifier>
+</term>
+</expression>
+</expressionList>
+</doStatement>
+<returnStatement>
+</returnStatement>
+</statements>
+</subroutineBody>
+</subroutineDec>
 </class>
