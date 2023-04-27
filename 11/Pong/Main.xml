@@ -14,11 +14,21 @@
       <symbol> { </symbol>
       <varDec>
         <keyword> var </keyword>
-        <identifier> SquareGame </identifier>
-        <identifier typeOf='SquareGame' indexOf='0' kindOf='VAR'>game</identifier>
+        <identifier> PongGame </identifier>
+        <identifier typeOf='PongGame' indexOf='0' kindOf='VAR'>game</identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>
+        <doStatement>
+          <keyword> do </keyword>
+          <symbol> . </symbol>
+          <identifier>PongGame.newInstance</identifier>
+          <symbol> ( </symbol>
+          <expressionList>
+          </expressionList>
+          <symbol> ) </symbol>
+          <symbol> ; </symbol>
+        </doStatement>
         <letStatement>
           <keyword> let </keyword>
           <identifier index='0' segmentType='LOCAL'>game</identifier>
@@ -26,7 +36,7 @@
           <expression>
             <term>
               <symbol> . </symbol>
-              <identifier subroutine>SquareGame.new</identifier>
+              <identifier subroutine>PongGame.getInstance</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -38,7 +48,7 @@
         <doStatement>
           <keyword> do </keyword>
           <symbol> . </symbol>
-          <identifier>SquareGame.run</identifier>
+          <identifier>PongGame.run</identifier>
           <symbol> ( </symbol>
           <expressionList>
           </expressionList>
@@ -48,7 +58,7 @@
         <doStatement>
           <keyword> do </keyword>
           <symbol> . </symbol>
-          <identifier>SquareGame.dispose</identifier>
+          <identifier>PongGame.dispose</identifier>
           <symbol> ( </symbol>
           <expressionList>
           </expressionList>

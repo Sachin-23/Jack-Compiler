@@ -31,6 +31,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
+              <symbol> . </symbol>
               <identifier subroutine>Square.new</identifier>
               <symbol> ( </symbol>
               <expressionList>
@@ -141,8 +142,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='1' segmentType='THIS'>int</identifier>
             </term>
-            <symbol> = </symbol>
             <term>
               <integerConstant> 1 </integerConstant>
             </term>
@@ -168,8 +169,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='1' segmentType='THIS'>int</identifier>
             </term>
-            <symbol> = </symbol>
             <term>
               <integerConstant> 2 </integerConstant>
             </term>
@@ -195,8 +196,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='1' segmentType='THIS'>int</identifier>
             </term>
-            <symbol> = </symbol>
             <term>
               <integerConstant> 3 </integerConstant>
             </term>
@@ -222,8 +223,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='1' segmentType='THIS'>int</identifier>
             </term>
-            <symbol> = </symbol>
             <term>
               <integerConstant> 4 </integerConstant>
             </term>
@@ -308,6 +309,7 @@
             <term>
               <symbol> ~ </symbol>
               <term>
+                <identifier index='1' segmentType='LOCAL'>boolean</identifier>
               </term>
             </term>
           </expression>
@@ -319,8 +321,8 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='LOCAL'>char</identifier>
                 </term>
-                <symbol> = </symbol>
                 <term>
                   <integerConstant> 0 </integerConstant>
                 </term>
@@ -334,6 +336,7 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
+                      <symbol> . </symbol>
                       <identifier subroutine>Keyboard.keyPressed</identifier>
                       <symbol> ( </symbol>
                       <expressionList>
@@ -345,7 +348,7 @@
                 </letStatement>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier>moveSquare</identifier>
+                  <identifier>SquareGame.moveSquare</identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>
@@ -360,8 +363,8 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='LOCAL'>char</identifier>
                 </term>
-                <symbol> = </symbol>
                 <term>
                   <integerConstant> 81 </integerConstant>
                 </term>
@@ -388,8 +391,8 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='LOCAL'>char</identifier>
                 </term>
-                <symbol> = </symbol>
                 <term>
                   <integerConstant> 90 </integerConstant>
                 </term>
@@ -415,8 +418,8 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='LOCAL'>char</identifier>
                 </term>
-                <symbol> = </symbol>
                 <term>
                   <integerConstant> 88 </integerConstant>
                 </term>
@@ -442,8 +445,8 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='LOCAL'>char</identifier>
                 </term>
-                <symbol> = </symbol>
                 <term>
                   <integerConstant> 131 </integerConstant>
                 </term>
@@ -470,8 +473,8 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='LOCAL'>char</identifier>
                 </term>
-                <symbol> = </symbol>
                 <term>
                   <integerConstant> 133 </integerConstant>
                 </term>
@@ -481,7 +484,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier index='0' segmentType='LOCAL'>direction</identifier>
+                  <identifier index='1' segmentType='THIS'>direction</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -498,8 +501,8 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='LOCAL'>char</identifier>
                 </term>
-                <symbol> = </symbol>
                 <term>
                   <integerConstant> 130 </integerConstant>
                 </term>
@@ -509,7 +512,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier index='0' segmentType='LOCAL'>direction</identifier>
+                  <identifier index='1' segmentType='THIS'>direction</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -526,8 +529,8 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='LOCAL'>char</identifier>
                 </term>
-                <symbol> = </symbol>
                 <term>
                   <integerConstant> 132 </integerConstant>
                 </term>
@@ -537,7 +540,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier index='0' segmentType='LOCAL'>direction</identifier>
+                  <identifier index='1' segmentType='THIS'>direction</identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -559,8 +562,8 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
+                        <identifier index='0' segmentType='LOCAL'>char</identifier>
                       </term>
-                      <symbol> = </symbol>
                       <term>
                         <integerConstant> 0 </integerConstant>
                       </term>
@@ -578,6 +581,7 @@
                   <symbol> = </symbol>
                   <expression>
                     <term>
+                      <symbol> . </symbol>
                       <identifier subroutine>Keyboard.keyPressed</identifier>
                       <symbol> ( </symbol>
                       <expressionList>
@@ -589,7 +593,7 @@
                 </letStatement>
                 <doStatement>
                   <keyword> do </keyword>
-                  <identifier>moveSquare</identifier>
+                  <identifier>SquareGame.moveSquare</identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                   </expressionList>

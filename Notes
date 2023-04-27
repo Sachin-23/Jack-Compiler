@@ -68,5 +68,19 @@ We need to check if the variable is normal, array, some function call ?
   '': find it in table if not then it is a simple 
     
 
+if (exp) {
+  stat1 
+}
+else {
+  stat2
+}
 
-
+exp
+if-goto L1
+goto L2
+L1
+stat1
+goto l3
+L2
+stat2
+L3

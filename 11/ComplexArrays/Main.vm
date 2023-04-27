@@ -1,15 +1,13 @@
 function Main.main 3
+push constant 10
+call Array.new 1
+pop local 0
+push constant 5
 call Array.new 1
 pop local 1
 push constant 1
 call Array.new 1
 pop local 2
-
-push constant 10
-call Array.new 1
-pop local 0
-push constant 5
-
 push constant 3
 push local 0
 add

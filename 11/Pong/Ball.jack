@@ -74,7 +74,7 @@ class Ball {
     method void setDestination(int destx, int desty) {
         var int dx, dy, temp;
   	    let lengthx = destx - x;
-	    let lengthy = desty - y;
+        let lengthy = desty - y;
         let dx = Math.abs(lengthx);
         let dy = Math.abs(lengthy);
         let invert = (dx < dy);
@@ -88,7 +88,7 @@ class Ball {
         }
         else {
 	        let positivex = (x < destx);
-            let positivey = (y < desty);
+          let positivey = (y < desty);
         }
 
         let d = (2 * dy) - dx;

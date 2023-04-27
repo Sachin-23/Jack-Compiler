@@ -8,15 +8,13 @@
  * at the top-left of the screen.  
  */
 class Main {
+
    function void main() {
-      var Game game;
-      let game = Game.new();
-      do game.hello();
+      var Array a;
+      var int x;
+      let a = Array.new(10);
+      let x = a[2];
       return;
    }
-   
-   function void test(Game game) {
-     do game.hello();
-     return ;
-   }
+
 }

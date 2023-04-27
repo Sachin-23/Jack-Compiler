@@ -18,8 +18,8 @@ class CompilationEngine {
     VMWriter vmWriter;
 
     uint64_t depth = 0;
-    uint64_t nVars = 0;
-    uint64_t fieldCount = 0;
+    uint64_t ifCount = 0;
+    uint64_t whileCount = 0;
     keyWord funcType;
     std::string funcName;
 
@@ -70,6 +70,10 @@ class CompilationEngine {
 
     void printAndAdvance() {
       printXMLToken();
+      advance();
+    }
+
+    void advance() {
       if (tokenizer.hasMoreTokens()) {
         currentToken = tokenizer.advance();
       }
@@ -82,9 +86,7 @@ class CompilationEngine {
       else {
         printError(token);
       }
-      if (tokenizer.hasMoreTokens()) {
-        currentToken = tokenizer.advance();
-      }
+      advance();
     }
      
   public:
@@ -92,14 +94,7 @@ class CompilationEngine {
       tokenizer.init(path);
       vmWriter.init(path);
 
-      // check if file contains any tokens
-      if (!tokenizer.hasMoreTokens()) {
-        std::cerr << "Empty file" << std::endl;
-        exit(1);
-      }
-       
-      // Get the current token
-      currentToken = tokenizer.advance(); 
+      advance();
 
       // Remove file extension
       fileName = path.substr(0, path.find_last_of("."));
@@ -130,7 +125,8 @@ class CompilationEngine {
               || currentToken == "method") {
         compileSubroutine();   
         subTable.reset();
-        nVars = 0;
+        ifCount = 0;
+        whileCount = 0;
       }
       classTable.reset();
       eat("}");
@@ -158,24 +154,18 @@ class CompilationEngine {
       compileType();
       if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
         classTable.define(currentToken, typeOf, kindOf);
-        if (kindOf == kind::FIELD)
-          ++fieldCount;
         printTab();
         outFile << "<identifier typeOf='" << typeOf
           << "' indexOf='" << classTable.indexOf(currentToken)
           << "' kindOf='" << kindName.at(classTable.kindOf(currentToken))
           << "'>" << currentToken
           << "</identifier>" << std::endl; 
-          if (tokenizer.hasMoreTokens()) {
-            currentToken = tokenizer.advance();
-          }
+        advance();
       }
       else
         printError("varName");
       while (currentToken == ",") {
         printAndAdvance();
-        if (kindOf == kind::FIELD)
-          ++fieldCount;
         if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
           classTable.define(currentToken, typeOf, kindOf);
           printTab();
@@ -184,9 +174,7 @@ class CompilationEngine {
             << "' kindOf='" << kindName.at(classTable.kindOf(currentToken))
             << "'>" << currentToken
             << "</identifier>" << std::endl; 
-          if (tokenizer.hasMoreTokens()) {
-            currentToken = tokenizer.advance();
-          }
+          advance();
         }
         else
           printError("varName");
@@ -255,6 +243,7 @@ class CompilationEngine {
         printAndAdvance();
         // And other class name too will come here.
         compileType("void");
+        subTable.define("this", fileName, kind::ARG);
       }
       if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
         funcName = "." + currentToken;
@@ -287,9 +276,7 @@ class CompilationEngine {
             << "' kindOf='" << kindName.at(subTable.kindOf(currentToken))
             << "'>" << currentToken
             << "</identifier>" << std::endl; 
-          if (tokenizer.hasMoreTokens()) {
-            currentToken = tokenizer.advance();
-          }
+          advance();
         }
         else
           printError("varName");
@@ -304,9 +291,7 @@ class CompilationEngine {
               << "' kindOf='" << kindName.at(subTable.kindOf(currentToken))
               << "'>" << currentToken
               << "</identifier>" << std::endl; 
-            if (tokenizer.hasMoreTokens()) {
-              currentToken = tokenizer.advance();
-            }
+            advance();
           }
           else
             printError("varName");
@@ -326,16 +311,16 @@ class CompilationEngine {
         compileVarDec();
       switch (funcType) {
         case keyWord::CONSTRUCTOR:
-          vmWriter.writeFunction(fileName + funcName, nVars);
-          vmWriter.writePush(segment::CONSTANT, fieldCount);
+          vmWriter.writeFunction(fileName + funcName, subTable.varCount(kind::VAR));
+          vmWriter.writePush(segment::CONSTANT, classTable.varCount(kind::FIELD));
           vmWriter.writeCall("Memory.alloc", 1);
           vmWriter.writePop(segment::POINTER, 0) ;
           break;
         case keyWord::FUNCTION:
-          vmWriter.writeFunction(fileName + funcName, nVars);
+          vmWriter.writeFunction(fileName + funcName, subTable.varCount(kind::VAR));
           break;
         case keyWord::METHOD:
-          vmWriter.writeFunction(fileName + funcName, nVars);
+          vmWriter.writeFunction(fileName + funcName, subTable.varCount(kind::VAR));
           vmWriter.writePush(segment::ARGUMENT, 0);
           vmWriter.writePop(segment::POINTER, 0) ;
           break;
@@ -358,16 +343,13 @@ class CompilationEngine {
       compileType();
       if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
         printTab();
-        ++nVars;
         subTable.define(currentToken, typeOf, kind::VAR);
         outFile << "<identifier typeOf='" << typeOf
           << "' indexOf='" << subTable.indexOf(currentToken)
           << "' kindOf='" << kindName.at(subTable.kindOf(currentToken))
           << "'>" << currentToken
           << "</identifier>" << std::endl; 
-        if (tokenizer.hasMoreTokens()) {
-          currentToken = tokenizer.advance();
-        }
+        advance();
       }
       else
         printError("varName");
@@ -375,16 +357,13 @@ class CompilationEngine {
         printAndAdvance();
         if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
           printTab();
-          ++nVars;
           subTable.define(currentToken, typeOf, kind::VAR);
           outFile << "<identifier typeOf='" << typeOf
             << "' indexOf='" << subTable.indexOf(currentToken)
             << "' kindOf='" << kindName.at(subTable.kindOf(currentToken))
             << "'>" << currentToken
             << "</identifier>" << std::endl; 
-          if (tokenizer.hasMoreTokens()) {
-            currentToken = tokenizer.advance();
-          }
+          advance();
         }
         else
           printError("varName");
@@ -436,20 +415,19 @@ class CompilationEngine {
       enum::segment segmentType;
       enum::kind kindOf;
       uint64_t index;
+      bool isArr = false;
       if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
         identifier = currentToken;
-        if (subTable.in(currentToken)) {
-          subTable.typeOf(currentToken);
+        if (subTable.contains(currentToken)) {
           index = subTable.indexOf(currentToken);
           kindOf = subTable.kindOf(currentToken);
         }
-        else if (classTable.in(currentToken)) {
-          subTable.typeOf(currentToken);
+        else if (classTable.contains(currentToken)) {
           index = classTable.indexOf(currentToken);
           kindOf = classTable.kindOf(currentToken);
         }
         else {
-          printError("Found declare the variable: " + identifier);
+          printError("Declared the variable before using it : " + identifier);
         }
         switch (kindOf) {
           case kind::VAR: segmentType = segment::LOCAL;
@@ -461,18 +439,19 @@ class CompilationEngine {
           case kind::ARG: segmentType = segment::ARGUMENT;
             break;
         }
-        if (tokenizer.hasMoreTokens()) {
-          currentToken = tokenizer.advance();
-        }
+        advance();
       }
       else
         printError("varName");
       if (currentToken == "[") {
+        isArr = true;
         outFile << "<identifier index='" << index
           << "' segmentType='" << segName.at(segmentType) 
           << "'>" << identifier << "</identifier>" << std::endl;
         printAndAdvance();
         compileExpression();
+        vmWriter.writePush(segmentType, index);
+        vmWriter.writeArithmetic(command::ADD);
         eat("]");
       }
       else {
@@ -482,6 +461,15 @@ class CompilationEngine {
       }
       eat("=");
       compileExpression();
+      if (isArr) {
+        vmWriter.writePop(segment::TEMP, 0);
+        vmWriter.writePop(segment::POINTER, 1);  
+        vmWriter.writePush(segment::TEMP, 0);
+        vmWriter.writePop(segment::THAT, 0);
+      }
+      else {
+        vmWriter.writePop(segmentType, index);
+      }
       eat(";");
       --depth;
       printTab();
@@ -492,18 +480,28 @@ class CompilationEngine {
       printTab();  
       outFile << "<ifStatement>\n";
       ++depth;
+      uint64_t count = ifCount++;
       eat("if");
       eat("(");
       compileExpression();
+      vmWriter.writeIf("IF_TRUE" + std::to_string(count));
+      vmWriter.writeGoto("IF_FALSE" + std::to_string(count));
+      vmWriter.writeLabel("IF_TRUE" + std::to_string(count));
       eat(")");
       eat("{");
       compileStatements();
       eat("}");
       if (currentToken == "else") {
+        vmWriter.writeGoto("IF_END" + std::to_string(count));
+        vmWriter.writeLabel("IF_FALSE" + std::to_string(count));
         printAndAdvance();
         eat("{");
         compileStatements();
         eat("}");
+        vmWriter.writeLabel("IF_END" + std::to_string(count));
+      }
+      else {
+        vmWriter.writeLabel("IF_FALSE" + std::to_string(count));
       }
       --depth;
       printTab();
@@ -514,15 +512,21 @@ class CompilationEngine {
       printTab();  
       outFile << "<whileStatement>\n";
       ++depth;
+      uint64_t count = whileCount++;
+      vmWriter.writeLabel("WHILE_EXP" + std::to_string(count));
 			eat("while");
 			eat("(");
 			compileExpression();
+      vmWriter.writeArithmetic(command::NOT);
+      vmWriter.writeIf("WHILE_END" + std::to_string(count));
 			eat(")");
       eat("{");
       compileStatements();
       eat("}");
       --depth;
       printTab();
+      vmWriter.writeGoto("WHILE_EXP" + std::to_string(count));
+      vmWriter.writeLabel("WHILE_END" + std::to_string(count));
       outFile << "</whileStatement>\n";
     }
 
@@ -532,41 +536,75 @@ class CompilationEngine {
       ++depth;
       eat("do");
       std::string identifier;
+      uint64_t nArgs = 0;
+      bool isMethod = false;
+      segment segmentType;
+      kind kindOf;
+      uint64_t index;
 			if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
-        if (subTable.in(currentToken)) {
+        if (subTable.contains(currentToken)) {
+          isMethod = true;
           identifier = subTable.typeOf(currentToken);
+          kindOf = subTable.kindOf(currentToken);
+          index = subTable.indexOf(currentToken);
         }
-        else if (classTable.in(currentToken)) {
+        else if (classTable.contains(currentToken)) {
+          isMethod = true;
           identifier = classTable.typeOf(currentToken);
+          kindOf = classTable.kindOf(currentToken);
+          index = classTable.indexOf(currentToken);
         }
         else {
           identifier = currentToken;
         }
-        if (tokenizer.hasMoreTokens()) {
-          currentToken = tokenizer.advance();
-        } 
+        advance();
       }
       else
         printError("subroutineName|className|varName");
+
+      switch (kindOf) {
+        case kind::VAR: segmentType = segment::LOCAL;
+          break;
+        case kind::STATIC: segmentType = segment::STATIC;
+          break;
+        case kind::FIELD: segmentType = segment::THIS;
+          break;
+        case kind::ARG: segmentType = segment::ARGUMENT;
+          break;
+      }
+
       if (currentToken == ".") {
         printAndAdvance();
         if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
           identifier += "." + currentToken;
-          if (tokenizer.hasMoreTokens()) {
-            currentToken = tokenizer.advance();
-          }
+          advance();
         }
         else
           printError("subroutineName");
       }
+      else {
+        // if call method of same class
+        isMethod = true;
+        // Push the current object
+        segmentType = segment::POINTER;
+        index = 0;
+        identifier = fileName + "." + identifier;
+      }
       printTab();  
       outFile << "<identifier>" << identifier << "</identifier>" << std::endl;
       eat("(");
-      compileExpressionList();
+      if (isMethod) {
+        ++nArgs;
+        vmWriter.writePush(segmentType, index);
+      }
+      nArgs += compileExpressionList();
       eat(")");
       eat(";");
       --depth;
       printTab();
+      vmWriter.writeCall(identifier, nArgs);
+      vmWriter.writePop(segment::TEMP, 0);
+       
       outFile << "</doStatement>\n";
     }
 
@@ -577,6 +615,9 @@ class CompilationEngine {
       eat("return");
       if (currentToken != ";")
         compileExpression();
+      else 
+        vmWriter.writePush(segment::CONSTANT, 0);
+      vmWriter.writeReturn();
       eat(";");
       --depth;
       printTab();
@@ -607,10 +648,34 @@ class CompilationEngine {
       printTab();  
       outFile << "<expression>\n";
       ++depth;
+      char op;
       compileTerm();
       if (isOp()) {
-        printAndAdvance();
+        op = tokenizer.symbol();
+        advance();
         compileTerm();
+        switch(op) {
+          case '+': vmWriter.writeArithmetic(command::ADD);   
+              break;
+          case '-': vmWriter.writeArithmetic(command::SUB); 
+              break;
+          case '*': vmWriter.writeCall("Math.multiply", 2); 
+              break;
+          case '/': vmWriter.writeCall("Math.divide", 2); 
+              break;
+          case '&': vmWriter.writeArithmetic(command::AND); 
+              break;
+          case '|': vmWriter.writeArithmetic(command::OR); 
+              break;
+          case '!': vmWriter.writeArithmetic(command::NEG); 
+              break;
+          case '<': vmWriter.writeArithmetic(command::LT); 
+              break;
+          case '>': vmWriter.writeArithmetic(command::GT); 
+              break;
+          case '=': vmWriter.writeArithmetic(command::EQ); 
+              break;
+        }
       }
       --depth;
       printTab();
@@ -625,53 +690,60 @@ class CompilationEngine {
       enum::segment segmentType;
       enum::kind kindOf;
       uint64_t index;
+      bool isVar = false;
+      uint64_t nArgs = 0;
 			switch (tokenizer.tokenType()) {
-				case tokenType::INT_CONST: 
-				case tokenType::STR_CONST: 
 				case tokenType::KEYWORD: 
-					printAndAdvance();
+          switch (tokenizer.keyWord()) {
+            case keyWord::TRUE:
+              vmWriter.writePush(segment::CONSTANT, 0);
+              vmWriter.writeArithmetic(command::NOT);
+              break;
+            case keyWord::FALSE:
+            case keyWord::NONE:
+              vmWriter.writePush(segment::CONSTANT, 0);
+              break;
+            case keyWord::THIS:
+              vmWriter.writePush(segment::POINTER, 0);
+              break;
+            default: printError("true|false|null|this");
+          }
+          printAndAdvance();
+          break;
+				case tokenType::INT_CONST: 
+          vmWriter.writePush(segment::CONSTANT, tokenizer.intVal());
+          printAndAdvance();
+          break;
+				case tokenType::STR_CONST: 
+          vmWriter.writePush(segment::CONSTANT, currentToken.length()); 
+          vmWriter.writeCall("String.new", 1);
+          for (char c: currentToken) {
+            vmWriter.writePush(segment::CONSTANT, (int)c);
+            vmWriter.writeCall("String.appendChar", 2);
+          }
+          printAndAdvance();
 					break;	
 				case tokenType::IDENTIFIER:
-          /*
-          if (subTable.in(currentToken)) {
-            outFile << "<identifier typeOf='" << subTable.typeOf(currentToken)
-              << "' indexOf='" << subTable.indexOf(currentToken)
-              << "' kindOf='" << kindName.at(subTable.kindOf(currentToken))
-              << "'>" << currentToken
-              << "</identifier>" << std::endl; 
-          }
-          else if (classTable.in(currentToken)) {
-            outFile << "<identifier typeOf='" << classTable.typeOf(currentToken)
-              << "' indexOf='" << classTable.indexOf(currentToken)
-              << "' kindOf='" << kindName.at(classTable.kindOf(currentToken))
-              << "'>" << currentToken
-              << "</identifier>" << std::endl; 
-          }
-          else {
-            outFile << "<identifier typeOf='subroutine'>"<< currentToken
-              << "</identifier>" << std::endl; 
-          }
-          */
           if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
-            identifier = currentToken;
-            if (subTable.in(currentToken)) {
-              subTable.typeOf(currentToken);
+            if (subTable.contains(currentToken)) {
+              isVar = true;
               index = subTable.indexOf(currentToken);
               kindOf = subTable.kindOf(currentToken);
+              identifier = subTable.typeOf(currentToken);
             }
-            else if (classTable.in(currentToken)) {
-              subTable.typeOf(currentToken);
+            else if (classTable.contains(currentToken)) {
+              isVar = true;
               index = classTable.indexOf(currentToken);
               kindOf = classTable.kindOf(currentToken);
+              identifier = classTable.typeOf(currentToken);
             }
             else {
               identifier = currentToken;
             }
-            if (tokenizer.hasMoreTokens()) {
-              currentToken = tokenizer.advance();
-            }
+            advance();
           }
-					if (currentToken == "[") {
+          // If identifier is a variable 
+          if (isVar) {
             switch (kindOf) {
               case kind::VAR: segmentType = segment::LOCAL;
                 break;
@@ -682,51 +754,74 @@ class CompilationEngine {
               case kind::ARG: segmentType = segment::ARGUMENT;
                 break;
             }
+          }
+					if (currentToken == "[") {
             printTab();
             outFile << "<identifier index='" << index
               << "' segmentType='" << segName.at(segmentType) 
               << "'>" << identifier << "</identifier>" << std::endl;
-						printAndAdvance();
+						advance();
 						compileExpression();
+            vmWriter.writePush(segmentType, index);
+            vmWriter.writeArithmetic(command::ADD);
+            vmWriter.writePop(segment::POINTER, 1);
+            vmWriter.writePush(segment::THAT, 0);
 						eat("]");
 					}
 					else if (currentToken == "(") {
             identifier = fileName + "." + identifier;
             printTab();
             outFile << "<identifier subroutine>" << identifier << "</identifier>" << std::endl;
-            if (tokenizer.hasMoreTokens()) {
-              currentToken = tokenizer.advance();
-            }
-	  				compileExpressionList(); 
+						printAndAdvance();
+            vmWriter.writePush(segment::POINTER, 0);
+	  				nArgs = compileExpressionList() + 1; 
+            vmWriter.writeCall(identifier, nArgs);
 						eat(")");
 					}
 					else if (currentToken == ".") {
-            if (tokenizer.hasMoreTokens()) {
-              currentToken = tokenizer.advance();
-            }
+            printAndAdvance();
             if (tokenizer.tokenType() == tokenType::IDENTIFIER) {
               identifier += "." + currentToken;
               printTab();
               outFile << "<identifier subroutine>" << identifier << "</identifier>" << std::endl;
             } 
-            if (tokenizer.hasMoreTokens()) {
-              currentToken = tokenizer.advance();
-            }
+            advance();
 						eat("(");
-	  				compileExpressionList(); 
+	  				nArgs = compileExpressionList(); 
+            if (isVar) {
+              ++nArgs;
+              vmWriter.writePush(segmentType, index);
+            }
+            vmWriter.writeCall(identifier, nArgs);
 						eat(")");
 					}
+          else {
+            // Normal variable;
+            vmWriter.writePush(segmentType, index);
+            printTab();
+            outFile << "<identifier index='" << index
+              << "' segmentType='" << segName.at(segmentType) 
+              << "'>" << identifier << "</identifier>" << std::endl;
+          }
 					break;
 				case tokenType::SYMBOL:
-					if (currentToken == "(") {
-						printAndAdvance();
-						compileExpression();
-						eat(")");
-					}
-					else if (currentToken == "~" || currentToken == "-") {
-						printAndAdvance();
-						compileTerm();
-					}
+          switch (tokenizer.symbol()) {
+             case '(':
+              printAndAdvance();
+              compileExpression();
+              eat(")");
+              break;
+            case '~':
+              printAndAdvance();
+              compileTerm();
+              vmWriter.writeArithmetic(command::NOT); 
+              break;
+            case '-':
+              printAndAdvance();
+              compileTerm();
+              vmWriter.writeArithmetic(command::NEG); 
+              break;
+          }
 			}
       --depth;
       printTab();

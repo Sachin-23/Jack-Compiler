@@ -41,6 +41,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
+              <identifier index='0' segmentType='ARGUMENT'>int</identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -51,6 +52,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
+              <identifier index='1' segmentType='ARGUMENT'>int</identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -61,13 +63,14 @@
           <symbol> = </symbol>
           <expression>
             <term>
+              <identifier index='2' segmentType='ARGUMENT'>int</identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
         </letStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier>draw</identifier>
+          <identifier>Square.draw</identifier>
           <symbol> ( </symbol>
           <expressionList>
           </expressionList>
@@ -155,27 +158,31 @@
           <expressionList>
             <expression>
               <term>
+                <identifier index='0' segmentType='THIS'>int</identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
+                <identifier index='1' segmentType='THIS'>int</identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
+                <identifier index='0' segmentType='THIS'>int</identifier>
               </term>
-              <symbol> + </symbol>
               <term>
+                <identifier index='2' segmentType='THIS'>int</identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
+                <identifier index='1' segmentType='THIS'>int</identifier>
               </term>
-              <symbol> + </symbol>
               <term>
+                <identifier index='2' segmentType='THIS'>int</identifier>
               </term>
             </expression>
           </expressionList>
@@ -224,27 +231,31 @@
           <expressionList>
             <expression>
               <term>
+                <identifier index='0' segmentType='THIS'>int</identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
+                <identifier index='1' segmentType='THIS'>int</identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
+                <identifier index='0' segmentType='THIS'>int</identifier>
               </term>
-              <symbol> + </symbol>
               <term>
+                <identifier index='2' segmentType='THIS'>int</identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
+                <identifier index='1' segmentType='THIS'>int</identifier>
               </term>
-              <symbol> + </symbol>
               <term>
+                <identifier index='2' segmentType='THIS'>int</identifier>
               </term>
             </expression>
           </expressionList>
@@ -281,21 +292,20 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
+                      <identifier index='1' segmentType='THIS'>int</identifier>
                     </term>
-                    <symbol> + </symbol>
                     <term>
+                      <identifier index='2' segmentType='THIS'>int</identifier>
                     </term>
                   </expression>
                   <symbol> ) </symbol>
                 </term>
-                <symbol> &lt; </symbol>
                 <term>
                   <integerConstant> 254 </integerConstant>
                 </term>
               </expression>
               <symbol> ) </symbol>
             </term>
-            <symbol> &amp; </symbol>
             <term>
               <symbol> ( </symbol>
               <expression>
@@ -303,14 +313,14 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
+                      <identifier index='0' segmentType='THIS'>int</identifier>
                     </term>
-                    <symbol> + </symbol>
                     <term>
+                      <identifier index='2' segmentType='THIS'>int</identifier>
                     </term>
                   </expression>
                   <symbol> ) </symbol>
                 </term>
-                <symbol> &lt; </symbol>
                 <term>
                   <integerConstant> 510 </integerConstant>
                 </term>
@@ -323,7 +333,7 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier>erase</identifier>
+              <identifier>Square.erase</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -332,12 +342,12 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>size</identifier>
+              <identifier index='2' segmentType='THIS'>size</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
+                  <identifier index='2' segmentType='THIS'>int</identifier>
                 </term>
-                <symbol> + </symbol>
                 <term>
                   <integerConstant> 2 </integerConstant>
                 </term>
@@ -346,7 +356,7 @@
             </letStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier>draw</identifier>
+              <identifier>Square.draw</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -380,8 +390,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='2' segmentType='THIS'>int</identifier>
             </term>
-            <symbol> &gt; </symbol>
             <term>
               <integerConstant> 2 </integerConstant>
             </term>
@@ -391,7 +401,7 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier>erase</identifier>
+              <identifier>Square.erase</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -400,12 +410,12 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>size</identifier>
+              <identifier index='2' segmentType='THIS'>size</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
+                  <identifier index='2' segmentType='THIS'>int</identifier>
                 </term>
-                <symbol> - </symbol>
                 <term>
                   <integerConstant> 2 </integerConstant>
                 </term>
@@ -414,7 +424,7 @@
             </letStatement>
             <doStatement>
               <keyword> do </keyword>
-              <identifier>draw</identifier>
+              <identifier>Square.draw</identifier>
               <symbol> ( </symbol>
               <expressionList>
               </expressionList>
@@ -448,8 +458,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='1' segmentType='THIS'>int</identifier>
             </term>
-            <symbol> &gt; </symbol>
             <term>
               <integerConstant> 1 </integerConstant>
             </term>
@@ -480,6 +490,7 @@
               <expressionList>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
@@ -488,14 +499,14 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
+                        <identifier index='1' segmentType='THIS'>int</identifier>
                       </term>
-                      <symbol> + </symbol>
                       <term>
+                        <identifier index='2' segmentType='THIS'>int</identifier>
                       </term>
                     </expression>
                     <symbol> ) </symbol>
                   </term>
-                  <symbol> - </symbol>
                   <term>
                     <integerConstant> 1 </integerConstant>
                   </term>
@@ -503,17 +514,19 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -522,12 +535,12 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>y</identifier>
+              <identifier index='1' segmentType='THIS'>y</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
+                  <identifier index='1' segmentType='THIS'>int</identifier>
                 </term>
-                <symbol> - </symbol>
                 <term>
                   <integerConstant> 2 </integerConstant>
                 </term>
@@ -557,26 +570,29 @@
               <expressionList>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
                     <integerConstant> 1 </integerConstant>
                   </term>
@@ -615,14 +631,14 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='1' segmentType='THIS'>int</identifier>
                 </term>
-                <symbol> + </symbol>
                 <term>
+                  <identifier index='2' segmentType='THIS'>int</identifier>
                 </term>
               </expression>
               <symbol> ) </symbol>
             </term>
-            <symbol> &lt; </symbol>
             <term>
               <integerConstant> 254 </integerConstant>
             </term>
@@ -653,26 +669,29 @@
               <expressionList>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
                     <integerConstant> 1 </integerConstant>
                   </term>
@@ -683,12 +702,12 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>y</identifier>
+              <identifier index='1' segmentType='THIS'>y</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
+                  <identifier index='1' segmentType='THIS'>int</identifier>
                 </term>
-                <symbol> + </symbol>
                 <term>
                   <integerConstant> 2 </integerConstant>
                 </term>
@@ -718,6 +737,7 @@
               <expressionList>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
@@ -726,14 +746,14 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
+                        <identifier index='1' segmentType='THIS'>int</identifier>
                       </term>
-                      <symbol> + </symbol>
                       <term>
+                        <identifier index='2' segmentType='THIS'>int</identifier>
                       </term>
                     </expression>
                     <symbol> ) </symbol>
                   </term>
-                  <symbol> - </symbol>
                   <term>
                     <integerConstant> 1 </integerConstant>
                   </term>
@@ -741,17 +761,19 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -785,8 +807,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='0' segmentType='THIS'>int</identifier>
             </term>
-            <symbol> &gt; </symbol>
             <term>
               <integerConstant> 1 </integerConstant>
             </term>
@@ -820,14 +842,14 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
+                        <identifier index='0' segmentType='THIS'>int</identifier>
                       </term>
-                      <symbol> + </symbol>
                       <term>
+                        <identifier index='2' segmentType='THIS'>int</identifier>
                       </term>
                     </expression>
                     <symbol> ) </symbol>
                   </term>
-                  <symbol> - </symbol>
                   <term>
                     <integerConstant> 1 </integerConstant>
                   </term>
@@ -835,22 +857,25 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -859,12 +884,12 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>x</identifier>
+              <identifier index='0' segmentType='THIS'>x</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='THIS'>int</identifier>
                 </term>
-                <symbol> - </symbol>
                 <term>
                   <integerConstant> 2 </integerConstant>
                 </term>
@@ -894,18 +919,20 @@
               <expressionList>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
                     <integerConstant> 1 </integerConstant>
                   </term>
@@ -913,9 +940,10 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -952,14 +980,14 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='THIS'>int</identifier>
                 </term>
-                <symbol> + </symbol>
                 <term>
+                  <identifier index='2' segmentType='THIS'>int</identifier>
                 </term>
               </expression>
               <symbol> ) </symbol>
             </term>
-            <symbol> &lt; </symbol>
             <term>
               <integerConstant> 510 </integerConstant>
             </term>
@@ -990,18 +1018,20 @@
               <expressionList>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
                     <integerConstant> 1 </integerConstant>
                   </term>
@@ -1009,9 +1039,10 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
               </expressionList>
@@ -1020,12 +1051,12 @@
             </doStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier index='0' segmentType='LOCAL'>x</identifier>
+              <identifier index='0' segmentType='THIS'>x</identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
+                  <identifier index='0' segmentType='THIS'>int</identifier>
                 </term>
-                <symbol> + </symbol>
                 <term>
                   <integerConstant> 2 </integerConstant>
                 </term>
@@ -1058,14 +1089,14 @@
                     <symbol> ( </symbol>
                     <expression>
                       <term>
+                        <identifier index='0' segmentType='THIS'>int</identifier>
                       </term>
-                      <symbol> + </symbol>
                       <term>
+                        <identifier index='2' segmentType='THIS'>int</identifier>
                       </term>
                     </expression>
                     <symbol> ) </symbol>
                   </term>
-                  <symbol> - </symbol>
                   <term>
                     <integerConstant> 1 </integerConstant>
                   </term>
@@ -1073,22 +1104,25 @@
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
                 <expression>
                   <term>
+                    <identifier index='1' segmentType='THIS'>int</identifier>
                   </term>
-                  <symbol> + </symbol>
                   <term>
+                    <identifier index='2' segmentType='THIS'>int</identifier>
                   </term>
                 </expression>
               </expressionList>

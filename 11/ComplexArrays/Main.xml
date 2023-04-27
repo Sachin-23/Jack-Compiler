@@ -29,6 +29,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
+              <symbol> . </symbol>
               <identifier subroutine>Array.new</identifier>
               <symbol> ( </symbol>
               <expressionList>
@@ -49,6 +50,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
+              <symbol> . </symbol>
               <identifier subroutine>Array.new</identifier>
               <symbol> ( </symbol>
               <expressionList>
@@ -69,6 +71,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
+              <symbol> . </symbol>
               <identifier subroutine>Array.new</identifier>
               <symbol> ( </symbol>
               <expressionList>
@@ -143,8 +146,7 @@
           <symbol> [ </symbol>
           <expression>
             <term>
-              <identifier index='0' segmentType='LOCAL'>a</identifier>
-              <symbol> [ </symbol>
+              <identifier index='0' segmentType='LOCAL'>Array</identifier>
               <expression>
                 <term>
                   <integerConstant> 3 </integerConstant>
@@ -157,8 +159,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier index='0' segmentType='LOCAL'>a</identifier>
-              <symbol> [ </symbol>
+              <identifier index='0' segmentType='LOCAL'>Array</identifier>
               <expression>
                 <term>
                   <integerConstant> 3 </integerConstant>
@@ -166,7 +167,6 @@
               </expression>
               <symbol> ] </symbol>
             </term>
-            <symbol> + </symbol>
             <term>
               <integerConstant> 3 </integerConstant>
             </term>
@@ -179,12 +179,10 @@
           <symbol> [ </symbol>
           <expression>
             <term>
-              <identifier index='1' segmentType='LOCAL'>b</identifier>
-              <symbol> [ </symbol>
+              <identifier index='1' segmentType='LOCAL'>Array</identifier>
               <expression>
                 <term>
-                  <identifier index='0' segmentType='LOCAL'>a</identifier>
-                  <symbol> [ </symbol>
+                  <identifier index='0' segmentType='LOCAL'>Array</identifier>
                   <expression>
                     <term>
                       <integerConstant> 3 </integerConstant>
@@ -200,12 +198,10 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier index='0' segmentType='LOCAL'>a</identifier>
-              <symbol> [ </symbol>
+              <identifier index='0' segmentType='LOCAL'>Array</identifier>
               <expression>
                 <term>
-                  <identifier index='0' segmentType='LOCAL'>a</identifier>
-                  <symbol> [ </symbol>
+                  <identifier index='0' segmentType='LOCAL'>Array</identifier>
                   <expression>
                     <term>
                       <integerConstant> 5 </integerConstant>
@@ -216,10 +212,8 @@
               </expression>
               <symbol> ] </symbol>
             </term>
-            <symbol> * </symbol>
             <term>
-              <identifier index='1' segmentType='LOCAL'>b</identifier>
-              <symbol> [ </symbol>
+              <identifier index='1' segmentType='LOCAL'>Array</identifier>
               <expression>
                 <term>
                   <symbol> ( </symbol>
@@ -230,10 +224,8 @@
                         <term>
                           <integerConstant> 7 </integerConstant>
                         </term>
-                        <symbol> - </symbol>
                         <term>
-                          <identifier index='0' segmentType='LOCAL'>a</identifier>
-                          <symbol> [ </symbol>
+                          <identifier index='0' segmentType='LOCAL'>Array</identifier>
                           <expression>
                             <term>
                               <integerConstant> 3 </integerConstant>
@@ -244,8 +236,8 @@
                       </expression>
                       <symbol> ) </symbol>
                     </term>
-                    <symbol> - </symbol>
                     <term>
+                      <symbol> . </symbol>
                       <identifier subroutine>Main.double</identifier>
                       <symbol> ( </symbol>
                       <expressionList>
@@ -260,7 +252,6 @@
                   </expression>
                   <symbol> ) </symbol>
                 </term>
-                <symbol> + </symbol>
                 <term>
                   <integerConstant> 1 </integerConstant>
                 </term>
@@ -294,8 +285,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier index='2' segmentType='LOCAL'>c</identifier>
-              <symbol> [ </symbol>
+              <identifier index='2' segmentType='LOCAL'>Array</identifier>
               <expression>
                 <term>
                   <integerConstant> 0 </integerConstant>
@@ -329,8 +319,7 @@
           <expressionList>
             <expression>
               <term>
-                <identifier index='1' segmentType='LOCAL'>b</identifier>
-                <symbol> [ </symbol>
+                <identifier index='1' segmentType='LOCAL'>Array</identifier>
                 <expression>
                   <term>
                     <integerConstant> 2 </integerConstant>
@@ -376,8 +365,7 @@
           <expressionList>
             <expression>
               <term>
-                <identifier index='0' segmentType='LOCAL'>a</identifier>
-                <symbol> [ </symbol>
+                <identifier index='0' segmentType='LOCAL'>Array</identifier>
                 <expression>
                   <term>
                     <integerConstant> 5 </integerConstant>
@@ -423,6 +411,7 @@
           <expressionList>
             <expression>
               <term>
+                <identifier index='2' segmentType='LOCAL'>Array</identifier>
               </term>
             </expression>
           </expressionList>
@@ -455,8 +444,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='2' segmentType='LOCAL'>Array</identifier>
             </term>
-            <symbol> = </symbol>
             <term>
               <keyword> null </keyword>
             </term>
@@ -472,6 +461,7 @@
               <expressionList>
                 <expression>
                   <term>
+                    <identifier index='0' segmentType='LOCAL'>Array</identifier>
                   </term>
                 </expression>
                 <symbol> , </symbol>
@@ -490,8 +480,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier index='0' segmentType='LOCAL'>a</identifier>
-                  <symbol> [ </symbol>
+                  <identifier index='0' segmentType='LOCAL'>Array</identifier>
                   <expression>
                     <term>
                       <integerConstant> 3 </integerConstant>
@@ -526,8 +515,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier index='0' segmentType='LOCAL'>a</identifier>
-                  <symbol> [ </symbol>
+                  <identifier index='0' segmentType='LOCAL'>Array</identifier>
                   <expression>
                     <term>
                       <integerConstant> 7 </integerConstant>
@@ -562,8 +550,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier index='0' segmentType='LOCAL'>a</identifier>
-                  <symbol> [ </symbol>
+                  <identifier index='0' segmentType='LOCAL'>Array</identifier>
                   <expression>
                     <term>
                       <integerConstant> 3 </integerConstant>
@@ -587,8 +574,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier index='1' segmentType='LOCAL'>b</identifier>
-                  <symbol> [ </symbol>
+                  <identifier index='1' segmentType='LOCAL'>Array</identifier>
                   <expression>
                     <term>
                       <integerConstant> 1 </integerConstant>
@@ -596,10 +582,8 @@
                   </expression>
                   <symbol> ] </symbol>
                 </term>
-                <symbol> + </symbol>
                 <term>
-                  <identifier index='2' segmentType='LOCAL'>c</identifier>
-                  <symbol> [ </symbol>
+                  <identifier index='2' segmentType='LOCAL'>Array</identifier>
                   <expression>
                     <term>
                       <integerConstant> 1 </integerConstant>
@@ -636,8 +620,7 @@
           <expressionList>
             <expression>
               <term>
-                <identifier index='2' segmentType='LOCAL'>c</identifier>
-                <symbol> [ </symbol>
+                <identifier index='2' segmentType='LOCAL'>Array</identifier>
                 <expression>
                   <term>
                     <integerConstant> 1 </integerConstant>
@@ -683,8 +666,7 @@
           <expressionList>
             <expression>
               <term>
-                <identifier index='1' segmentType='LOCAL'>b</identifier>
-                <symbol> [ </symbol>
+                <identifier index='1' segmentType='LOCAL'>Array</identifier>
                 <expression>
                   <term>
                     <integerConstant> 1 </integerConstant>
@@ -732,8 +714,8 @@
           <keyword> return </keyword>
           <expression>
             <term>
+              <identifier index='0' segmentType='ARGUMENT'>int</identifier>
             </term>
-            <symbol> * </symbol>
             <term>
               <integerConstant> 2 </integerConstant>
             </term>
@@ -765,8 +747,8 @@
           <symbol> ( </symbol>
           <expression>
             <term>
+              <identifier index='1' segmentType='ARGUMENT'>Array</identifier>
             </term>
-            <symbol> &gt; </symbol>
             <term>
               <integerConstant> 0 </integerConstant>
             </term>
@@ -780,8 +762,8 @@
               <symbol> = </symbol>
               <expression>
                 <term>
+                  <identifier index='1' segmentType='ARGUMENT'>Array</identifier>
                 </term>
-                <symbol> - </symbol>
                 <term>
                   <integerConstant> 1 </integerConstant>
                 </term>
@@ -794,12 +776,14 @@
               <symbol> [ </symbol>
               <expression>
                 <term>
+                  <identifier index='1' segmentType='ARGUMENT'>Array</identifier>
                 </term>
               </expression>
               <symbol> ] </symbol>
               <symbol> = </symbol>
               <expression>
                 <term>
+                  <symbol> . </symbol>
                   <identifier subroutine>Array.new</identifier>
                   <symbol> ( </symbol>
                   <expressionList>

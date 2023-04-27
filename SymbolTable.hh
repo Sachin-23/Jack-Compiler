@@ -12,9 +12,6 @@ class SymbolTable {
      std::tuple<std::string, enum::kind, uint64_t> > table; 
 
   public:
-    SymbolTable() { };
-
-    ~SymbolTable() { }; 
     
     void define(std::string name, std::string type, enum::kind akind) {
       uint64_t index;
@@ -52,8 +49,8 @@ class SymbolTable {
      return std::get<2>(table[name]);
     }
 
-    bool in(std::string name) {
-      return (bool)table.count(name);
+    bool contains(std::string name) {
+      return table.count(name) > 0;
     }
 
     void reset() {
